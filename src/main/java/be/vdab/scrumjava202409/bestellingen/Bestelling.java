@@ -2,41 +2,41 @@ package be.vdab.scrumjava202409.bestellingen;
 import java.util.Date;
 
 public class Bestelling {
-        long bestelId;
-        Date bestelDatum;
-        long klantId;
-        boolean betaald;
-        String betalingsCode;
-        long betaalwijzeId;
-        boolean annulatie;
-        Date annulatieDatum;
-        String terugbetalingsCode;
-        long BestellingsStatusId;
-        boolean ActriecodeGebruikt;
-        String bedrijfsNaam;
+        private long bestelId;
+        private Date besteldatum;
+        private long klantId;
+        private boolean betaald;
+        private String betalingscode;
+        private long betaalwijzeId;
+        private boolean annulatie;
+        private Date annulatiedatum;
+        private String terugbetalingscode;
+        private long BestellingsStatusId;
+        private boolean ActiecodeGebruikt;
+        private String bedrijfsnaam;
 
 
-        public Bestelling(long bestelId, Date bestelDatum, long klantId, boolean betaald, String betalingsCode, long betaalwijzeId, boolean annulatie, Date annulatieDatum, String terugbetalingsCode, long bestellingsStatusId, boolean actriecodeGebruikt, String bedrijfsNaam) {
+        public Bestelling(long bestelId, Date besteldatum, long klantId, boolean betaald, String betalingscode, long betaalwijzeId, boolean annulatie, Date annulatiedatum, String terugbetalingscode, long bestellingsStatusId, boolean actiecodeGebruikt, String bedrijfsnaam) {
             this.bestelId = bestelId;
-            this.bestelDatum = bestelDatum;
+            this.besteldatum = besteldatum;
             this.klantId = klantId;
             this.betaald = betaald;
-            this.betalingsCode = betalingsCode;
+            this.betalingscode = betalingscode;
             this.betaalwijzeId = betaalwijzeId;
             this.annulatie = annulatie;
-            this.annulatieDatum = annulatieDatum;
-            this.terugbetalingsCode = terugbetalingsCode;
+            this.annulatiedatum = annulatiedatum;
+            this.terugbetalingscode = terugbetalingscode;
             BestellingsStatusId = bestellingsStatusId;
-            ActriecodeGebruikt = actriecodeGebruikt;
-            this.bedrijfsNaam = bedrijfsNaam;
+            ActiecodeGebruikt = actiecodeGebruikt;
+            this.bedrijfsnaam = bedrijfsnaam;
         }
 
         public long getBestelId() {
             return bestelId;
         }
 
-        public Date getBestelDatum() {
-            return bestelDatum;
+        public Date getBesteldatum() {
+            return besteldatum;
         }
 
         public long getKlantId() {
@@ -47,8 +47,8 @@ public class Bestelling {
             return betaald;
         }
 
-        public String getBetalingsCode() {
-            return betalingsCode;
+        public String getBetalingscode() {
+            return betalingscode;
         }
 
         public long getBetaalwijzeId() {
@@ -59,23 +59,23 @@ public class Bestelling {
             return annulatie;
         }
 
-        public Date getAnnulatieDatum() {
-            return annulatieDatum;
+        public Date getAnnulatiedatum() {
+            return annulatiedatum;
         }
 
-        public String getTerugbetalingsCode() {
-            return terugbetalingsCode;
+        public String getTerugbetalingscode() {
+            return terugbetalingscode;
         }
 
         public long getBestellingsStatusId() {
             return BestellingsStatusId;
         }
 
-        public boolean isActriecodeGebruikt() {
-            return ActriecodeGebruikt;
+        public boolean isActiecodeGebruikt() {
+            return ActiecodeGebruikt;
         }
 
-        public String getBedrijfsNaam() {
-            return bedrijfsNaam;
+        public String getBedrijfsnaam() {
+            return bedrijfsnaam;
         }
     }
