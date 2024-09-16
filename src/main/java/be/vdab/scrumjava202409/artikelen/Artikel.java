@@ -3,7 +3,6 @@ package be.vdab.scrumjava202409.artikelen;
 import java.math.BigDecimal;
 
 public class Artikel {
-
     private long artikelId;
     private String ean;
     private String naam;
@@ -19,8 +18,10 @@ public class Artikel {
     private int maxAantalInMagazijnPlaats;
     private int leveranciersId;
 
-
-    public Artikel(long artikelId, String ean, String naam, String beschrijving, BigDecimal prijs, int gewichtInGram, int bestelpeil, int voorraad, int minimumVoorraad, int maximumVoorraad, int levertijd, int aantalBesteldLeverancier, int maxAantalInMagazijnPlaats, int leverancierId){
+    public Artikel(long artikelId, String ean, String naam, String beschrijving, BigDecimal prijs, int gewichtInGram,
+                   int bestelpeil, int voorraad, int minimumVoorraad, int maximumVoorraad, int levertijd,
+                   int aantalBesteldLeverancier, int maxAantalInMagazijnPlaats, int leverancierId)
+    {
         setArtikelId(artikelId);
         setEan(ean);
         setNaam(naam);
@@ -35,13 +36,7 @@ public class Artikel {
         setAantalBesteldLeverancier(aantalBesteldLeverancier);
         setMaxAantalInMagazijnPlaats(maxAantalInMagazijnPlaats);
         setLeveranciersId(leverancierId);
-
     }
-
-    protected Artikel(){
-
-    }
-
 
     public BigDecimal getPrijs() {
         return prijs;
