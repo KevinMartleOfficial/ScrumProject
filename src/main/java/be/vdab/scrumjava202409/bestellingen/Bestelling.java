@@ -11,8 +11,8 @@ public class Bestelling {
         private boolean annulatie;
         private Date annulatiedatum;
         private String terugbetalingscode;
-        private long BestellingsStatusId;
-        private boolean ActiecodeGebruikt;
+        private long bestellingsStatusId;
+        private boolean actiecodeGebruikt;
         private String bedrijfsnaam;
 
 
@@ -26,8 +26,8 @@ public class Bestelling {
             this.annulatie = annulatie;
             this.annulatiedatum = annulatiedatum;
             this.terugbetalingscode = terugbetalingscode;
-            BestellingsStatusId = bestellingsStatusId;
-            ActiecodeGebruikt = actiecodeGebruikt;
+            this.bestellingsStatusId = bestellingsStatusId;
+            this.actiecodeGebruikt = actiecodeGebruikt;
             this.bedrijfsnaam = bedrijfsnaam;
         }
 
@@ -68,11 +68,11 @@ public class Bestelling {
         }
 
         public long getBestellingsStatusId() {
-            return BestellingsStatusId;
+            return bestellingsStatusId;
         }
 
         public boolean isActiecodeGebruikt() {
-            return ActiecodeGebruikt;
+            return actiecodeGebruikt;
         }
 
         public String getBedrijfsnaam() {
