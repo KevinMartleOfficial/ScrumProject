@@ -7,7 +7,7 @@ public class Bestellijn {
     private int aantalBesteld;
     private int aantalGeannuleerd;
 
-    Bestellijn(long bestellijnId, long bestelId, long artikelId, int aantalBesteld, int aantalGeannuleerd) {
+    public Bestellijn(long bestellijnId, long bestelId, long artikelId, int aantalBesteld, int aantalGeannuleerd) {
         this.bestellijnId = bestellijnId;
         this.bestelId = bestelId;
         this.artikelId = artikelId;
@@ -34,5 +34,4 @@ public class Bestellijn {
     public int getAantalGeannuleerd() {
         return aantalGeannuleerd;
     }
-
 }

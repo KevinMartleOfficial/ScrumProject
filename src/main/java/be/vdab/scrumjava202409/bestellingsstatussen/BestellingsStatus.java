@@ -9,11 +9,11 @@ public class BestellingsStatus {
         this.naam = naam;
     }
 
-    public long getBestellingsStatusId(){
+    public long getBestellingsStatusId() {
         return bestellingsStatusId;
     }
 
-    public String getNaam(){
+    public String getNaam() {
         return naam;
     }
 }

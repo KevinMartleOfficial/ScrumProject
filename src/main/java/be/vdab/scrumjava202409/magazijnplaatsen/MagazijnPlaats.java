@@ -7,7 +7,7 @@ public class MagazijnPlaats {
     private int rek;
     private int aantal;
 
-    public MagazijnPlaats(long magazijnPlaatsId, long artikelId, char rij, int rek, int aantal){
+    public MagazijnPlaats(long magazijnPlaatsId, long artikelId, char rij, int rek, int aantal) {
         this.magazijnPlaatsId = magazijnPlaatsId;
         this.artikelId = artikelId;
         this.rij = rij;

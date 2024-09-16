@@ -10,9 +10,11 @@ public class UitgaandeLevering {
     private String trackingcode;
     private long klantId;
     private long uitgaandeLeveringsStatusId;
-    public UitgaandeLevering (long uitgaandeLeveringsId, long bestelId, LocalDate vertrekDatum,
-                              LocalDate aankomstDatum, String trackingcode, long klantId,
-                              long uitgaandeLeveringsStatusId) {
+
+    public UitgaandeLevering(long uitgaandeLeveringsId, long bestelId, LocalDate vertrekDatum,
+                             LocalDate aankomstDatum, String trackingcode, long klantId,
+                             long uitgaandeLeveringsStatusId)
+    {
         this.uitgaandeLeveringsId = uitgaandeLeveringsId;
         this.bestelId = bestelId;
         this.vertrekDatum = vertrekDatum;
