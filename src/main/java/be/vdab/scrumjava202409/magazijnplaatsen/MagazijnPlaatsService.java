@@ -18,7 +18,8 @@ public class MagazijnPlaatsService {
 
     List<ArtikelMagazijn> findMagazijnplaatsByArtikelId(long artikelId) {
         List<MagazijnPlaats> magazijnPlaatsen = magazijnPlaatsRepository.findMagazijnplaatsByArtikelId(artikelId);
-        return magazijnPlaatsen.stream()
+        return magazijnPlaatsen
+                .stream()
                 .map(mp -> new ArtikelMagazijn(mp.getRij() + String.valueOf(mp.getRek()), mp.getAantal()))
                 .collect(Collectors.toList());
     }
