@@ -16,12 +16,12 @@ class BestellingRepository {
         String sql = """
                 select * from bestellingen 
                 inner join bestellingsstatussen bs on bestellingen.bestellingsStatusId = bs.bestellingsStatusId
-                         where bs.naam = "Klaarmaken"
+                         where bs.naam = 'Klaarmaken'
                          order by bestelId
                 limit 5;
                 """;
         return jdbcClient.sql(sql).query(Bestelling.class).
-    stream().toList();
+                stream().toList();
         }
 
     public Bestelling findEersteBestellingMetStatusKlaarmaken() {
