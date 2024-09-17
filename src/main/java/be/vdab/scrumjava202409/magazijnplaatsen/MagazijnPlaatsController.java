@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("magazijnplaatsen")
+@RestController
 public class MagazijnPlaatsController {
     private final MagazijnPlaatsService magazijnPlaatsService;
 
@@ -14,8 +14,8 @@ public class MagazijnPlaatsController {
         this.magazijnPlaatsService = magazijnPlaatsService;
     }
 
-    @GetMapping("{id}")
-    List<MagazijnPlaats> findMagazijnplaatsByArtikelId(@PathVariable long id) {
+    @GetMapping("artikelen/{id}/magazijnplaatsen")
+    List<ArtikelMagazijn> findMagazijnplaatsByArtikelId(@PathVariable long id) {
         return magazijnPlaatsService.findMagazijnplaatsByArtikelId(id);
     }
 }
