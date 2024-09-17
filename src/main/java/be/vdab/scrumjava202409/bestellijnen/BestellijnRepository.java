@@ -8,10 +8,8 @@ import java.util.List;
 
 @Repository
 public class BestellijnRepository {
-
-    private JdbcClient jdbcClient;
-
-    public BestellijnRepository(JdbcClient jdbcClient){
+    private final JdbcClient jdbcClient;
+    public BestellijnRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
@@ -24,4 +22,17 @@ public class BestellijnRepository {
                 .query(Bestellijn.class).list();
     }
 
+    public List<Bestellijn> findAllBestellijnenByBestelId(long bestelId) {
+        var sql = """
+                select bestellijnId, bestelId, artikelId, aantalBesteld, aantalGeannuleerd
+                from Bestellijnen
+                where bestelId = ?
+                """;
+        return jdbcClient.sql(sql)
+                .param(bestelId)
+                .query(Bestellijn.class)
+                .list();
+    }
 }
+
+
