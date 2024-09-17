@@ -1,6 +1,7 @@
 package be.vdab.scrumjava202409.bestellingen;
 
 import be.vdab.scrumjava202409.artikelen.ArtikelService;
+import be.vdab.scrumjava202409.uitgaandeleveringen.UitgaandeLeveringService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +14,12 @@ import java.util.List;
 class BestellingController {
     private final BestellingService bestellingService;
     private final ArtikelService artikelService;
+    private final UitgaandeLeveringService uitgaandeLeveringService;
 
-    public BestellingController(BestellingService bestellingService, ArtikelService artikelService) {
+    public BestellingController(BestellingService bestellingService, ArtikelService artikelService, UitgaandeLeveringService uitgaandeLeveringService) {
         this.bestellingService = bestellingService;
         this.artikelService = artikelService;
+        this.uitgaandeLeveringService = uitgaandeLeveringService;
     }
 
     @GetMapping("bestelling/tv")
@@ -33,9 +36,16 @@ class BestellingController {
     Stream<ArtikelAantal> alleArtikelenMetAantalVanEersteBestelling() {
         return bestellingService.findAllBestellijnenVanEersteBestelling()
                 .stream()
-                .map(bestellijn -> new ArtikelAantal(
-                        artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
-                        bestellijn.getAantalBesteld(), "Algoritme in aanmaak"));
+                .map(bestellijn -> {
+                    System.out.println(bestellijn.getBestelId());
+                    ArtikelAantal artikelAantal = new ArtikelAantal(
+                            artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
+                            bestellijn.getAantalBesteld(), "A1");
+                    //voor lijst van ArtikelAantal bij te houden in uitgaandeLeveringService
+                    //om te gebruiken bij afwerken van bestelling
+                    uitgaandeLeveringService.voegToeAanArtikelAantalList(artikelAantal);
+                    return artikelAantal;
+                });
 
     }
 }

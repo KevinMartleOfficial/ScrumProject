@@ -29,4 +29,27 @@ public class ArtikelRepository {
                 """;
         return jdbcClient.sql(sql).param(artikelId).query(Artikel.class).single();
     }
+
+    public void verlaagVoorraad(long artikelId, int aantal){
+        String sql = """
+                update artikelen set voorraad = voorraad - ? where artikelId = ?;
+                """;
+        jdbcClient.sql(sql).params(aantal, artikelId).update();
+    }
+
+    //Deze methode is voor testen van het aanpassen van de voorraad in artikelen en magazijnplaatsen
+    //Wordt gebruikt in uitgaandeLeveringService totdat ArtikelAantal wordt aangepast dat die een artikelId heeft
+    //TLDR: geen nuttige functie
+    public Artikel getArtikelByName(String naam){
+        //TODO verwijder limit 1
+
+        String sql = """
+                
+                select * from artikelen where naam = ? limit 1;
+                """;
+        return jdbcClient
+                .sql(sql)
+                .param(naam)
+                .query(Artikel.class).single();
+    }
 }
