@@ -1,8 +1,10 @@
 package be.vdab.scrumjava202409.bestellingen;
 
+import be.vdab.scrumjava202409.artikelen.Artikel;
 import be.vdab.scrumjava202409.artikelen.ArtikelService;
 import be.vdab.scrumjava202409.uitgaandeleveringen.UitgaandeLeveringService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,12 +35,11 @@ class BestellingController {
     }
 
     @GetMapping("bestellingen/eerste")
-    Stream<ArtikelAantal> alleArtikelenMetAantalVanEersteBestelling() {
+    Stream<ArtikelAantalMagazijnplaats> alleArtikelenMetAantalVanEersteBestelling() {
         return bestellingService.findAllBestellijnenVanEersteBestelling()
                 .stream()
                 .map(bestellijn -> {
-                    System.out.println(bestellijn.getBestelId());
-                    ArtikelAantal artikelAantal = new ArtikelAantal(
+                    ArtikelAantalMagazijnplaats artikelAantal = new ArtikelAantalMagazijnplaats(
                             artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
                             bestellijn.getAantalBesteld(), "A1");
                     //voor lijst van ArtikelAantal bij te houden in uitgaandeLeveringService
@@ -47,5 +48,10 @@ class BestellingController {
                     return artikelAantal;
                 });
 
+    }
+
+    @GetMapping("bestellingen/artikel/{id}/detailoverzicht")
+    Artikel getDetailoverzicht(@PathVariable long id) {
+        return artikelService.getArtikelById(id);
     }
 }
