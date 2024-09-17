@@ -18,4 +18,15 @@ public class ArtikelRepository {
 
         return jdbcClient.sql(sql).param(artikelId).query(Integer.class).single();
     }
+
+    public Artikel getArtikelById(long artikelId){
+        var sql = """
+                select artikelId, ean, naam, beschrijving, prijs, gewichtInGram, bestelpeil, voorraad,
+                minimumVoorraad, maximumVoorraad, levertijd, aantalBesteldLeverancier,
+                maxAantalInMagazijnPlaats, leveranciersId
+                from artikelen
+                where artikelId = ?;
+                """;
+        return jdbcClient.sql(sql).param(artikelId).query(Artikel.class).single();
+    }
 }
