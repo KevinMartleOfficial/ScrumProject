@@ -20,8 +20,7 @@ public class BestellingRepository {
                          order by bestelId
                 limit 5;
                 """;
-        return jdbcClient.sql(sql).query(Bestelling.class).
-    stream().toList();
+        return jdbcClient.sql(sql).query(Bestelling.class).list();
         }
 
     long findAantalBestellingen() {
