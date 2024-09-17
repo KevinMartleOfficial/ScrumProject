@@ -30,10 +30,10 @@ class BestellingController {
     }
 
     @GetMapping("bestellingen/eerste")
-    Stream<ArtikelAantal> alleArtikelenMetAantalVanEersteBestelling() {
+    Stream<ArtikelAantalMagazijnplaats> alleArtikelenMetAantalVanEersteBestelling() {
         return bestellingService.findAllBestellijnenVanEersteBestelling()
                 .stream()
-                .map(bestellijn -> new ArtikelAantal(
+                .map(bestellijn -> new ArtikelAantalMagazijnplaats(
                         artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
                         bestellijn.getAantalBesteld(), "Algoritme in aanmaak"));
 
