@@ -13,13 +13,17 @@ body{
     background-color: #ABD7A8 ;
     color : #FFFFFF;
 }
-
+table{
+    border-collapse: collapse;
+}
 th {
+    border: solid black 1px;
     color: #FFFFFF;
     background-color: #ABD7A8;
 }
 
 td {
+    border: solid black 1px;
     padding-left: 0.2em;
     padding-right: 0.2em;
 }
@@ -29,6 +33,39 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-    background-color: #FFFFFF;
+    background-color:#ABD7A8;
+}
+.logo{
+    width: 50%;
+    height: auto;
+}
+#storing{
+    color:white;
+    background: red;
+}
+button {
+    background-color: #ABD7A8;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    outline: 0;
+    padding: 6px 10px;
+}
+
+button:is(:hover, :focus) {
+    background-color: #3e8e41;
+}
+
+button:active {
+    background-color: #3ecc41;
+}
+
+#totaalDiv {
+    float: right;
+    font-size: 30px;
+    padding-top: 5em;
+    padding-right: 50px;
+    font-weight: bold;
 }
 
