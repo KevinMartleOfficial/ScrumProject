@@ -8,7 +8,6 @@ import java.util.List;
 @Repository
 public class BestellingRepository {
     private final JdbcClient jdbcClient;
-
     public BestellingRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
