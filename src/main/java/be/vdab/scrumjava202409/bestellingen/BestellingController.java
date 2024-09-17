@@ -20,7 +20,7 @@ class BestellingController {
         this.artikelRepository = artikelRepository;
     }
 
-    private class ArtikelAantal {
+    class ArtikelAantal {
         private final String artikelNaam;
         private final int aantal;
         ArtikelAantal(Bestellijn bestellijn) {
@@ -40,7 +40,7 @@ class BestellingController {
     }
 
     @GetMapping("bestellingen/eerste")
-    Stream<ArtikelAantal> alleArtikelenMetAantal() {
+    Stream<ArtikelAantal> alleArtikelenMetAantalVanEersteBestelling() {
         return bestellingService.findAllBestellijnenVanEersteBestelling()
                 .stream()
                 .map(bestellijn -> new ArtikelAantal(bestellijn));
