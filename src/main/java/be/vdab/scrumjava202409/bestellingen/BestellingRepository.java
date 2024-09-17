@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-class BestellingRepository {
+public class BestellingRepository {
     private final JdbcClient jdbcClient;
     public BestellingRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
@@ -40,5 +40,15 @@ class BestellingRepository {
     long findAantalBestellingen() {
         String sql = "select count(*) from bestellingen";
         return jdbcClient.sql(sql).query(Long.class).single();
+    }
+
+    public Bestelling findById(long bestelId){
+        String sql = """
+                select * from bestellingen where bestelId = ?;
+                """;
+        return jdbcClient.sql(sql)
+                .param(bestelId)
+                .query(Bestelling.class)
+                .single();
     }
 }
