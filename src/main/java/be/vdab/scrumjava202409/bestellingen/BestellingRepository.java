@@ -15,10 +15,8 @@ public class BestellingRepository {
 
     public List<Bestelling> eerste5bestellingen() {
         String sql = """
-                select * from bestellingen 
-                inner join bestellingsstatussen bs on bestellingen.bestellingsStatusId = bs.bestellingsStatusId
-                         where bs.naam = "Klaarmaken"
-
+                select * from bestellingen
+                         where bestellingsStatusId = 4
                          order by bestelId
                 limit 5;
                 """;

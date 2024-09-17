@@ -15,8 +15,13 @@ public class Bestelling {
     private long bestellingsStatusId;
     private boolean actiecodeGebruikt;
     private String bedrijfsnaam;
+    private String btwNummer;
+    private String voornaam;
+    private String familienaam;
+    private int facturatieAdresId;
+    private int leveringsAdresId;
 
-    public Bestelling(long bestelId, Date besteldatum, long klantId, boolean betaald, String betalingscode,
+    /*public Bestelling(long bestelId, Date besteldatum, long klantId, boolean betaald, String betalingscode,
                       long betaalwijzeId, boolean annulatie, Date annulatiedatum, String terugbetalingscode,
                       long bestellingsStatusId, boolean actiecodeGebruikt, String bedrijfsnaam)
     {
@@ -32,6 +37,36 @@ public class Bestelling {
         this.bestellingsStatusId = bestellingsStatusId;
         this.actiecodeGebruikt = actiecodeGebruikt;
         this.bedrijfsnaam = bedrijfsnaam;
+    }*/
+
+    public Bestelling(long bestelId, Date besteldatum,
+                      long klantId, boolean betaald,
+                      String betalingscode, long betaalwijzeId,
+                      boolean annulatie, Date annulatiedatum,
+                      String terugbetalingscode,
+                      long bestellingsStatusId,
+                      boolean actiecodeGebruikt,
+                      String bedrijfsnaam, String btwNummer,
+                      String voornaam, String familienaam,
+                      int facturatieAdresId, int leveringsAdresId) {
+
+        this.bestelId = bestelId;
+        this.besteldatum = besteldatum;
+        this.klantId = klantId;
+        this.betaald = betaald;
+        this.betalingscode = betalingscode;
+        this.betaalwijzeId = betaalwijzeId;
+        this.annulatie = annulatie;
+        this.annulatiedatum = annulatiedatum;
+        this.terugbetalingscode = terugbetalingscode;
+        this.bestellingsStatusId = bestellingsStatusId;
+        this.actiecodeGebruikt = actiecodeGebruikt;
+        this.bedrijfsnaam = bedrijfsnaam;
+        this.btwNummer = btwNummer;
+        this.voornaam = voornaam;
+        this.familienaam = familienaam;
+        this.facturatieAdresId = facturatieAdresId;
+        this.leveringsAdresId = leveringsAdresId;
     }
 
     public long getBestelId() {
@@ -80,5 +115,25 @@ public class Bestelling {
 
     public String getBedrijfsnaam() {
         return bedrijfsnaam;
+    }
+
+    public String getFamilienaam() {
+        return familienaam;
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public int getFacturatieAdresId() {
+        return facturatieAdresId;
+    }
+
+    public String getBtwNummer() {
+        return btwNummer;
+    }
+
+    public int getLeveringsAdresId() {
+        return leveringsAdresId;
     }
 }
