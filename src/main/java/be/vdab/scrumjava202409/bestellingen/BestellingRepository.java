@@ -6,11 +6,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class BestellingRepository {
+class BestellingRepository {
+    private final JdbcClient jdbcClient;
 
-    private JdbcClient jdbcClient;
-
-    public BestellingRepository(JdbcClient jdbcClient){
+    public BestellingRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
@@ -23,6 +22,10 @@ public class BestellingRepository {
          order by bestelId limit 5;
                 """;
         return jdbcClient.sql(sql).query(Bestelling.class).stream().toList();
-    }
+        }
 
+    long findAantalBestellingen() {
+        String sql = "select count(*) from bestellingen";
+        return jdbcClient.sql(sql).query(Long.class).single();
+    }
 }

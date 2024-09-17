@@ -7,17 +7,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("bestelling")
-public class BestellingController {
+class BestellingController {
+    private final BestellingService bestellingService;
 
-    private BestellingService bestellingService;
-
-    public BestellingController(BestellingService bestellingService){
+    public BestellingController(BestellingService bestellingService) {
         this.bestellingService = bestellingService;
     }
 
-    @GetMapping("tv")
+    @GetMapping("bestelling/tv")
     public List<BestellingTVDTO> eerste5bestellingenTV(){
         return bestellingService.eerste5bestellingenTV();
+        }
+    @GetMapping("bestellingen/aantal")
+    long findAantalBestellingen() {
+        return bestellingService.findAantalBestellingen();
     }
 }

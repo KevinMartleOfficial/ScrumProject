@@ -4,13 +4,15 @@ import be.vdab.scrumjava202409.artikelen.ArtikelRepository;
 import be.vdab.scrumjava202409.bestellijnen.Bestellijn;
 import be.vdab.scrumjava202409.bestellijnen.BestellijnRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class BestellingService {
+@Transactional(readOnly = true)
+class BestellingService {
+    private final BestellingRepository bestellingRepository;
 
-    private BestellingRepository bestellingRepository;
     private BestellijnRepository bestellijnRepository;
     private ArtikelRepository artikelRepository;
 
@@ -34,5 +36,8 @@ public class BestellingService {
                     }
                     return new BestellingTVDTO(bestelling, aantalProducten, maxGewicht);
                 }).toList();
+        }
+    long findAantalBestellingen() {
+        return bestellingRepository.findAantalBestellingen();
     }
 }
