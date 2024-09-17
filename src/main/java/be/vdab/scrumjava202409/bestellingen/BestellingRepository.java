@@ -26,9 +26,7 @@ class BestellingRepository {
 
     public Bestelling findEersteBestellingMetStatusKlaarmaken() {
         var sql = """
-                select bestelId, besteldatum, klantId, betaald, betalingscode,
-                    betaalwijzeId, annulatie, annulatiedatum, terugbetalingscode,
-                    bestellingsStatusId, actiecodeGebruikt, bedrijfsnaam
+                select *
                 from Bestellingen
                 where bestellingsStatusId = 4
                 order by besteldatum, bestelId

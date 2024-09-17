@@ -1,8 +1,6 @@
 package be.vdab.scrumjava202409.bestellingen;
 
-import be.vdab.scrumjava202409.artikelen.Artikel;
-import be.vdab.scrumjava202409.artikelen.ArtikelRepository;
-import be.vdab.scrumjava202409.bestellijnen.Bestellijn;
+import be.vdab.scrumjava202409.artikelen.ArtikelService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,19 +12,11 @@ import java.util.List;
 @RestController
 class BestellingController {
     private final BestellingService bestellingService;
-    private final ArtikelRepository artikelRepository;
-    public BestellingController(BestellingService bestellingService, ArtikelRepository artikelRepository) {
-        this.bestellingService = bestellingService;
-        this.artikelRepository = artikelRepository;
-    }
+    private final ArtikelService artikelService;
 
-    class ArtikelAantal {
-        private final String artikelNaam;
-        private final int aantal;
-        ArtikelAantal(Bestellijn bestellijn) {
-            this.artikelNaam = artikelRepository.getArtikelById(bestellijn.getArtikelId()).getNaam();
-            this.aantal = bestellijn.getAantalBesteld();
-        }
+    public BestellingController(BestellingService bestellingService, ArtikelService artikelService) {
+        this.bestellingService = bestellingService;
+        this.artikelService = artikelService;
     }
 
     @GetMapping("bestelling/tv")
@@ -43,7 +33,9 @@ class BestellingController {
     Stream<ArtikelAantal> alleArtikelenMetAantalVanEersteBestelling() {
         return bestellingService.findAllBestellijnenVanEersteBestelling()
                 .stream()
-                .map(bestellijn -> new ArtikelAantal(bestellijn));
+                .map(bestellijn -> new ArtikelAantal(
+                        artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
+                        bestellijn.getAantalBesteld(), "Algoritme in aanmaak"));
 
     }
 }
