@@ -1,6 +1,5 @@
 package be.vdab.scrumjava202409.magazijnplaatsen;
 
-import be.vdab.scrumjava202409.artikelen.Artikel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
