@@ -41,7 +41,7 @@ class BestellingController {
                 .map(bestellijn -> {
                     ArtikelAantalMagazijnplaats artikelAantal = new ArtikelAantalMagazijnplaats(
                             artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
-                            bestellijn.getAantalBesteld(), "A1");
+                            bestellijn.getAantalBesteld(), "Dit is tijdelijk");
                     //voor lijst van ArtikelAantal bij te houden in uitgaandeLeveringService
                     //om te gebruiken bij afwerken van bestelling
                     uitgaandeLeveringService.voegToeAanArtikelAantalList(artikelAantal);
