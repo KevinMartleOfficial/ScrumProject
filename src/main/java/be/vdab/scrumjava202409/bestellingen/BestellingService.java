@@ -12,16 +12,18 @@ import java.util.List;
 @Transactional(readOnly = true)
 class BestellingService {
     private final BestellingRepository bestellingRepository;
+    private final BestellijnRepository bestellijnRepository;
+    private final ArtikelRepository artikelRepository;
 
-    private BestellijnRepository bestellijnRepository;
-    private ArtikelRepository artikelRepository;
-
-    public BestellingService(BestellingRepository bestellingRepository,
-                             BestellijnRepository bestellijnRepository,
-                             ArtikelRepository artikelRepository){
+    public BestellingService(BestellingRepository bestellingRepository, BestellijnRepository bestellijnRepository, ArtikelRepository artikelRepository) {
         this.bestellingRepository = bestellingRepository;
         this.bestellijnRepository = bestellijnRepository;
         this.artikelRepository = artikelRepository;
+    }
+
+    List<Bestellijn> findAllBestellijnenVanEersteBestelling() {
+        var eersteBestelling = bestellingRepository.findEersteBestellingMetStatusKlaarmaken();
+        return bestellijnRepository.findAllBestellijnenByBestelId(eersteBestelling.getBestelId());
     }
 
     public List<BestellingTVDTO> eerste5bestellingenTV() {
