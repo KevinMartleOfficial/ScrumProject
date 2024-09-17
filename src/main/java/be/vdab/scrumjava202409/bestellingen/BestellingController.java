@@ -14,7 +14,7 @@ class BestellingController {
         this.bestellingService = bestellingService;
     }
 
-    private record ArtikelAantal (String artikelNaam, int aantal) {
+    private record ArtikelRekPlaatsAantal (String artikelNaam, int aantal) {
     }
 
 
