@@ -20,7 +20,7 @@ public class Artikel {
 
     public Artikel(long artikelId, String ean, String naam, String beschrijving, BigDecimal prijs, int gewichtInGram,
                    int bestelpeil, int voorraad, int minimumVoorraad, int maximumVoorraad, int levertijd,
-                   int aantalBesteldLeverancier, int maxAantalInMagazijnPlaats, int leverancierId)
+                   int aantalBesteldLeverancier, int maxAantalInMagazijnPlaats, int leveranciersId)
     {
         setArtikelId(artikelId);
         setEan(ean);
@@ -35,7 +35,7 @@ public class Artikel {
         setLevertijd(levertijd);
         setAantalBesteldLeverancier(aantalBesteldLeverancier);
         setMaxAantalInMagazijnPlaats(maxAantalInMagazijnPlaats);
-        setLeveranciersId(leverancierId);
+        setLeveranciersId(leveranciersId);
     }
 
     public BigDecimal getPrijs() {
