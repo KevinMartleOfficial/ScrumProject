@@ -13,15 +13,17 @@ class BestellingRepository {
         this.jdbcClient = jdbcClient;
     }
 
-    public List<Bestelling> eerste5bestellingen(){
+    public List<Bestelling> eerste5bestellingen() {
         String sql = """
                 select * from bestellingen 
                 inner join bestellingsstatussen bs on bestellingen.bestellingsStatusId = bs.bestellingsStatusId
-         where bs.naam = "Klaarmaken"
+                         where bs.naam = "Klaarmaken"
 
-         order by bestelId limit 5;
+                         order by bestelId
+                limit 5;
                 """;
-        return jdbcClient.sql(sql).query(Bestelling.class).stream().toList();
+        return jdbcClient.sql(sql).query(Bestelling.class).
+    stream().toList();
         }
 
     long findAantalBestellingen() {

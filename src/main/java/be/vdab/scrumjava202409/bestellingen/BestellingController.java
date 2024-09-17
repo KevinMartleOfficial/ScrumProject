@@ -15,9 +15,9 @@ class BestellingController {
     }
 
     @GetMapping("bestelling/tv")
-    public List<BestellingTVDTO> eerste5bestellingenTV(){
+    public List<BestellingTVDTO> eerste5bestellingenTV() {
         return bestellingService.eerste5bestellingenTV();
-        }
+    }
     @GetMapping("bestellingen/aantal")
     long findAantalBestellingen() {
         return bestellingService.findAantalBestellingen();

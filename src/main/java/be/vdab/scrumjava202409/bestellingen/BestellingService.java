@@ -24,13 +24,13 @@ class BestellingService {
         this.artikelRepository = artikelRepository;
     }
 
-    public List<BestellingTVDTO> eerste5bestellingenTV(){
+    public List<BestellingTVDTO> eerste5bestellingenTV() {
         return bestellingRepository.eerste5bestellingen().stream()
                 .map(bestelling -> {
                     List<Bestellijn> bestellijnen = bestellijnRepository.getAlleBestellijnenVanBestelling(bestelling);
                     int aantalProducten = 0;
                     int maxGewicht = 0;
-                    for(Bestellijn bestellijn : bestellijnen){
+                    for (Bestellijn bestellijn : bestellijnen) {
                         aantalProducten += bestellijn.getAantalBesteld();
                         maxGewicht += artikelRepository.getGewichtArtikel(bestellijn.getArtikelId() * bestellijn.getAantalBesteld());
                     }
