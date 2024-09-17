@@ -38,7 +38,7 @@ public class BestellingRepository {
     }
 
     long findAantalBestellingen() {
-        String sql = "select count(*) from bestellingen";
+        String sql = "select count(*) from bestellingen where bestellingsStatusId = 4";
         return jdbcClient.sql(sql).query(Long.class).single();
     }
 
