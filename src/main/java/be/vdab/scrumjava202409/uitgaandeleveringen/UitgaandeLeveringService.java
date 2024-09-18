@@ -18,7 +18,7 @@ public class UitgaandeLeveringService {
     private BestellingRepository bestellingRepository;
     private ArtikelRepository artikelRepository;
 
-    private List<BestelIdArtikelIdNaamAantalMagazijnplaats> artikelAantalList;
+    private List<BestelIdArtikelIdNaamAantalMagazijnplaats> banamList;
 
     public UitgaandeLeveringService(UitgaandeLeveringRepository uitgaandeLeveringRepository,
                                     BestellingRepository bestellingRepository,
@@ -28,22 +28,22 @@ public class UitgaandeLeveringService {
         this.bestellingRepository = bestellingRepository;
         this.magazijnPlaatsService = magazijnPlaatsService;
         this.artikelRepository = artikelRepository;
-        this.artikelAantalList = new ArrayList<>();
+        this.banamList = new ArrayList<>();
     }
 
     public void voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList(BestelIdArtikelIdNaamAantalMagazijnplaats banam){
-        artikelAantalList.add(banam);
+        banamList.add(banam);
     }
 
     public long addUitgaandeLevering(long bestelId){
-        for(BestelIdArtikelIdNaamAantalMagazijnplaats artikelAantal : artikelAantalList){
+        for(BestelIdArtikelIdNaamAantalMagazijnplaats artikelAantal : banamList){
 
             //TODO nog aan te passen na "ArtikelAantal" geupdate is met nieuwe velden
             //TODO tijdelijke methode artikelRepository.getArtikelByName mag later nog weg wanneer ArtikelAantal het artikelId heeft
             magazijnPlaatsService.haalArtikelUitMagazijnPlaats(artikelAantal.aantal(), artikelAantal.magazijnPlaats());
             artikelRepository.verlaagVoorraad(artikelRepository.getArtikelByName(artikelAantal.artikelNaam()).getArtikelId(), artikelAantal.aantal());
         }
-        artikelAantalList.clear();
+        banamList.clear();
         return uitgaandeLeveringRepository.addUitgaandeLevering(bestellingRepository.findById(bestelId));
     }
 }
