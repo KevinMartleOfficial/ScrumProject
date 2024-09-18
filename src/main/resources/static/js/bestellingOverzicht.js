@@ -13,24 +13,28 @@ async function fetchArtikellen(){
     }
 }
 
-var checkboxList= document.getElementsByClassName("checkboxes");
-for (var i =0;i<checkboxList.length;i++){
-    console.log(checkboxList[i])
-    checkboxList[i].onchange = () =>telVinkjes();
-}
-function telVinkjes(){
-    var aantalVinkjes =0;
-    for (var i =0; i<checkboxList.length;i++){
-        if (checkboxList[i].checked){
-            aantalVinkjes++;
+function checkboxLijstAanmaken() {
+    const checkboxList = document.getElementsByClassName("checkboxes");
+    console.log(checkboxList);
+    for (var i = 0; i < checkboxList.length; i++) {
+        checkboxList[i].onchange = () => telVinkjes();
+    }
+
+    function telVinkjes() {
+        var aantalVinkjes = 0;
+        for (var i = 0; i < checkboxList.length; i++) {
+            if (checkboxList[i].checked) {
+                aantalVinkjes++;
+            }
+        }
+        if (aantalVinkjes == checkboxList.length) {
+            toon("knop");
+        } else {
+            verberg("knop");
         }
     }
-    if (aantalVinkjes == checkboxList.length){
-        toon("knop");
-    }else{
-        verberg("knop");
-    }
 }
+
 
 function vulTabel(bestelLijst){
     const tabel = byId("tabelBestellingOverzicht")
@@ -41,7 +45,9 @@ function vulTabel(bestelLijst){
         tr.insertCell().textContent = bestelling.magazijnPlaats;
         const input = document.createElement("input");
         input.setAttribute("type", "checkbox");
+        input.className = "checkboxes";
         tr.insertCell().appendChild(input);
+        checkboxLijstAanmaken();
     }
 }
 
