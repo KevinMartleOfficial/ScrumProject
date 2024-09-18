@@ -1,20 +1,26 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
+let bestelId = null;
 fetchArtikellen();
 
 byId("knop").onclick = async () => {
+    const response = await fetch(`uitgaandelevering/add`, {method : "POST", headers : { 'Content-Type': 'application/json'}, body : bestelId});
+    const uitgaandeleveringNr = await response.json();
+    sessionStorage.clear();
     // hier komt een functie om de bestelling als uitgaande levering te plaatsen
     // maak de sessionStorage leeg
     location.reload();
 }
 
 
-async function fetchArtikellen(){
+async function fetchArtikellen() {
     const response = await fetch("bestellingen/eerste");
     if (response.ok){
         const bestelLijst = await response.json();
         console.log(bestelLijst);
         vulTabel(bestelLijst)
+        bestelId = bestelLijst[0].bestelId;
+        console.log(bestelId)
     }else{
         toon("storing");
     }
