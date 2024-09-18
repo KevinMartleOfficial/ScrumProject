@@ -69,3 +69,12 @@ button:active {
     font-weight: bold;
 }
 
+#bovenPaginaContainer{
+    display : flex;
+    justify-content: space-between;
+
+}
+
+#hoofdcontainer{
+    padding: 1%;
+}

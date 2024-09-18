@@ -41,7 +41,7 @@ public class UitgaandeLeveringService {
             //TODO nog aan te passen na "ArtikelAantal" geupdate is met nieuwe velden
             //TODO tijdelijke methode artikelRepository.getArtikelByName mag later nog weg wanneer ArtikelAantal het artikelId heeft
             magazijnPlaatsService.haalArtikelUitMagazijnPlaats(artikelAantal.aantal(), artikelAantal.magazijnPlaats());
-            artikelRepository.verlaagVoorraad(artikelRepository.getArtikelByName(artikelAantal.artikelNaam()).getArtikelId(), artikelAantal.aantal());
+            artikelRepository.verlaagVoorraad(artikelAantal.artikelId(), artikelAantal.aantal());
         }
         banamList.clear();
         return uitgaandeLeveringRepository.addUitgaandeLevering(bestellingRepository.findById(bestelId));
