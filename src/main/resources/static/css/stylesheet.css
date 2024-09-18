@@ -70,8 +70,6 @@ button:active {
 }
 
 
-
-
 #bestellingenTabel th{
     font-size: 50px;
 }
@@ -81,7 +79,7 @@ button:active {
     margin-top: 2%;
 }
 
-td, th{
+#bestellingenTabel th, #bestellingenTabel td{
     padding : 2%;
 }
 
@@ -112,7 +110,11 @@ td, th{
 #bovenPaginaContainer{
     display : flex;
     justify-content: space-between;
+    margin-bottom: 10px;
+    }
 
+#artikelOverzichtContainer th, #artikelOverzichtContainer td{
+    padding : 8px;
 }
 
 #hoofdcontainer{
