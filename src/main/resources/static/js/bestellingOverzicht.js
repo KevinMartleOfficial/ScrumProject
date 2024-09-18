@@ -39,12 +39,12 @@ function vulTabel(bestelLijst){
         tr.insertCell().textContent = bestelling.artikelNaam;
         tr.insertCell().textContent = bestelling.aantal;
         tr.insertCell().textContent = bestelling.magazijnPlaats;
-        const input = document.createElement("input")
+        const input = document.createElement("input");
         input.setAttribute("type", "checkbox");
-        tr.insertCell().innerHTML = input;
+        tr.insertCell().appendChild(input);
     }
-
 }
+
 
 
 
