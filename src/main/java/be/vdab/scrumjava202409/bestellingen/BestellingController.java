@@ -39,13 +39,13 @@ class BestellingController {
         return bestellingService.findAllBestellijnenVanEersteBestelling()
                 .stream()
                 .map(bestellijn -> {
-                    BestelIdArtikelIdNaamAantalMagazijnplaats bianam = new BestelIdArtikelIdNaamAantalMagazijnplaats(
+                    BestelIdArtikelIdNaamAantalMagazijnplaats banam = new BestelIdArtikelIdNaamAantalMagazijnplaats(
                             bestellijn.getBestelId(), bestellijn.getArtikelId(), artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
                             bestellijn.getAantalBesteld(), "Dit is tijdelijk");
-                    //voor lijst van ArtikelAantal bij te houden in uitgaandeLeveringService
+                    //voor lijst van ArtikelAantal (edit: andere record) bij te houden in uitgaandeLeveringService
                     //om te gebruiken bij afwerken van bestelling
-                    uitgaandeLeveringService.voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList(bianam);
-                    return bianam;
+                    uitgaandeLeveringService.voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList(banam);
+                    return banam;
                 });
 
     }

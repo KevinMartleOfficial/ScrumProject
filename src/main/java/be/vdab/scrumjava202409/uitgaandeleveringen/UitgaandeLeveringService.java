@@ -31,8 +31,8 @@ public class UitgaandeLeveringService {
         this.artikelAantalList = new ArrayList<>();
     }
 
-    public void voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList(BestelIdArtikelIdNaamAantalMagazijnplaats bianam){
-        artikelAantalList.add(bianam);
+    public void voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList(BestelIdArtikelIdNaamAantalMagazijnplaats banam){
+        artikelAantalList.add(banam);
     }
 
     public long addUitgaandeLevering(long bestelId){
