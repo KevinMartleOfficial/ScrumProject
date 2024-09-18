@@ -35,17 +35,17 @@ class BestellingController {
     }
 
     @GetMapping("bestellingen/eerste")
-    Stream<ArtikelAantalMagazijnplaats> alleArtikelenMetAantalVanEersteBestelling() {
+    Stream<BestelIdArtikelIdNaamAantalMagazijnplaats> alleArtikelenMetAantalVanEersteBestelling() {
         return bestellingService.findAllBestellijnenVanEersteBestelling()
                 .stream()
                 .map(bestellijn -> {
-                    ArtikelAantalMagazijnplaats artikelAantal = new ArtikelAantalMagazijnplaats(
-                            artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
+                    BestelIdArtikelIdNaamAantalMagazijnplaats bianam = new BestelIdArtikelIdNaamAantalMagazijnplaats(
+                            bestellijn.getBestelId(), bestellijn.getArtikelId(), artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
                             bestellijn.getAantalBesteld(), "Dit is tijdelijk");
                     //voor lijst van ArtikelAantal bij te houden in uitgaandeLeveringService
                     //om te gebruiken bij afwerken van bestelling
-                    uitgaandeLeveringService.voegToeAanArtikelAantalList(artikelAantal);
-                    return artikelAantal;
+                    uitgaandeLeveringService.voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList(bianam);
+                    return bianam;
                 });
 
     }

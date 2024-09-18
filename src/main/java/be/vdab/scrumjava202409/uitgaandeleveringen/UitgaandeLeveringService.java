@@ -1,12 +1,8 @@
 package be.vdab.scrumjava202409.uitgaandeleveringen;
 
-import be.vdab.scrumjava202409.artikelen.Artikel;
 import be.vdab.scrumjava202409.artikelen.ArtikelRepository;
-import be.vdab.scrumjava202409.bestellingen.ArtikelAantal;
-import be.vdab.scrumjava202409.bestellingen.ArtikelAantalMagazijnplaats;
-import be.vdab.scrumjava202409.bestellingen.Bestelling;
+import be.vdab.scrumjava202409.bestellingen.BestelIdArtikelIdNaamAantalMagazijnplaats;
 import be.vdab.scrumjava202409.bestellingen.BestellingRepository;
-import be.vdab.scrumjava202409.magazijnplaatsen.MagazijnPlaatsRepository;
 import be.vdab.scrumjava202409.magazijnplaatsen.MagazijnPlaatsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +18,7 @@ public class UitgaandeLeveringService {
     private BestellingRepository bestellingRepository;
     private ArtikelRepository artikelRepository;
 
-    private List<ArtikelAantalMagazijnplaats> artikelAantalList;
+    private List<BestelIdArtikelIdNaamAantalMagazijnplaats> artikelAantalList;
 
     public UitgaandeLeveringService(UitgaandeLeveringRepository uitgaandeLeveringRepository,
                                     BestellingRepository bestellingRepository,
@@ -35,12 +31,12 @@ public class UitgaandeLeveringService {
         this.artikelAantalList = new ArrayList<>();
     }
 
-    public void voegToeAanArtikelAantalList(ArtikelAantalMagazijnplaats artikelAantal){
-        artikelAantalList.add(artikelAantal);
+    public void voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList(BestelIdArtikelIdNaamAantalMagazijnplaats bianam){
+        artikelAantalList.add(bianam);
     }
 
     public long addUitgaandeLevering(long bestelId){
-        for(ArtikelAantalMagazijnplaats artikelAantal : artikelAantalList){
+        for(BestelIdArtikelIdNaamAantalMagazijnplaats artikelAantal : artikelAantalList){
 
             //TODO nog aan te passen na "ArtikelAantal" geupdate is met nieuwe velden
             //TODO tijdelijke methode artikelRepository.getArtikelByName mag later nog weg wanneer ArtikelAantal het artikelId heeft
