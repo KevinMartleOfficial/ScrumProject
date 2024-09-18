@@ -34,7 +34,7 @@ class BestellingService {
                     int maxGewicht = 0;
                     for (Bestellijn bestellijn : bestellijnen) {
                         aantalProducten += bestellijn.getAantalBesteld();
-                        maxGewicht += artikelRepository.getGewichtArtikel(bestellijn.getArtikelId() * bestellijn.getAantalBesteld());
+                        maxGewicht += artikelRepository.getGewichtArtikel(bestellijn.getArtikelId()) * bestellijn.getAantalBesteld();
                     }
                     return new BestellingTVDTO(bestelling, aantalProducten, maxGewicht);
                 }).toList();
