@@ -2,6 +2,13 @@
 import {byId, toon, verberg} from "./util.js";
 fetchArtikellen();
 
+byId("knop").onclick = async () => {
+    // hier komt een functie om de bestelling als uitgaande levering te plaatsen
+    // maak de sessionStorage leeg
+    location.reload();
+}
+
+
 async function fetchArtikellen(){
     const response = await fetch("bestellingen/eerste");
     if (response.ok){
