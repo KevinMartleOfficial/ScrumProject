@@ -23,7 +23,7 @@ public class UitgaandeLeveringRepository {
                 values (?, ?, ? ,?, 1);
                 """;
         jdbcClient.sql(sql)
-                .params(bestelling.getBestelId(), LocalDateTime.now(),LocalDateTime.now().plusDays(1), bestelling.getKlantId())
+                .params(bestelling.getBestelId(), LocalDateTime.now(),null, bestelling.getKlantId())
                 .update(generatedKeyHolder);
         return generatedKeyHolder.getKey().longValue();
     }

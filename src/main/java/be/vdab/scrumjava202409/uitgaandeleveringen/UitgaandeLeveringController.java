@@ -12,8 +12,8 @@ public class UitgaandeLeveringController {
         this.uitgaandeLeveringService = uitgaandeLeveringService;
     }
 
-    @PostMapping("add/{bestelId}")
-    public long addUitgaandeLevering(@PathVariable long bestelId){
+    @PostMapping("add")
+    public long addUitgaandeLevering(@RequestBody long bestelId){
         return uitgaandeLeveringService.addUitgaandeLevering(bestelId);
     }
 }
