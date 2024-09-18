@@ -40,7 +40,8 @@ class BestellingController {
                 .stream()
                 .map(bestellijn -> {
                     BestelIdArtikelIdNaamAantalMagazijnplaats banam = new BestelIdArtikelIdNaamAantalMagazijnplaats(
-                            bestellijn.getBestelId(), bestellijn.getArtikelId(), artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
+                            bestellijn.getBestelId(), bestellijn.getArtikelId(),
+                            artikelService.getArtikelById(bestellijn.getArtikelId()).getNaam(),
                             bestellijn.getAantalBesteld(), "Dit is tijdelijk");
                     //voor lijst van ArtikelAantal (edit: andere record) bij te houden in uitgaandeLeveringService
                     //om te gebruiken bij afwerken van bestelling
