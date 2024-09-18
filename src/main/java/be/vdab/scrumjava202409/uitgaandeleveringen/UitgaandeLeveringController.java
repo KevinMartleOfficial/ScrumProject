@@ -1,10 +1,7 @@
 package be.vdab.scrumjava202409.uitgaandeleveringen;
 
 import be.vdab.scrumjava202409.bestellingen.Bestelling;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("uitgaandelevering")
@@ -15,8 +12,8 @@ public class UitgaandeLeveringController {
         this.uitgaandeLeveringService = uitgaandeLeveringService;
     }
 
-    @PostMapping("add")
-    public long addUitgaandeLevering(@RequestBody long bestelId){
+    @PostMapping("add/{bestelId}")
+    public long addUitgaandeLevering(@PathVariable long bestelId){
         return uitgaandeLeveringService.addUitgaandeLevering(bestelId);
     }
 }

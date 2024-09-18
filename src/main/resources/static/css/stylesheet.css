@@ -109,3 +109,12 @@ td, th{
 
 
 
+#bovenPaginaContainer{
+    display : flex;
+    justify-content: space-between;
+
+}
+
+#hoofdcontainer{
+    padding: 1%;
+}
