@@ -21,9 +21,7 @@ for (var i =0;i<checkboxList.length;i++){
 function telVinkjes(){
     var aantalVinkjes =0;
     for (var i =0; i<checkboxList.length;i++){
-        console.log(checkboxList);
         if (checkboxList[i].checked){
-            console.log(checkboxList[i]);
             aantalVinkjes++;
         }
     }
