@@ -26,35 +26,18 @@ td {
     border: solid black 1px;
     padding-left: 0.2em;
     padding-right: 0.2em;
-}
-
-tr:nth-child(even) {
-    background-color: #FAFABA;
+    text-align: center;
 }
 
 tr:nth-child(odd) {
-    background-color:#ABD7A8;
+    background-color: #FAFABA;
 }
 
-.logo{
-    width: 50%;
-    height: auto;
-}
-#storing{
-    color:white;
-    background: red;
-}
-button {
-    background-color: #ABD7A8;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    outline: 0;
-    padding: 6px 10px;
+tr:nth-child(even) {
+    background-color:#ABD7A8;
 }
 .logo{
-    width: 50%;
+    width: 40%;
     height: auto;
 }
 #storing{
@@ -80,51 +63,49 @@ button:active {
 }
 
 #totaalDiv {
-    float: right;
-    font-size: 30px;
-    padding-top: 5em;
+    padding-top: 12%;
     padding-right: 50px;
-    font-weight: bold;
+    font-weight: bolder;
+    font-size: 50px;
 }
 
-button:is(:hover, :focus) {
-    background-color: #3e8e41;
-    background-color:#ABD7A8;
+
+
+
+#bestellingenTabel th{
+    font-size: 50px;
 }
-.logo{
-    width: 50%;
-    height: auto;
+
+#bestellingenTabel{
+    width: 100%;
+    margin-top: 2%;
 }
-#storing{
+
+td, th{
+    padding : 2%;
+}
+
+
+
+#bestellingenTabel td{
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+#flex{
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-end;
+}
+
+#storingTv {
+    font-size : 70px;
+    font-weight: bolder;
+    padding: 2%;
     color:white;
     background: red;
-}
-button {
-    background-color: #ABD7A8;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    outline: 0;
-    padding: 6px 10px;
+    margin-top: 1%;
 }
 
-button:is(:hover, :focus) {
-    background-color: #3e8e41;
-}
 
-button:active {
-    background-color: #3ecc41;
-}
 
-#totaalDiv {
-    float: right;
-    font-size: 30px;
-    padding-top: 5em;
-    padding-right: 50px;
-    font-weight: bold;
-}
-
-button:active {
-    background-color: #3ecc41;
-}
