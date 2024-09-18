@@ -26,17 +26,30 @@ td {
     border: solid black 1px;
     padding-left: 0.2em;
     padding-right: 0.2em;
-}
-
-tr:nth-child(even) {
-    background-color: #FAFABA;
+    text-align: center;
 }
 
 tr:nth-child(odd) {
+    background-color: #FAFABA;
+}
+
+tr:nth-child(even) {
     background-color:#ABD7A8;
 }
+
+
+
+button {
+    background-color: #ABD7A8;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    outline: 0;
+    padding: 6px 10px;
+}
 .logo{
-    width: 50%;
+    width: 40%;
     height: auto;
 }
 #storing{
@@ -62,10 +75,49 @@ button:active {
 }
 
 #totaalDiv {
-    float: right;
-    font-size: 30px;
-    padding-top: 5em;
+    padding-top: 12%;
     padding-right: 50px;
-    font-weight: bold;
+    font-weight: bolder;
+    font-size: 50px;
 }
+
+
+
+
+#bestellingenTabel th{
+    font-size: 50px;
+}
+
+#bestellingenTabel{
+    width: 100%;
+    margin-top: 2%;
+}
+
+td, th{
+    padding : 2%;
+}
+
+
+
+#bestellingenTabel td{
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+#flex{
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-end;
+}
+
+#storingTv {
+    font-size : 70px;
+    font-weight: bolder;
+    padding: 2%;
+    color:white;
+    background: red;
+    margin-top: 1%;
+}
+
+
 
