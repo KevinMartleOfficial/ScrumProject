@@ -32,7 +32,10 @@ async function fetchArtikellen() {
 
 function checkboxLijstAanmaken() {
     const checkboxList = document.getElementsByClassName("checkboxes");
-    for (var i = 0; i < checkboxList.length; i++) {
+    console.log(checkboxList);
+    var checkboxStatus = new Array(checkboxList.length).fill(0);
+
+    for (let i = 0; i < checkboxList.length; i++) {
         checkboxList[i].onchange = () => telVinkjes();
     }
 
@@ -41,16 +44,22 @@ function checkboxLijstAanmaken() {
         for (var i = 0; i < checkboxList.length; i++) {
             if (checkboxList[i].checked) {
                 aantalVinkjes++;
+                checkboxStatus[i] = 1;
+            } else {
+                checkboxStatus[i] = 0;
             }
         }
-        if (aantalVinkjes == checkboxList.length) {
+
+        // Controle
+        console.log(checkboxStatus);
+
+        if (aantalVinkjes === checkboxList.length) {
             toon("knop");
         } else {
             verberg("knop");
         }
     }
 }
-
 
 function vulTabel(bestelLijst) {
     const tabel = byId("tabelBestellingOverzicht")
