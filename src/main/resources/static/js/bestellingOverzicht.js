@@ -1,5 +1,6 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
+
 let bestelId = null;
 
 fetchArtikellen();
@@ -23,46 +24,64 @@ async function fetchArtikellen() {
         vulTabel(bestelLijst)
         bestelId = bestelLijst[0].bestelId;
         console.log(bestelId)
+        byId("BestellingId").innerHTML = "Bestelling nr: " + bestelId;
     } else {
-        byId("BestellingId").innerHTML="Bestelling nr: "+bestelId;
-    }else{
         toon("storing");
+    }
+}
+
+function slaCheckBoxStatusOp() {
+    const checkboxList = document.getElementsByClassName("checkboxes");
+    let checkboxStatus = [];
+    for (let i = 0; i < checkboxList.length; i++) {
+        checkboxStatus.push(checkboxList[i].checked ? 1 : 0);
+    }
+    sessionStorage.setItem("checkboxStatus", JSON.stringify(checkboxStatus));
+}
+
+function herstelCheckboxStatus() {
+    const checkboxList = document.getElementsByClassName("checkboxes");
+    let opgeslagenStatus = JSON.parse(sessionStorage.getItem("checkboxStatus"));
+
+    if (sessionStorage.getItem("checkboxStatus") !== null) {
+        for (let i = 0; i < checkboxList.length; i++) {
+            checkboxList[i].checked = opgeslagenStatus[i] === 1;
+        }
+        sessionStorage.setItem("checkboxStatus", JSON.stringify(opgeslagenStatus));
     }
 }
 
 function checkboxLijstAanmaken() {
     const checkboxList = document.getElementsByClassName("checkboxes");
-    console.log(checkboxList);
-    var checkboxStatus = new Array(checkboxList.length).fill(0);
 
     for (let i = 0; i < checkboxList.length; i++) {
-        checkboxList[i].onchange = () => telVinkjes();
+        checkboxList[i].onchange = () => {
+            telVinkjes();
+            slaCheckBoxStatusOp();
+        }
+    }
+}
+
+function telVinkjes() {
+    const checkboxList = document.getElementsByClassName("checkboxes");
+    var aantalVinkjes = 0;
+
+    for (let i = 0; i < checkboxList.length; i++) {
+        if (checkboxList[i].checked) {
+            aantalVinkjes++;
+        }
     }
 
-    function telVinkjes() {
-        var aantalVinkjes = 0;
-        for (var i = 0; i < checkboxList.length; i++) {
-            if (checkboxList[i].checked) {
-                aantalVinkjes++;
-                checkboxStatus[i] = 1;
-            } else {
-                checkboxStatus[i] = 0;
-            }
-        }
-
-        // Controle
-        console.log(checkboxStatus);
-
-        if (aantalVinkjes === checkboxList.length) {
-            toon("knop");
-        } else {
-            verberg("knop");
-        }
+    if (aantalVinkjes === checkboxList.length) {
+        toon("knop");
+    } else {
+        verberg("knop");
     }
 }
 
 function vulTabel(bestelLijst) {
     const tabel = byId("tabelBestellingOverzicht")
+
     for (const bestelling of bestelLijst) {
         const tr = tabel.insertRow();
         const a = document.createElement("a");
@@ -77,14 +96,13 @@ function vulTabel(bestelLijst) {
         tr.insertCell().appendChild(a);
         tr.insertCell().textContent = bestelling.aantal;
         tr.insertCell().textContent = bestelling.magazijnPlaats;
+
         const input = document.createElement("input");
         input.setAttribute("type", "checkbox");
         input.className = "checkboxes";
         tr.insertCell().appendChild(input);
         checkboxLijstAanmaken();
+
     }
+    herstelCheckboxStatus();
 }
-
-
-
-
