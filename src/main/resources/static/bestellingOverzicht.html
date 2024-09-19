@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <title>Bestelling Overzicht</title>
@@ -8,16 +8,21 @@
 </head>
 <body>
 <img src="images/logo_prularia_zwart.jpg" class = "logo">
-<h2>Bestelling nr: <div id="BestellingId"></div></h2>
+<h2 id="BestellingId"></h2>
 
 
-<Table width="50%"id="tabelBestellingOverzicht">
+<Table width="50%">
+    <thead>
     <tr>
         <th>Artikelnaam</th>
         <th>Aantal</th>
         <th>Locatie</th>
         <th width=5%>Checkbox</th>
     </tr>
+    </thead>
+    <tbody id="tabelBestellingOverzicht">
+
+    </tbody>
 </Table>
 <button type="button" id="knop" hidden>afgewerkt</button>
 <div id="storing" hidden>Er is een storing bij het ophalen van de bestelling</div>

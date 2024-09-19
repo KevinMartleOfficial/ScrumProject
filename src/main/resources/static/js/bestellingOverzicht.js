@@ -7,9 +7,7 @@ byId("knop").onclick = async () => {
     const response = await fetch(`uitgaandelevering/add`, {method : "POST", headers : { 'Content-Type': 'application/json'}, body : bestelId});
     const uitgaandeleveringNr = await response.json();
     sessionStorage.clear();
-    // hier komt een functie om de bestelling als uitgaande levering te plaatsen
-    // maak de sessionStorage leeg
-    location.reload();
+    window.location = "./index.html";
 }
 
 
@@ -17,10 +15,9 @@ async function fetchArtikellen() {
     const response = await fetch("bestellingen/eerste");
     if (response.ok){
         const bestelLijst = await response.json();
-        console.log(bestelLijst);
         vulTabel(bestelLijst)
         bestelId = bestelLijst[0].bestelId;
-        console.log(bestelId)
+        byId("BestellingId").innerHTML="Bestelling nr: "+bestelId;
     }else{
         toon("storing");
     }
@@ -28,7 +25,6 @@ async function fetchArtikellen() {
 
 function checkboxLijstAanmaken() {
     const checkboxList = document.getElementsByClassName("checkboxes");
-    console.log(checkboxList);
     for (var i = 0; i < checkboxList.length; i++) {
         checkboxList[i].onchange = () => telVinkjes();
     }
@@ -53,7 +49,16 @@ function vulTabel(bestelLijst){
     const tabel = byId("tabelBestellingOverzicht")
     for(const bestelling of bestelLijst ){
         const tr = tabel.insertRow();
-        tr.insertCell().textContent = bestelling.artikelNaam;
+        const a = document.createElement("a");
+        a.setAttribute("class", bestelling.artikelId);
+        a.innerHTML = bestelling.artikelNaam
+        a.href = "";
+        a.addEventListener("click", event => {
+            event.preventDefault();
+            sessionStorage.setItem("artikelId", bestelling.artikelId);
+            window.location = "./artikelOverzicht.html"
+        });
+        tr.insertCell().appendChild(a);
         tr.insertCell().textContent = bestelling.aantal;
         tr.insertCell().textContent = bestelling.magazijnPlaats;
         const input = document.createElement("input");
