@@ -3,7 +3,7 @@ import {byId, toon, verberg} from "./util.js";
 
 let bestelId = null;
 
-fetchArtikellen();
+fetchArtikelen();
 
 byId("knop").onclick = async () => {
     const response = await fetch(`uitgaandelevering/add`, {
@@ -17,7 +17,7 @@ byId("knop").onclick = async () => {
     window.location = "./index.html";
 }
 
-async function fetchArtikellen() {
+async function fetchArtikelen() {
     const response = await fetch("bestellingen/eerste");
     if (response.ok) {
         const bestelLijst = await response.json();
