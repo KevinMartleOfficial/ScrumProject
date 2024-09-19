@@ -1,22 +1,29 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
 let bestelId = null;
+
 fetchArtikellen();
 
 byId("knop").onclick = async () => {
-    const response = await fetch(`uitgaandelevering/add`, {method : "POST", headers : { 'Content-Type': 'application/json'}, body : bestelId});
+    const response = await fetch(`uitgaandelevering/add`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: bestelId
+    });
+
     const uitgaandeleveringNr = await response.json();
     sessionStorage.clear();
     window.location = "./index.html";
 }
 
-
 async function fetchArtikellen() {
     const response = await fetch("bestellingen/eerste");
-    if (response.ok){
+    if (response.ok) {
         const bestelLijst = await response.json();
         vulTabel(bestelLijst)
         bestelId = bestelLijst[0].bestelId;
+        console.log(bestelId)
+    } else {
         byId("BestellingId").innerHTML="Bestelling nr: "+bestelId;
     }else{
         toon("storing");
@@ -45,9 +52,9 @@ function checkboxLijstAanmaken() {
 }
 
 
-function vulTabel(bestelLijst){
+function vulTabel(bestelLijst) {
     const tabel = byId("tabelBestellingOverzicht")
-    for(const bestelling of bestelLijst ){
+    for (const bestelling of bestelLijst) {
         const tr = tabel.insertRow();
         const a = document.createElement("a");
         a.setAttribute("class", bestelling.artikelId);
