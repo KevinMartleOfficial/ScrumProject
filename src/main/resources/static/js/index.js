@@ -15,7 +15,3 @@ async function fetchArtikelen(){
         verberg("retourButton");
     }
 }
-
-function toonKnoppen(){
-    
-}
