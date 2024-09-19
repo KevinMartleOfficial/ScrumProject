@@ -4,7 +4,6 @@ import {byId, toon, verberg} from "./util.js";
 let bestelId = null;
 
 fetchArtikelen();
-telVinkjes();
 
 byId("knop").onclick = async () => {
     const response = await fetch(`uitgaandelevering/add`, {
@@ -48,6 +47,7 @@ function herstelCheckboxStatus() {
         for (let i = 0; i < checkboxList.length; i++) {
             checkboxList[i].checked = opgeslagenStatus[i] === 1;
         }
+        telVinkjes();
         sessionStorage.setItem("checkboxStatus", JSON.stringify(opgeslagenStatus));
     }
 }
