@@ -4,6 +4,7 @@ import {byId, toon, verberg} from "./util.js";
 let bestelId = null;
 
 fetchArtikelen();
+telVinkjes();
 
 byId("knop").onclick = async () => {
     const response = await fetch(`uitgaandelevering/add`, {
