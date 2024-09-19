@@ -38,7 +38,7 @@ tr:nth-child(even) {
 }
 .logo{
     width: 40%;
-    height: auto;
+    height: 40%;
 }
 #storing{
     color:white;
@@ -63,8 +63,8 @@ button:active {
 }
 
 #totaalDiv {
-    padding-top: 12%;
-    padding-right: 50px;
+    align-content: end;
+    padding-right: 2%;
     font-weight: bolder;
     font-size: 50px;
 }
