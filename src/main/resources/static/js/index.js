@@ -7,7 +7,7 @@ async function fetchArtikelen(){
         const aantalBestellingen = await response.json();
         console.log(aantalBestellingen);
         if (aantalBestellingen>0){
-            window.location= "./bestellingOverzicht.html"
+            //window.location= "./bestellingOverzicht.html"
         }
     }else{
         toon("storing");
