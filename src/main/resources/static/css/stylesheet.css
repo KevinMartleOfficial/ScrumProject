@@ -1,21 +1,23 @@
-*{
-    margin : 0px;
-    padding : 0px;
-    font-family: Arial, sans-serif ;
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, sans-serif;
 }
 
-body{
+body {
     background-color: #FFFFFF;
-    color : #000000
+    color: #000000
 }
 
-.banner, .hoofding{
-    background-color: #ABD7A8 ;
-    color : #FFFFFF;
+.banner, .hoofding {
+    background-color: #ABD7A8;
+    color: #FFFFFF;
 }
-table{
+
+table {
     border-collapse: collapse;
 }
+
 th {
     border: solid black 1px;
     color: #FFFFFF;
@@ -34,16 +36,19 @@ tr:nth-child(odd) {
 }
 
 tr:nth-child(even) {
-    background-color:#ABD7A8;
+    background-color: #ABD7A8;
 }
-.logo{
+
+.logo {
     width: 40%;
     height: auto;
 }
-#storing{
-    color:white;
+
+#storing {
+    color: white;
     background: red;
 }
+
 button {
     background-color: #ABD7A8;
     border: none;
@@ -70,70 +75,68 @@ button:active {
 }
 
 
-#bestellingenTabel th{
+#bestellingenTabel th {
     font-size: 50px;
 }
 
-#bestellingenTabel{
+#bestellingenTabel {
     width: 100%;
     margin-top: 2%;
 }
 
-#bestellingenTabel th, #bestellingenTabel td{
-    padding : 2%;
+#bestellingenTabel th, #bestellingenTabel td {
+    padding: 2%;
 }
 
 
-
-#bestellingenTabel td{
+#bestellingenTabel td {
     font-size: 40px;
     font-weight: bolder;
 }
 
-#flex{
+#flex {
     display: flex;
     justify-content: space-between;
     align-content: flex-end;
 }
 
 #storingTv {
-    font-size : 70px;
+    font-size: 70px;
     font-weight: bolder;
     padding: 2%;
-    color:white;
+    color: white;
     background: red;
     margin-top: 1%;
 }
 
-
-
-#bovenPaginaContainer{
-    display : flex;
+#bovenPaginaContainer {
+    display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    }
-
-#artikelOverzichtContainer th, #artikelOverzichtContainer td{
-    padding : 8px;
 }
 
-#hoofdcontainer{
+#artikelOverzichtContainer th, #artikelOverzichtContainer td {
+    padding: 8px;
+}
+
+#hoofdcontainer {
     padding: 1%;
 }
 
 #buttons {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height : 40em;
+    align-items: center;
 
 }
 
 #buttons button {
-    width: 49%;
-    height: 100%;
+    width: 500px;
+    height: 300px;
     font-size: xxx-large;
     font-weight: bold;
-    margin: 0.1em;
+    align-items: center;
+    justify-content: center;
+    margin: 100px 2em 2em;
 }
 
