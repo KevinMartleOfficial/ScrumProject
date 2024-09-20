@@ -35,6 +35,10 @@ public class UitgaandeLeveringService {
         banamList.add(banam);
     }
 
+    public void clearBanamLijst(){
+        banamList.clear();
+    }
+
     public long addUitgaandeLevering(long bestelId){
         for(BestelIdArtikelIdNaamAantalMagazijnplaats artikelAantal : banamList){
 

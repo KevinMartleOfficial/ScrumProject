@@ -38,7 +38,9 @@ class BestellingController {
     }
 
     @GetMapping("bestellingen/eerste")
+
     Stream<BestelIdArtikelIdNaamAantalMagazijnplaats> alleArtikelenMetAantalVanEersteBestelling() {
+        uitgaandeLeveringService.clearBanamLijst();
         List<BestelIdArtikelIdNaamAantalMagazijnplaats> kortstePad = magazijnPlaatsService.findAlleBanamVanEersteBestellingInMagazijn();
                 kortstePad.forEach(uitgaandeLeveringService::voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList);
         return kortstePad.stream();
