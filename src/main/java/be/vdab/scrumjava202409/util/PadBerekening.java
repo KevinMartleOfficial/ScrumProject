@@ -69,6 +69,7 @@ public class PadBerekening {
         }
         int end = alleArtikelenInMagazijnOpBestelling.size();
         for(int i = start; (i < end) && (end - i + 1 >= r - index); i++){
+            int tempR = r;
             List<Bestellijn> tempMagazijn = new ArrayList<>(magazijn.stream().map(Bestellijn::new).toList());
             List<BestelIdArtikelIdNaamAantalMagazijnplaats> nieuweTemp = new ArrayList<>(temp.stream().map(BestelIdArtikelIdNaamAantalMagazijnplaats::new).toList());
             BestelIdArtikelIdNaamAantalMagazijnplaats huidigArtikel = alleArtikelenInMagazijnOpBestelling.get(i);
@@ -83,7 +84,7 @@ public class PadBerekening {
             if(!(bestellijn.getAantalBesteld() < 1)){
 
                 if(bestellijn.getAantalBesteld() > huidigArtikel.hoeveelheidOpMagazijnplaats()){
-                    r++;
+                    tempR++;
                     bewerkt = new BestelIdArtikelIdNaamAantalMagazijnplaats(huidigArtikel.bestelId(), huidigArtikel.artikelId(), huidigArtikel.artikelNaam(), huidigArtikel.hoeveelheidOpMagazijnplaats(), huidigArtikel.magazijnPlaats(), huidigArtikel.hoeveelheidOpMagazijnplaats());
                 }else{
                     bewerkt = new BestelIdArtikelIdNaamAantalMagazijnplaats(huidigArtikel.bestelId(), huidigArtikel.artikelId(), huidigArtikel.artikelNaam(), bestellijn.getAantalBesteld(), huidigArtikel.magazijnPlaats(), huidigArtikel.hoeveelheidOpMagazijnplaats());
@@ -92,7 +93,7 @@ public class PadBerekening {
 
                 nieuweTemp.add(bewerkt);
                 System.out.println(nieuweTemp);
-                kortstePad(alleArtikelenInMagazijnOpBestelling, nieuweTemp, i+1, nieuweTemp.size() , r, tempMagazijn);
+                kortstePad(alleArtikelenInMagazijnOpBestelling, nieuweTemp, i+1, nieuweTemp.size() , tempR, tempMagazijn);
             }
 
 
