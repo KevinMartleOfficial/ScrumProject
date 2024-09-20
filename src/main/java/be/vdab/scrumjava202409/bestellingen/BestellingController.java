@@ -2,6 +2,7 @@ package be.vdab.scrumjava202409.bestellingen;
 
 import be.vdab.scrumjava202409.artikelen.Artikel;
 import be.vdab.scrumjava202409.artikelen.ArtikelService;
+import be.vdab.scrumjava202409.magazijnplaatsen.MagazijnPlaatsService;
 import be.vdab.scrumjava202409.uitgaandeleveringen.UitgaandeLeveringService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,13 @@ class BestellingController {
     private final BestellingService bestellingService;
     private final ArtikelService artikelService;
     private final UitgaandeLeveringService uitgaandeLeveringService;
+    private final MagazijnPlaatsService magazijnPlaatsService;
 
-    public BestellingController(BestellingService bestellingService, ArtikelService artikelService, UitgaandeLeveringService uitgaandeLeveringService) {
+    public BestellingController(BestellingService bestellingService, ArtikelService artikelService, UitgaandeLeveringService uitgaandeLeveringService, MagazijnPlaatsService magazijnPlaatsService) {
         this.bestellingService = bestellingService;
         this.artikelService = artikelService;
         this.uitgaandeLeveringService = uitgaandeLeveringService;
+        this.magazijnPlaatsService = magazijnPlaatsService;
     }
 
     @GetMapping("bestelling/tv")
@@ -36,7 +39,10 @@ class BestellingController {
 
     @GetMapping("bestellingen/eerste")
     Stream<BestelIdArtikelIdNaamAantalMagazijnplaats> alleArtikelenMetAantalVanEersteBestelling() {
-        return bestellingService.findAllBestellijnenVanEersteBestelling()
+        List<BestelIdArtikelIdNaamAantalMagazijnplaats> kortstePad = magazijnPlaatsService.findAlleBanamVanEersteBestellingInMagazijn();
+                kortstePad.forEach(uitgaandeLeveringService::voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList);
+        return kortstePad.stream();
+        /*return bestellingService.findAllBestellijnenVanEersteBestelling()
                 .stream()
                 .map(bestellijn -> {
                     BestelIdArtikelIdNaamAantalMagazijnplaats banam = new BestelIdArtikelIdNaamAantalMagazijnplaats(
@@ -47,7 +53,7 @@ class BestellingController {
                     //om te gebruiken bij afwerken van bestelling
                     uitgaandeLeveringService.voegToeAanBestelIdArtikelIdNaamAantalMagazijnplaatsList(banam);
                     return banam;
-                });
+                });*/
 
     }
 

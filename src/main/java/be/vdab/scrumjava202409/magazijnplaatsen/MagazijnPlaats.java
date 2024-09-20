@@ -34,4 +34,15 @@ public class MagazijnPlaats {
     public int getAantal() {
         return aantal;
     }
+
+    @Override
+    public String toString() {
+        return "MagazijnPlaats{" +
+                "magazijnPlaatsId=" + magazijnPlaatsId +
+                ", artikelId=" + artikelId +
+                ", rij=" + rij +
+                ", rek=" + rek +
+                ", aantal=" + aantal +
+                '}';
+    }
 }

@@ -1,8 +1,17 @@
 package be.vdab.scrumjava202409.magazijnplaatsen;
 
+import be.vdab.scrumjava202409.artikelen.ArtikelRepository;
+import be.vdab.scrumjava202409.bestellijnen.Bestellijn;
+import be.vdab.scrumjava202409.bestellingen.BestelIdArtikelIdNaamAantalMagazijnplaats;
+import be.vdab.scrumjava202409.bestellingen.Bestelling;
+import be.vdab.scrumjava202409.bestellingen.BestellingRepository;
+import be.vdab.scrumjava202409.bestellingen.BestellingService;
+import be.vdab.scrumjava202409.uitgaandeleveringen.UitgaandeLeveringService;
+import be.vdab.scrumjava202409.util.PadBerekening;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,9 +19,14 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class MagazijnPlaatsService {
     private final MagazijnPlaatsRepository magazijnPlaatsRepository;
+    private final BestellingService bestellingService;
+    private final ArtikelRepository artikelRepository;
 
-    public MagazijnPlaatsService(MagazijnPlaatsRepository magazijnPlaatsRepository) {
+    public MagazijnPlaatsService(MagazijnPlaatsRepository magazijnPlaatsRepository,
+                                 BestellingService bestellingService, ArtikelRepository artikelRepository) {
         this.magazijnPlaatsRepository = magazijnPlaatsRepository;
+        this.bestellingService = bestellingService;
+        this.artikelRepository = artikelRepository;
     }
 
     @Transactional
@@ -22,7 +36,7 @@ public class MagazijnPlaatsService {
         magazijnPlaatsRepository.haalArtikelUitMagazijnPlaats(aantal, rij, rek);
     }
 
-    List<ArtikelMagazijn> findMagazijnplaatsByArtikelId(long artikelId) {
+    public List<ArtikelMagazijn> findMagazijnplaatsByArtikelId(long artikelId) {
         List<MagazijnPlaats> magazijnPlaatsen = magazijnPlaatsRepository.findMagazijnplaatsByArtikelId(artikelId);
         return magazijnPlaatsen
                 .stream()
@@ -30,5 +44,28 @@ public class MagazijnPlaatsService {
                 .collect(Collectors.toList());
     }
 
+    public List<BestelIdArtikelIdNaamAantalMagazijnplaats> findAlleBanamVanEersteBestellingInMagazijn(){
+        List<Bestellijn> temp = bestellingService.findAllBestellijnenVanEersteBestelling();
+        PadBerekening padBerekening = new PadBerekening(temp);
+
+        List<BestelIdArtikelIdNaamAantalMagazijnplaats> bestellijnen = new ArrayList<>();
+        temp.forEach(bestellijn -> {
+                    String artikelnaam = artikelRepository.getArtikelById(bestellijn.getArtikelId()).getNaam();
+                    List<MagazijnPlaats> plaatsen = magazijnPlaatsRepository.findMagazijnplaatsByArtikelId(bestellijn.getArtikelId());
+                    BestelIdArtikelIdNaamAantalMagazijnplaats banam;
+                    for(MagazijnPlaats magazijnPlaats : plaatsen){
+                        String magazijnPlaatsString = magazijnPlaats.getRij() + Integer.toString(magazijnPlaats.getRek());
+                        banam = new BestelIdArtikelIdNaamAantalMagazijnplaats(
+                                bestellijn.getBestelId(), bestellijn.getArtikelId(),
+                                artikelnaam,
+                                bestellijn.getAantalBesteld(), magazijnPlaatsString, magazijnPlaats.getAantal());
+
+                        bestellijnen.add(banam);
+                    }
+                });
+        List<BestelIdArtikelIdNaamAantalMagazijnplaats> kortstePad = padBerekening.kortstePad2(bestellijnen, new ArrayList<>(),0, 0, temp.size());
+
+        return kortstePad;
+    }
 
 }

@@ -38,8 +38,7 @@ public class UitgaandeLeveringService {
     public long addUitgaandeLevering(long bestelId){
         for(BestelIdArtikelIdNaamAantalMagazijnplaats artikelAantal : banamList){
 
-            //TODO nog aan te passen na "ArtikelAantal" geupdate is met nieuwe velden
-            //TODO tijdelijke methode artikelRepository.getArtikelByName mag later nog weg wanneer ArtikelAantal het artikelId heeft
+
             magazijnPlaatsService.haalArtikelUitMagazijnPlaats(artikelAantal.aantal(), artikelAantal.magazijnPlaats());
             artikelRepository.verlaagVoorraad(artikelAantal.artikelId(), artikelAantal.aantal());
         }

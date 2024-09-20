@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
-class BestellingService {
+public class BestellingService {
     private final BestellingRepository bestellingRepository;
     private final BestellijnRepository bestellijnRepository;
     private final ArtikelRepository artikelRepository;
@@ -21,7 +21,7 @@ class BestellingService {
         this.artikelRepository = artikelRepository;
     }
 
-    List<Bestellijn> findAllBestellijnenVanEersteBestelling() {
+    public List<Bestellijn> findAllBestellijnenVanEersteBestelling() {
         var eersteBestelling = bestellingRepository.findEersteBestellingMetStatusKlaarmaken();
         return bestellijnRepository.findAllBestellijnenByBestelId(eersteBestelling.getBestelId());
     }
