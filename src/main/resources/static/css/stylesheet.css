@@ -140,3 +140,15 @@ button:active {
     margin: 100px 2em 2em;
 }
 
+#tabelBestellingen{
+    margin-top: 1%;
+}
+
+#checkbox{
+    width : 20%;
+}
+
+#tabelBestellingen th, #tabelBestellingen td{
+    padding : 1%;
+}
+
