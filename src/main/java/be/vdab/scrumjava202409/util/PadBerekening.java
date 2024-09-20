@@ -44,7 +44,18 @@ public class PadBerekening {
 
     public void kortstePad(List<BestelIdArtikelIdNaamAantalMagazijnplaats> alleArtikelenInMagazijnOpBestelling, List<BestelIdArtikelIdNaamAantalMagazijnplaats> temp, int start, int index, int r, List<Bestellijn> magazijn){
 
-        alleArtikelenInMagazijnOpBestelling.sort(Comparator.comparing(BestelIdArtikelIdNaamAantalMagazijnplaats::magazijnPlaats));
+
+        alleArtikelenInMagazijnOpBestelling.sort(new Comparator<BestelIdArtikelIdNaamAantalMagazijnplaats>() {
+            @Override
+            public int compare(BestelIdArtikelIdNaamAantalMagazijnplaats o1, BestelIdArtikelIdNaamAantalMagazijnplaats o2) {
+
+                if(o1.magazijnPlaats().charAt(0) == o2.magazijnPlaats().charAt(0)){
+                    return Integer.parseInt(o1.magazijnPlaats().substring(1)) - Integer.parseInt(o2.magazijnPlaats().substring(1));
+                }else{
+                    return o1.magazijnPlaats().charAt(0) - o2.magazijnPlaats().charAt(0);
+                }
+            }
+        });
 
         if(index == r){
 
@@ -95,6 +106,7 @@ public class PadBerekening {
         int kleinstePad = mogelijkHeden.keySet().stream().min(Integer::compareTo).get();
         System.out.println("================================================");
         System.out.println(mogelijkHeden);
+
         return mogelijkHeden.get(kleinstePad);
     }
 
