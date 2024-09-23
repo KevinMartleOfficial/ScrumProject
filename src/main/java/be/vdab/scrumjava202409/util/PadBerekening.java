@@ -8,7 +8,7 @@ import java.util.*;
 public class PadBerekening {
     //Test
     //Nog een test
-    //Dit is nog een aanpassing
+    //Dit is nog een aanpassingggg
     private Map<Integer, List<BestelIdArtikelIdNaamAantalMagazijnplaats>> mogelijkHeden = new HashMap<>();
     private List<Bestellijn> artikelen;
 
