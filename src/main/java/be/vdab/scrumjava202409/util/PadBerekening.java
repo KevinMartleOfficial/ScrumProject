@@ -7,6 +7,7 @@ import java.util.*;
 
 public class PadBerekening {
     //Test
+    //Nog een test
     private Map<Integer, List<BestelIdArtikelIdNaamAantalMagazijnplaats>> mogelijkHeden = new HashMap<>();
     private List<Bestellijn> artikelen;
 
