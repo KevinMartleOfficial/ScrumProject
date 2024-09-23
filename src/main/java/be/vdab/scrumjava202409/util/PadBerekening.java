@@ -6,7 +6,7 @@ import be.vdab.scrumjava202409.bestellingen.BestelIdArtikelIdNaamAantalMagazijnp
 import java.util.*;
 
 public class PadBerekening {
-
+    //Test
     private Map<Integer, List<BestelIdArtikelIdNaamAantalMagazijnplaats>> mogelijkHeden = new HashMap<>();
     private List<Bestellijn> artikelen;
 
