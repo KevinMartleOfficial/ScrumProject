@@ -60,8 +60,11 @@ public class PadBerekening {
         if(index == r){
 
                 int lengteVolledigPad = berekenVolledigPad(temp);
-
+            System.out.println("klaar voor toevoegen");
+            System.out.println(temp);
+            System.out.println("met lenkte " + lengteVolledigPad);
                 if(!mogelijkHeden.containsKey(lengteVolledigPad)){
+
                     mogelijkHeden.put(lengteVolledigPad, temp);
                 }
 
@@ -92,7 +95,7 @@ public class PadBerekening {
                 bestellijn.verminderAantalBesteld(huidigArtikel.hoeveelheidOpMagazijnplaats());
 
                 nieuweTemp.add(bewerkt);
-                System.out.println(nieuweTemp);
+                //System.out.println(nieuweTemp);
                 kortstePad(alleArtikelenInMagazijnOpBestelling, nieuweTemp, i+1, nieuweTemp.size() , tempR, tempMagazijn);
             }
 
