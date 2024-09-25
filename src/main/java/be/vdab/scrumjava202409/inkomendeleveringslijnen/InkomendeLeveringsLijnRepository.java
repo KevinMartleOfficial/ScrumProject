@@ -12,14 +12,19 @@ public class InkomendeLeveringsLijnRepository {
         this.jdbcClient = jdbcClient;
     }
 
-    public void voegInkomendeLeveringsLijnToe(InkomendeLeveringsLijn inkomendeLeveringsLijn){
+    public void voegInkomendeLeveringsLijnToe(InkomendeLeveringsLijn inkomendeLeveringsLijn) {
         String sql = """
                 insert into
-                inkomendeleveringslijnen (inkomendeLeveringsId, artikelId, aantalGoedgekeurd, aantalTeruggestuurd, magazijnPlaatsId) 
+                inkomendeleveringslijnen (inkomendeLeveringsId, artikelId, aantalGoedgekeurd, aantalTeruggestuurd, magazijnPlaatsId)
                 values (?, ?, ?, ?, ?)
                 """;
-        jdbcClient.sql(sql).params(inkomendeLeveringsLijn.getInkomendeLeveringsId(), inkomendeLeveringsLijn.getArtikelId(), inkomendeLeveringsLijn.getAantalGoedgekeurde(), inkomendeLeveringsLijn.getAantalTeruggestuurd(), inkomendeLeveringsLijn.getMagazijnPlaatsId()).update();
-
+        //uw kolomnaam moet met hoofdletters, anders gaat het niet werken
+        jdbcClient.sql(sql)
+                .params(inkomendeLeveringsLijn.getInkomendeLeveringsId(), inkomendeLeveringsLijn.getArtikelId(),
+                        inkomendeLeveringsLijn.getAantalGoedgekeurde() //de 'e' op het einde moet weg,
+                        inkomendeLeveringsLijn.getAantalTeruggestuurd(),
+                        inkomendeLeveringsLijn.getMagazijnPlaatsId())
+                .update();
     }
 
 }

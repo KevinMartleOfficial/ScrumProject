@@ -4,7 +4,7 @@ public class InkomendeLeveringsLijn {
 
     private long inkomendeLeveringsId;
     private long artikelId;
-    private int aantalGoedgekeurde;
+    private int aantalGoedgekeurde; //geen 'e' op het einde (kijk de rest ook nog na in deze class)
     private int aantalTeruggestuurd;
     private long magazijnPlaatsId;
 

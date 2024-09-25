@@ -19,6 +19,8 @@ public class InkomendeLeveringsLijnController {
 
     @PostMapping("add")
     public void voegInkomendeLeveringsLijnenToe(@RequestBody List<InkomendeLeveringsLijnGeenMagazijnId> inkomendeLeveringsLijnList){
+        //als je valid-annotaties gaat gebruiken, moet je langs je body nog @Valid typen
+
         inkomendeLeveringsLijnService.voegInkomendeLeveringsLijnenToe(inkomendeLeveringsLijnList);
     }
 }
