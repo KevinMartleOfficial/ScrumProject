@@ -119,16 +119,30 @@ button:active {
 #bovenPaginaContainer {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin: 100px 100px 0;
+}
+
+#terugknop {
+    font-size: 20px;
+}
+
+#bovenPaginaContainer p {
+    font-weight: bolder;
+    font-size: 20px;
 }
 
 #artikelOverzichtContainer th, #artikelOverzichtContainer td {
-    padding: 8px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#artikelOverzichtTable {
+    margin: auto;
+    height: 800px;
 }
 
 #artikelOverzichtContainer {
-    justify-content: center;
-
+    height: auto;
 }
 
 #hoofdcontainer {
@@ -154,12 +168,12 @@ button:active {
 #knop {
     font-size: 20px;
     margin: 0 0 0 20px;
-
 }
 
 #tabelBestellingen {
     margin: 30px 20px 20px;
     border-collapse: collapse;
+    width: 97%;
 }
 
 #checkbox{
