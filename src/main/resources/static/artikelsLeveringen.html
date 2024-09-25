@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>artikels-leveringen</title>
+    <img src="images/logo_prularia_zwart.jpg" class="logo">
+    <link rel="stylesheet" href="./css/stylesheet.css">
+    <script src="./js/artikelsLeveringen.js" type="module" defer></script>
+</head>
+<body>
+<div id="flexbox">
+    <table>
+        <thead>
+        <tr>
+            <th>Ean</th>
+            <th><input id="eanZoeken"placeholder="zoeken"></th>
+        </tr>
+        </thead>
+        <tbody id="linkseTabel">
+        </tbody>
+
+    </table>
+    <table id="tabelToegevoegdeArtikelen">
+        <thead>
+        <tr>
+            <th>Ean</th>
+            <th>integevenGegevens</th>
+            <th>verwijder</th>
+        </tr>
+        </thead>
+        <tbody id="rechtseTabel">
+
+        </tbody>
+
+    </table>
+</div>
+<div id="storing" hidden>Er is een storing bij het ophalen van de bestelling</div>
+<button id="leveringsbonKnop">Leveringsbon maken</button>
+
+</body>
+</html>

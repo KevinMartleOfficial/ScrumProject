@@ -100,6 +100,7 @@ input.aantalGoedgekeurd {
     padding: 10px;
 }
 
+
 #bestellingenTabel td {
     font-size: 40px;
     font-weight: bolder;
@@ -157,6 +158,7 @@ input.aantalGoedgekeurd {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 #buttons button {
@@ -180,8 +182,7 @@ input.aantalGoedgekeurd {
     width: 97%;
 }
 
-#tabelBestellingen, #tabelLeveringsBonValidatie
-#tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
+
 #tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
     margin-top: 1%;
 }
@@ -207,10 +208,34 @@ input.aantalGoedgekeurd {
 #tabelLeveringsBonValidatie th, #tabelLeveringsBonValidatie td {
     padding: 1%;
 }
-#tabelBestellingen th, #tabelLeveringsBonValidatie th,
 #tabelBestellingen td, #tabelLeveringsBonValidatie td,
 #tabelLeveringsBon th, #tabelLeveringsBon td {
     padding : 1%;
+}
+#tabelLeveringenEan{
+    width: 30%;
+    margin: 2%;
+}
+#tabelToegevoegdeArtikelen{
+    width: 40%;
+    margin:2%;
+}
+#tabelLeveringenEan th,#tabelToegevoegdeArtikelen th{
+    padding : 15px;
+
+}
+#tabelLeveringenEan td,#tabelToegevoegdeArtikelen td{
+    padding : 5px;
+    text-align:left;
+
+}
+#flexbox{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+#leveringsbonKnop {
+    margin-left: 2%;
 }
 
 #leveringsbonHeader {
