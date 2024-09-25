@@ -12,9 +12,5 @@ public class InkomendeLeveringService {
         this.inkomendeLeveringRepository = inkomendeLeveringRepository;
     }
 
-    long create(InkomendeLeveringMetNaam inkomendeLeveringMetNaam) {
-        var leveranciersnaam = findbyId
-        var inkomendeLevering =
 
-    }
 }
