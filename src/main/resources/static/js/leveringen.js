@@ -34,7 +34,6 @@ function verbergFouten() {
 }
 
 async function voegToe(leveringsbon) {
-    /* //juiste controller input geven
     const response = await fetch("leveringen",
         {
             method: "POST",
@@ -49,6 +48,5 @@ async function voegToe(leveringsbon) {
             toon("storing");
     }
 
-     */
     console.log(leveringsbon);
 }
