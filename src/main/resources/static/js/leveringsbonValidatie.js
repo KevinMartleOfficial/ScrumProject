@@ -5,7 +5,7 @@ import {byId, toon, verberg} from "./util.js";
 // byId("leveringsbonNummer").innerText = sessionStorage.getItem("leveringsbonNummer");
 byId("leveringsbonNummer").innerText = 1;
 
-//tijdelijke leveringsboninhoud
+// tijdelijke leveringsboninhoud
 // const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
 const leveringsbonLijst = [
     {
@@ -65,10 +65,43 @@ function vulTabel(leveringsbonLijst) {
         input.className = "aantalGoedgekeurd";
         tr.insertCell().appendChild(input);
         const afgekeurdSpan = document.createElement("span");
+        afgekeurdSpan.className = "aantalAfgekeurd";
         afgekeurdSpan.innerText = artikel.aantal - input.value;
         tr.insertCell().appendChild(afgekeurdSpan);
         input.onchange = () => {
             afgekeurdSpan.innerText = artikel.aantal - input.value;
+            telGoedgekeurd();
         }
+    }
+    // Onderstaande zorgt ervoor dat magazijnier nooit een waarde kan ingeven dat lager of hoger ligt dan min en max
+    document.querySelectorAll('input.aantalGoedgekeurd').forEach(input => {
+        input.addEventListener('input', function() {
+            let min = parseInt(input.min);
+            let max = parseInt(input.max);
+            let value = parseInt(input.value);
+
+            if (value < min) {
+                input.value = min;
+            } else if (value > max) {
+                input.value = max;
+            }
+        });
+    });
+}
+
+function telGoedgekeurd() {
+    const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
+    var ingevuld = 0
+
+    for (let i = 0; i < aantalGoedgekeurdList.length; i++) {
+        if (aantalGoedgekeurdList[i].value.trim() !== "") {
+            ingevuld++;
+        }
+    }
+
+    if (ingevuld === aantalGoedgekeurdList.length) {
+        toon("buttonBevestig");
+    } else {
+        verberg("buttonBevestig");
     }
 }

@@ -67,6 +67,10 @@ button:active {
     background-color: #3ecc41;
 }
 
+input.aantalGoedgekeurd {
+    font-size: 24px;  /* Adjust the text size if necessary */
+}
+
 #totaalDiv {
     align-content: end;
     padding-right: 2%;
