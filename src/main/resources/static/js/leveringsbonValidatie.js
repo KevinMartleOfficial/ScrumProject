@@ -1,11 +1,13 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
 
-// tijdelijke leveringsbonId
-byId("leveringsBonId").innerText = 1
+// tijdelijke leveringsbonNummer
+// byId("leveringsbonNummer").innerText = sessionStorage.getItem("leveringsbonNummer");
+byId("leveringsbonNummer").innerText = 1;
 
 //tijdelijke leveringsboninhoud
-const leveringsBonLijst = [
+// const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
+const leveringsbonLijst = [
     {
         "artikelId": 4,
         "artikelNaam": "keukenstoel",
@@ -38,11 +40,11 @@ const leveringsBonLijst = [
     }
 ];
 
-vulTabel(leveringsBonLijst);
+vulTabel(leveringsbonLijst);
 
-function vulTabel(leveringsBonLijst) {
+function vulTabel(leveringsbonLijst) {
     const tabel = byId("tabelLeveringsBonOverzicht");
-    for (const artikel of leveringsBonLijst) {
+    for (const artikel of leveringsbonLijst) {
         const tr = tabel.insertRow();
         const a = document.createElement("a");
         a.setAttribute("class", artikel.artikelId);
@@ -63,6 +65,7 @@ function vulTabel(leveringsBonLijst) {
         input.className = "aantalGoedgekeurd";
         tr.insertCell().appendChild(input);
         const afgekeurdSpan = document.createElement("span");
+        afgekeurdSpan.innerText = artikel.aantal - input.value;
         tr.insertCell().appendChild(afgekeurdSpan);
         input.onchange = () => {
             afgekeurdSpan.innerText = artikel.aantal - input.value;
