@@ -1,5 +1,6 @@
 package be.vdab.scrumjava202409.inkomendeleveringslijnen;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,7 @@ public class InkomendeLeveringsLijnController {
     }
 
     @PostMapping("add")
-    public void voegInkomendeLeveringsLijnenToe(@RequestBody List<InkomendeLeveringsLijnGeenMagazijnId> inkomendeLeveringsLijnList){
-        //als je valid-annotaties gaat gebruiken, moet je langs je body nog @Valid typen
+    public void voegInkomendeLeveringsLijnenToe(@RequestBody @Valid List<InkomendeLeveringsLijnGeenMagazijnId> inkomendeLeveringsLijnList){
 
         inkomendeLeveringsLijnService.voegInkomendeLeveringsLijnenToe(inkomendeLeveringsLijnList);
     }

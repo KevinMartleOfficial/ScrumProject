@@ -20,7 +20,7 @@ public class InkomendeLeveringsLijnService {
         inkomendeLeveringsLijnList.stream()
                 .map(lijn ->
                         new InkomendeLeveringsLijn(lijn.inkomendeLeveringsId(), lijn.artikelId(),
-                                lijn.aantalGoedgekeurde() //'e' op het einde verwijderen
+                                lijn.aantalGoedgekeurd() //'e' op het einde verwijderen
                                         , lijn.aantalTeruggestuurd(), 1))
                 .forEach(lijn ->
                         inkomendeLeveringsLijnRepository.voegInkomendeLeveringsLijnToe(lijn));

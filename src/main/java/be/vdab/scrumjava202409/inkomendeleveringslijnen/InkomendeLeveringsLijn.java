@@ -4,21 +4,21 @@ public class InkomendeLeveringsLijn {
 
     private long inkomendeLeveringsId;
     private long artikelId;
-    private int aantalGoedgekeurde; //geen 'e' op het einde (kijk de rest ook nog na in deze class)
+    private int aantalGoedgekeurd;
     private int aantalTeruggestuurd;
     private long magazijnPlaatsId;
 
 
-    public InkomendeLeveringsLijn(long inkomendeLeveringsId, long artikelId, int aantalGoedgekeurde, int aantalTeruggestuurd, long magazijnPlaatsId) {
+    public InkomendeLeveringsLijn(long inkomendeLeveringsId, long artikelId, int aantalGoedgekeurd, int aantalTeruggestuurd, long magazijnPlaatsId) {
         this.inkomendeLeveringsId = inkomendeLeveringsId;
         this.artikelId = artikelId;
-        this.aantalGoedgekeurde = aantalGoedgekeurde;
+        this.aantalGoedgekeurd = aantalGoedgekeurd;
         this.aantalTeruggestuurd = aantalTeruggestuurd;
         this.magazijnPlaatsId = magazijnPlaatsId;
     }
 
-    public int getAantalGoedgekeurde() {
-        return aantalGoedgekeurde;
+    public int getAantalGoedgekeurd() {
+        return aantalGoedgekeurd;
     }
 
     public int getAantalTeruggestuurd() {

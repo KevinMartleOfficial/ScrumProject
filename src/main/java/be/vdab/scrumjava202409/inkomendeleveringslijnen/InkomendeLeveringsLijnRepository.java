@@ -18,10 +18,10 @@ public class InkomendeLeveringsLijnRepository {
                 inkomendeleveringslijnen (inkomendeLeveringsId, artikelId, aantalGoedgekeurd, aantalTeruggestuurd, magazijnPlaatsId)
                 values (?, ?, ?, ?, ?)
                 """;
-        //uw kolomnaam moet met hoofdletters, anders gaat het niet werken
+        
         jdbcClient.sql(sql)
                 .params(inkomendeLeveringsLijn.getInkomendeLeveringsId(), inkomendeLeveringsLijn.getArtikelId(),
-                        inkomendeLeveringsLijn.getAantalGoedgekeurde() //de 'e' op het einde moet weg,
+                        inkomendeLeveringsLijn.getAantalGoedgekeurd(),
                         inkomendeLeveringsLijn.getAantalTeruggestuurd(),
                         inkomendeLeveringsLijn.getMagazijnPlaatsId())
                 .update();
