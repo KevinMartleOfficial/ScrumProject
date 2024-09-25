@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Leveringen</title>
+    <link rel="stylesheet" href="./css/stylesheet.css">
+    <script src="js/leveringen.js" type="module" defer></script>
+</head>
+<body>
+<img src="images/logo_prularia_zwart.jpg" class="logo">
+
+<h1 id="leveringsbonHeader">Leveringsbon</h1>
+<div id="inputDiv">
+
+    <label for="lnaam">Leveranciernaam</label>
+    <input id="lnaam" name="leveranciersnaam" type="text" placeholder="Leveranciernaam" required>
+
+    <label for="lbnr">Leveringsbon nummer</label>
+    <input id="lbnr" name="leveringsbonNummer" type="text" placeholder="Leveringsbon nummer" required>
+
+    <label for="lbdatum">Leveringsbon datum</label>
+    <input id="lbdatum" name="leveringsbondatum" type="date" required>
+
+
+</div>
+<div id="buttonDiv">
+    <button id="toevoegen">Toevoegen</button>
+</div>
+<div id="storing" hidden></div>
+
+</body>
+</html>
