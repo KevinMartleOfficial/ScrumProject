@@ -11,7 +11,7 @@ byId("toevoegen").onclick = async function () {
     }
     const lbnr = byId("lbnr");
     if (!lbnr.checkValidity()) {
-        setText("storing", "leveringsbonnummr niet ingevuld");
+        setText("storing", "leveringsbonnummer niet ingevuld");
         toon("storing");
         return;
     }
