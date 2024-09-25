@@ -72,7 +72,7 @@ button:active {
 }
 
 input.aantalGoedgekeurd {
-    font-size: 24px;  /* Adjust the text size if necessary */
+    font-size: 24px; /* Adjust the text size if necessary */
 }
 
 #totaalDiv {
@@ -99,7 +99,6 @@ input.aantalGoedgekeurd {
 #bestellingenTabel th, #bestellingenTabel td {
     padding: 10px;
 }
-
 
 #bestellingenTabel td {
     font-size: 40px;
@@ -179,13 +178,14 @@ input.aantalGoedgekeurd {
     margin: 30px 20px 20px;
     border-collapse: collapse;
     width: 97%;
+}
 
 #tabelBestellingen, #tabelLeveringsBonValidatie {
     margin-top: 1%;
 }
 
-#checkbox{
-    width : 20%;
+#checkbox {
+    width: 20%;
 }
 
 .checkboxes {
@@ -194,22 +194,23 @@ input.aantalGoedgekeurd {
     cursor: pointer;
 }
 
-#tabelBestellingen th, #tabelBestellingen td{
+#tabelBestellingen th, #tabelBestellingen td {
     padding: 10px;
     font-size: 40px;
     align-items: center;
     word-wrap: break-word;
     text-align: center;
+}
 
-#tabelBestellingen th, #tabelLeveringsBonValidatie th,
-#tabelBestellingen td, #tabelLeveringsBonValidatie td {
-    padding : 1%;
+#tabelLeveringsBonValidatie th, #tabelLeveringsBonValidatie td {
+    padding: 1%;
 }
 
 #leveringsbonHeader {
     text-align: center;
     margin-top: 10%;
 }
+
 #inputDiv {
     font-size: xx-large;
     display: grid;
@@ -217,23 +218,28 @@ input.aantalGoedgekeurd {
     grid-gap: 16px;
     margin: 10%;
     margin-top: 5%;
-    padding-left:10%;
+    padding-left: 10%;
     text-align: right;
 }
+
 label {
     grid-column: 1 / 2;
 }
+
 input {
+
     grid-column: 2 / 3;
 }
+
 #buttonDiv {
     text-align: center;
 }
+
 #toevoegen {
     width: 20%;
     height: 20%;
 }
 
-#tabelBestellingen td{
+#tabelBestellingen td {
     font-weight: bolder;
 }
