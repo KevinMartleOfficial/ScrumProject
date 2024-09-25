@@ -2,7 +2,6 @@ import {byId, toon, verberg, verwijderChildElementenVan} from "./util.js";
 
 byId("leveringsbonKnop").onclick = () => {
     const EanTabel = document.getElementsByName("tbody");
-    console.log(EanTabel);
 
     };
 
