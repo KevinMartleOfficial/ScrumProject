@@ -126,6 +126,11 @@ button:active {
     padding: 8px;
 }
 
+#artikelOverzichtContainer {
+    justify-content: center;
+
+}
+
 #hoofdcontainer {
     padding: 1%;
 }
