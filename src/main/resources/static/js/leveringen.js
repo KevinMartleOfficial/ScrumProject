@@ -11,13 +11,13 @@ byId("toevoegen").onclick = async function () {
     }
     const lbnr = byId("lbnr");
     if (!lbnr.checkValidity()) {
-        setText("storing", "leveranciersnummer niet ingevuld");
+        setText("storing", "leveringsbonnummr niet ingevuld");
         toon("storing");
         return;
     }
     const lbdatum = byId("lbdatum");
     if (!lbdatum.checkValidity()) {
-        setText("storing", "leveringsbon    datum niet ingevuld");
+        setText("storing", "leveringsbon datum niet ingevuld");
         toon("storing");
         return;
     }
@@ -42,7 +42,7 @@ async function voegToe(leveringsbon) {
         });
 
     if (response.ok) {
-        window.location = "artikelLeveringen.html"
+        window.location = "artikelsLeveringen.html"
     } else {
     setText("storing", "Storing");
             toon("storing");
