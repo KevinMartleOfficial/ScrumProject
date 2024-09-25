@@ -64,7 +64,6 @@ function vulTabel(leveringsBonLijst) {
         tr.insertCell().appendChild(input);
         const afgekeurdSpan = document.createElement("span");
         tr.insertCell().appendChild(afgekeurdSpan);
-        afgekeurdSpan.innerText = 0;
         input.onchange = () => {
             afgekeurdSpan.innerText = artikel.aantal - input.value;
         }
