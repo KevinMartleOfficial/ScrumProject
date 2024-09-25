@@ -1,6 +1,6 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
 }
 
@@ -44,6 +44,10 @@ tr:nth-child(even) {
     height: 40%;
 }
 
+img {
+    padding: 50px 0 0 10px;
+}
+
 #storing {
     color: white;
     background: red;
@@ -78,19 +82,24 @@ input.aantalGoedgekeurd {
     font-size: 50px;
 }
 
+#BestellingId {
+    padding: 30px 0 0 20px;
+    font-size: 30px;
+}
 
 #bestellingenTabel th {
     font-size: 50px;
 }
 
 #bestellingenTabel {
-    width: 100%;
-    margin-top: 2%;
+    width: 97%;
+    margin: 50px 20px 10px 20px;
 }
 
 #bestellingenTabel th, #bestellingenTabel td {
-    padding: 2%;
+    padding: 10px;
 }
+
 
 #bestellingenTabel td {
     font-size: 40px;
@@ -115,11 +124,30 @@ input.aantalGoedgekeurd {
 #bovenPaginaContainer {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin: 100px 100px 0;
+}
+
+#terugknop {
+    font-size: 20px;
+}
+
+#bovenPaginaContainer p {
+    font-weight: bolder;
+    font-size: 20px;
 }
 
 #artikelOverzichtContainer th, #artikelOverzichtContainer td {
-    padding: 8px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#artikelOverzichtTable {
+    margin: auto;
+    height: 800px;
+}
+
+#artikelOverzichtContainer {
+    height: auto;
 }
 
 #hoofdcontainer {
@@ -130,7 +158,6 @@ input.aantalGoedgekeurd {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 #buttons button {
@@ -143,6 +170,16 @@ input.aantalGoedgekeurd {
     margin: 100px 2em 2em;
 }
 
+#knop {
+    font-size: 20px;
+    margin: 0 0 0 20px;
+}
+
+#tabelBestellingen {
+    margin: 30px 20px 20px;
+    border-collapse: collapse;
+    width: 97%;
+
 #tabelBestellingen, #tabelLeveringsBonValidatie {
     margin-top: 1%;
 }
@@ -150,6 +187,19 @@ input.aantalGoedgekeurd {
 #checkbox{
     width : 20%;
 }
+
+.checkboxes {
+    transform: scale(2); /* Verander naar de gewenste grootte */
+    margin: 10px;
+    cursor: pointer;
+}
+
+#tabelBestellingen th, #tabelBestellingen td{
+    padding: 10px;
+    font-size: 40px;
+    align-items: center;
+    word-wrap: break-word;
+    text-align: center;
 
 #tabelBestellingen th, #tabelLeveringsBonValidatie th,
 #tabelBestellingen td, #tabelLeveringsBonValidatie td {
@@ -182,4 +232,8 @@ input {
 #toevoegen {
     width: 20%;
     height: 20%;
+}
+
+#tabelBestellingen td{
+    font-weight: bolder;
 }
