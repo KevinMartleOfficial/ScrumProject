@@ -1,10 +1,10 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
 
-// tijdelijke leveringsbonId
+// tijdelijke leveringsbonId, wordt deze id in sessionStorage gezet?
 byId("leveringsBonId").innerText = 1
 
-//tijdelijke leveringsboninhoud
+//tijdelijke leveringsboninhoud, hoe wordt deze JSON in sessionStorage gezet?
 const leveringsBonLijst = [
     {
         "artikelId": 4,
@@ -64,7 +64,6 @@ function vulTabel(leveringsBonLijst) {
         tr.insertCell().appendChild(input);
         const afgekeurdSpan = document.createElement("span");
         tr.insertCell().appendChild(afgekeurdSpan);
-        afgekeurdSpan.innerText = 0;
         input.onchange = () => {
             afgekeurdSpan.innerText = artikel.aantal - input.value;
         }
