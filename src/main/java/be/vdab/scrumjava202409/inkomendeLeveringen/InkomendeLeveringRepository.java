@@ -16,13 +16,14 @@ public class InkomendeLeveringRepository {
         var sql = """
                 insert
                 into InkomendeLeveringen
-                (inkomendeLeveringsId, leveranciersId, leveringsbonNummer, leveringsbondatum, leverDatum, ontvangerPersoneelslidId)
-                values(?, ?, ?, ?, ?, ?)
+                (leveranciersId, leveringsbonNummer, leveringsbondatum, leverDatum, ontvangerPersoneelslidId)
+                values(?, ?, ?, ?, ?)
                 """;
         var keyHolder = new GeneratedKeyHolder();
         jdbcClient.sql(sql)
-                .params(inkomendeLevering.getInkomendeLeveringsId(), inkomendeLevering.getLeveranciersId(),
-                        inkomendeLevering.getLeveringsbonNummer(), inkomendeLevering.getLeveringsbondatum())
+                .params(inkomendeLevering.getLeveranciersId(), inkomendeLevering.getLeveringsbonNummer(),
+                        inkomendeLevering.getLeveringsbondatum(), inkomendeLevering.getLeverDatum(),
+                        inkomendeLevering.getOntvangerPersoneelslidId())
                 .update(keyHolder);
         return keyHolder.getKey().longValue();
     }
