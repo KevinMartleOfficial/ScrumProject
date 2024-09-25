@@ -1,10 +1,7 @@
 package be.vdab.scrumjava202409.inkomendeleveringslijnen;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,10 @@ public class InkomendeLeveringsLijnController {
     public void voegInkomendeLeveringsLijnenToe(@RequestBody @Valid List<InkomendeLeveringsLijnGeenMagazijnId> inkomendeLeveringsLijnList){
 
         inkomendeLeveringsLijnService.voegInkomendeLeveringsLijnenToe(inkomendeLeveringsLijnList);
+    }
+
+    @GetMapping("{inkomendeLeveringsId}")
+    public List<DTOArtikelNaamInkomendeLeveringsLijnAantalGoedgekeurdEnMagazijnPlaats>findAllInkomendeLeveringsLijnenByInkomendeLeveringsId(@PathVariable long inkomendeLeveringsId){
+        return inkomendeLeveringsLijnService.findAllInkomendeLeveringsLijnenByInkomendeLeveringsId(inkomendeLeveringsId);
     }
 }
