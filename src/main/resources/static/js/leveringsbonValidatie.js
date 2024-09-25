@@ -42,6 +42,16 @@ const leveringsbonLijst = [
 
 vulTabel(leveringsbonLijst);
 
+/*
+byId("buttonBevestig").onclick = async () => {
+    const response = await fetch(`uitgaandelevering/add`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: leveringTeBevestigen
+    });
+}
+*/
+
 function vulTabel(leveringsbonLijst) {
     const tabel = byId("tabelLeveringsBonOverzicht");
     for (const artikel of leveringsbonLijst) {
@@ -101,7 +111,23 @@ function telGoedgekeurd() {
 
     if (ingevuld === aantalGoedgekeurdList.length) {
         toon("buttonBevestig");
+        maakLeveringTeBevestigen();
     } else {
         verberg("buttonBevestig");
+    }
+}
+
+function maakLeveringTeBevestigen() {
+    const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
+    const aantalAfgekeurdList = document.getElementsByClassName("aantalAfgekeurd");
+    if (sessionStorage.getItem("leveringTeBevestigen") !== null) {
+        let leveringTeBevestigen = JSON.parse(sessionStorage.getItem("leveringTeBevestigen"));
+        leveringTeBevestigen = [];
+        for (let i = 0; i < leveringsbonLijst.length; i++) {
+            // verder aan te vullen
+        }
+        sessionStorage.setItem("leveringTeBevestigen", JSON.stringify(leveringTeBevestigen));
+    } else {
+        // verder aan te vullen
     }
 }
