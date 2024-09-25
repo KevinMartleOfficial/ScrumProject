@@ -88,7 +88,6 @@ button:active {
     padding: 2%;
 }
 
-
 #bestellingenTabel td {
     font-size: 40px;
     font-weight: bolder;
@@ -140,7 +139,7 @@ button:active {
     margin: 100px 2em 2em;
 }
 
-#tabelBestellingen{
+#tabelBestellingen, #tabelLeveringsBonValidatie {
     margin-top: 1%;
 }
 
@@ -148,7 +147,35 @@ button:active {
     width : 20%;
 }
 
-#tabelBestellingen th, #tabelBestellingen td{
+#tabelBestellingen th, #tabelLeveringsBonValidatie th,
+#tabelBestellingen td, #tabelLeveringsBonValidatie td {
     padding : 1%;
 }
 
+#leveringsbonHeader {
+    text-align: center;
+    margin-top: 10%;
+}
+#inputDiv {
+    font-size: xx-large;
+    display: grid;
+    grid-template-columns: 50% 0.5fr;
+    grid-gap: 16px;
+    margin: 10%;
+    margin-top: 5%;
+    padding-left:10%;
+    text-align: right;
+}
+label {
+    grid-column: 1 / 2;
+}
+input {
+    grid-column: 2 / 3;
+}
+#buttonDiv {
+    text-align: center;
+}
+#toevoegen {
+    width: 20%;
+    height: 20%;
+}

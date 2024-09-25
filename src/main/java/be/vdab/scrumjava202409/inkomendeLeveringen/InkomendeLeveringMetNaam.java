@@ -6,7 +6,7 @@ import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
 
-public record InkomendeLeveringMetNaam(@NotBlank String naam, @NotBlank String leveranciersbonNummer,
-                                       @NotNull @PastOrPresent LocalDate leveranciersbondatum)
+public record InkomendeLeveringMetNaam(@NotBlank String naam, @NotBlank String leveringsbonNummer,
+                                       @NotNull @PastOrPresent LocalDate leveringsbondatum)
 {
 }
