@@ -19,7 +19,7 @@ async function init() {
     const tablecontainer = document.getElementById("artikelOverzichtContainer")
     terugKnop.textContent = "Terug";
     terugKnop.onclick = function(){
-        window.location.href = "bestellingOverzicht.html";
+        window.history.back();
     }
 
     detailArtikelNummer.textContent = "Detail artikel: " + data.artikelId;
