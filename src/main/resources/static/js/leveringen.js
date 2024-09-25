@@ -22,7 +22,7 @@ byId("toevoegen").onclick = async function () {
         return;
     }
     const leveringsbon = {
-        leveranciersnaam: lnaam.value,
+        naam: lnaam.value,
         leveringsbonNummer: lbnr.value,
         leveringsbondatum: lbdatum.value
     };
@@ -34,7 +34,7 @@ function verbergFouten() {
 }
 
 async function voegToe(leveringsbon) {
-    const response = await fetch("leveringen",
+    const response = await fetch("inkomende-leveringen/toevoegen",
         {
             method: "POST",
             headers: {'Content-Type': "application/json"},
