@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="css/stylesheet.css">
+        <script src="js/leveringsBonOverzicht.js" type="module"></script>
+    </head>
+    <body>
+        <img src="images/logo_prularia_zwart.jpg" class="logo">
+        <h2 id="leveringsBonId"></h2>
+        <table width="50%" id="tabelLeveringsBon">
+            <thead>
+                <tr>
+                    <th>Artikelnaam</th>
+                    <th>Aantal Goedgekeurd</th>
+                    <th>Locatie</th>
+                    <th width=5% id="checkbox">Checkbox</th>
+                </tr>
+            </thead>
+            <tbody id="tabelLeveringsOverzicht">
+            </tbody>
+        </table>
+        <button type="button" id="knop" hidden>afgewerkt</button>
+        <div id="storing" hidden>Er is een storing bij het ophalen van de leveringsbon</div>
+    </body>
+</html>
