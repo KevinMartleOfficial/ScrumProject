@@ -18,7 +18,7 @@ public class InkomendeLeveringsLijnRepository {
                 inkomendeleveringslijnen (inkomendeLeveringsId, artikelId, aantalGoedgekeurd, aantalTeruggestuurd, magazijnPlaatsId)
                 values (?, ?, ?, ?, ?)
                 """;
-        
+
         jdbcClient.sql(sql)
                 .params(inkomendeLeveringsLijn.getInkomendeLeveringsId(), inkomendeLeveringsLijn.getArtikelId(),
                         inkomendeLeveringsLijn.getAantalGoedgekeurd(),

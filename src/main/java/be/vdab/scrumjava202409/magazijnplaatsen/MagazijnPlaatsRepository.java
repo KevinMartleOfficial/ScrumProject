@@ -24,7 +24,7 @@ public class MagazijnPlaatsRepository {
         jdbcClient.sql(sql).params(aantal, aantal, aantal, rij, rek).update();
     }
 
-    List<MagazijnPlaats> findMagazijnplaatsByArtikelId(long artikelId) {
+    public List<MagazijnPlaats> findMagazijnplaatsByArtikelId(long artikelId) {
         var sql = """
                 select magazijnPlaatsId, artikelId, rij, rek, aantal
                 from MagazijnPlaatsen
@@ -35,6 +35,28 @@ public class MagazijnPlaatsRepository {
                 .param(artikelId)
                 .query(MagazijnPlaats.class)
                 .list();
+    }
+
+    //Alle lege plaatsen opvragen
+    public List<MagazijnPlaats> findMagazijnplaatsByNull(){
+        String sql = """
+                select magazijnPlaatsId,
+                if(artikelId is null, 0, artikelId) as artikelId, rij, rek, aantal
+                                from MagazijnPlaatsen
+                                where artikelId is null
+                                order by rij, rek
+                """;
+        return jdbcClient.sql(sql)
+                .query(MagazijnPlaats.class)
+                .list();
+    }
+
+    public long findMagazijnpaatsIdByMagazijnplaatsRijEnRek(String rij, int rek){
+        String sql = """
+                select magazijnplaatsen.magazijnPlaatsId from magazijnplaatsen where rij = ? and rek = ?;
+                """;
+
+        return jdbcClient.sql(sql).params(rij, rek).query(Long.class).single();
     }
 
     

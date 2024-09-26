@@ -6,6 +6,7 @@ import be.vdab.scrumjava202409.bestellingen.BestelIdArtikelIdNaamAantalMagazijnp
 import be.vdab.scrumjava202409.bestellingen.Bestelling;
 import be.vdab.scrumjava202409.bestellingen.BestellingRepository;
 import be.vdab.scrumjava202409.bestellingen.BestellingService;
+import be.vdab.scrumjava202409.inkomendeleveringslijnen.InkomendeLeveringsLijn;
 import be.vdab.scrumjava202409.uitgaandeleveringen.UitgaandeLeveringService;
 import be.vdab.scrumjava202409.util.PadBerekening;
 import org.springframework.stereotype.Service;
@@ -67,5 +68,21 @@ public class MagazijnPlaatsService {
 
         return kortstePad;
     }
+
+    public List<ArtikelMagazijn> findMagazijnplaatsByNull(){
+        List<MagazijnPlaats> magazijnPlaatsen = magazijnPlaatsRepository.findMagazijnplaatsByNull();
+        return magazijnPlaatsen
+                .stream()
+                .map(mp -> new ArtikelMagazijn(mp.getRij() + String.valueOf(mp.getRek()), mp.getAantal()))
+                .collect(Collectors.toList());
+    }
+
+    public long findMagazijnpaatsIdByMagazijnplaatsString(String magazijnplaats){
+        String rij = String.valueOf(magazijnplaats.charAt(0));
+        int rek = Integer.parseInt(magazijnplaats.substring(1));
+
+        return magazijnPlaatsRepository.findMagazijnpaatsIdByMagazijnplaatsRijEnRek(rij, rek);
+    }
+
 
 }
