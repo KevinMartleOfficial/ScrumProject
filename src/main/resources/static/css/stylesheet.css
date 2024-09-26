@@ -51,6 +51,14 @@ img {
 #storing {
     color: white;
     background: red;
+    text-align: center;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 5px;
+    font-size: 25px;
+    width: auto;
+    max-width: 30%;
 }
 
 button {
@@ -112,18 +120,23 @@ input.aantalGoedgekeurd {
 }
 
 #storingTv {
-    font-size: 70px;
-    font-weight: bolder;
-    padding: 2%;
-    color: white;
     background: red;
-    margin-top: 1%;
+    color: white;
+    text-align: center;
+    margin-top: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    font-size: 40px;
+    width: auto;
+    max-width: 50%;
+    font-weight: bolder;
 }
 
 #bovenPaginaContainer {
     display: flex;
     justify-content: space-between;
-    margin: 100px 100px 0;
+    margin: 150px 100px 0;
 }
 
 #terugknop {
@@ -142,15 +155,11 @@ input.aantalGoedgekeurd {
 
 #artikelOverzichtTable {
     margin: auto;
-    height: 800px;
+    height: 100%;
 }
 
 #artikelOverzichtContainer {
-    height: auto;
-}
-
-#hoofdcontainer {
-    padding: 1%;
+    height: 100%;
 }
 
 #buttons {
@@ -208,27 +217,28 @@ input.aantalGoedgekeurd {
 
 #leveringsbonHeader {
     text-align: center;
-    margin-top: 10%;
+    margin-top: 8%;
+    font-size: 60px;
 }
 
 #inputDiv {
-    font-size: xx-large;
+    font-size: 40px;
     display: grid;
-    grid-template-columns: 50% 0.5fr;
-    grid-gap: 16px;
-    margin: 10%;
-    margin-top: 5%;
+    grid-template-columns: 45% 0.6fr;
+    grid-gap: 30px;
+    margin: 5% 10% 10%;
     padding-left: 10%;
     text-align: right;
+    align-items: center;
 }
 
 label {
-    grid-column: 1 / 2;
+    justify-items: center;
 }
 
 input {
-
-    grid-column: 2 / 3;
+    justify-items: center;
+    font-size: 25px;
 }
 
 #buttonDiv {
@@ -238,6 +248,7 @@ input {
 #toevoegen {
     width: 20%;
     height: 20%;
+    font-size: 40px;
 }
 
 #tabelBestellingen td {

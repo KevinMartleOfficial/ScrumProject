@@ -5,19 +5,19 @@ byId("toevoegen").onclick = async function () {
     verbergFouten();
     const lnaam = byId("lnaam");
     if (!lnaam.checkValidity()) {
-        setText("storing", "leveranciersnaam niet ingevuld");
+        setText("storing", "Leveranciersnaam niet ingevuld.");
         toon("storing")
         return;
     }
     const lbnr = byId("lbnr");
     if (!lbnr.checkValidity()) {
-        setText("storing", "leveringsbonnummer niet ingevuld");
+        setText("storing", "Leveringsbonnummer niet ingevuld.");
         toon("storing");
         return;
     }
     const lbdatum = byId("lbdatum");
     if (!lbdatum.checkValidity()) {
-        setText("storing", "leveringsbon datum niet ingevuld");
+        setText("storing", "Leveringsbondatum niet ingevuld.");
         toon("storing");
         return;
     }

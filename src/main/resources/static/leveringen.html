@@ -7,21 +7,19 @@
     <script src="js/leveringen.js" type="module" defer></script>
 </head>
 <body>
+
 <img src="images/logo_prularia_zwart.jpg" class="logo">
 
 <h1 id="leveringsbonHeader">Leveringsbon</h1>
 <div id="inputDiv">
+    <label for="lnaam">Leveranciersnaam</label>
+    <input id="lnaam" name="leveranciersnaam" type="text" placeholder="Leveranciersnaam" required>
 
-    <label for="lnaam">Leveranciernaam</label>
-    <input id="lnaam" name="leveranciersnaam" type="text" placeholder="Leveranciernaam" required>
+    <label for="lbnr">Leveringsbonnummer</label>
+    <input id="lbnr" name="leveringsbonNummer" type="text" placeholder="Leveringsbonnummer" required>
 
-    <label for="lbnr">Leveringsbon nummer</label>
-    <input id="lbnr" name="leveringsbonNummer" type="text" placeholder="Leveringsbon nummer" required>
-
-    <label for="lbdatum">Leveringsbon datum</label>
+    <label for="lbdatum">Leveringsbondatum</label>
     <input id="lbdatum" name="leveringsbondatum" type="date" required>
-
-
 </div>
 <div id="buttonDiv">
     <button id="toevoegen">Toevoegen</button>
