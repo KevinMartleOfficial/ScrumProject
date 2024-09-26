@@ -72,7 +72,7 @@ function slaRechtseTabelOp() {
 
         data.push({ artikelId, artikelNaam, artikelEan, aantal });
     }
-    sessionStorage.setItem("leveringsbonData", JSON.stringify(data));
+    sessionStorage.setItem("leveringsbonLijst", JSON.stringify(data));
     window.location.href="./leveringsbonValidatie.html"
 }
 
