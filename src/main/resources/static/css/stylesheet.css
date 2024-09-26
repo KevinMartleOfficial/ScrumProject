@@ -1,6 +1,6 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
 }
 
@@ -44,6 +44,10 @@ tr:nth-child(even) {
     height: 40%;
 }
 
+img {
+    padding: 50px 0 0 10px;
+}
+
 #storing {
     color: white;
     background: red;
@@ -67,6 +71,10 @@ button:active {
     background-color: #3ecc41;
 }
 
+input.aantalGoedgekeurd {
+    font-size: 24px; /* Adjust the text size if necessary */
+}
+
 #totaalDiv {
     align-content: end;
     padding-right: 2%;
@@ -74,20 +82,23 @@ button:active {
     font-size: 50px;
 }
 
+#BestellingId {
+    padding: 30px 0 0 20px;
+    font-size: 30px;
+}
 
 #bestellingenTabel th {
     font-size: 50px;
 }
 
 #bestellingenTabel {
-    width: 100%;
-    margin-top: 2%;
+    width: 97%;
+    margin: 50px 20px 10px 20px;
 }
 
 #bestellingenTabel th, #bestellingenTabel td {
-    padding: 2%;
+    padding: 10px;
 }
-
 
 #bestellingenTabel td {
     font-size: 40px;
@@ -112,11 +123,30 @@ button:active {
 #bovenPaginaContainer {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin: 100px 100px 0;
+}
+
+#terugknop {
+    font-size: 20px;
+}
+
+#bovenPaginaContainer p {
+    font-weight: bolder;
+    font-size: 20px;
 }
 
 #artikelOverzichtContainer th, #artikelOverzichtContainer td {
-    padding: 8px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#artikelOverzichtTable {
+    margin: auto;
+    height: 800px;
+}
+
+#artikelOverzichtContainer {
+    height: auto;
 }
 
 #hoofdcontainer {
@@ -127,7 +157,6 @@ button:active {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 #buttons button {
@@ -140,15 +169,84 @@ button:active {
     margin: 100px 2em 2em;
 }
 
-#tabelBestellingen{
+#knop {
+    font-size: 20px;
+    margin: 0 0 0 20px;
+}
+
+#tabelBestellingen {
+    margin: 30px 20px 20px;
+    border-collapse: collapse;
+    width: 97%;
+}
+
+#tabelBestellingen, #tabelLeveringsBonValidatie
+#tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
+#tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
     margin-top: 1%;
 }
 
-#checkbox{
-    width : 20%;
+#checkbox {
+    width: 20%;
 }
 
-#tabelBestellingen th, #tabelBestellingen td{
+.checkboxes {
+    transform: scale(2); /* Verander naar de gewenste grootte */
+    margin: 10px;
+    cursor: pointer;
+}
+
+#tabelBestellingen th, #tabelBestellingen td {
+    padding: 10px;
+    font-size: 40px;
+    align-items: center;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+#tabelLeveringsBonValidatie th, #tabelLeveringsBonValidatie td {
+    padding: 1%;
+}
+#tabelBestellingen th, #tabelLeveringsBonValidatie th,
+#tabelBestellingen td, #tabelLeveringsBonValidatie td,
+#tabelLeveringsBon th, #tabelLeveringsBon td {
     padding : 1%;
 }
 
+#leveringsbonHeader {
+    text-align: center;
+    margin-top: 10%;
+}
+
+#inputDiv {
+    font-size: xx-large;
+    display: grid;
+    grid-template-columns: 50% 0.5fr;
+    grid-gap: 16px;
+    margin: 10%;
+    margin-top: 5%;
+    padding-left: 10%;
+    text-align: right;
+}
+
+label {
+    grid-column: 1 / 2;
+}
+
+input {
+
+    grid-column: 2 / 3;
+}
+
+#buttonDiv {
+    text-align: center;
+}
+
+#toevoegen {
+    width: 20%;
+    height: 20%;
+}
+
+#tabelBestellingen td {
+    font-weight: bolder;
+}

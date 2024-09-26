@@ -3,6 +3,8 @@ package be.vdab.scrumjava202409.artikelen;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ArtikelRepository {
     private JdbcClient jdbcClient;
@@ -58,5 +60,12 @@ public class ArtikelRepository {
                 .sql(sql)
                 .param(naam)
                 .query(Artikel.class).single();
+    }
+
+    public List<Artikel> findByPartEanNummer(String eanNummer) {
+        String sql = """
+                select * from artikelen where ean like ?
+                """;
+        return jdbcClient.sql(sql).param("%" + eanNummer + "%").query(Artikel.class).list();
     }
 }

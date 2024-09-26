@@ -37,6 +37,7 @@ public class MagazijnPlaatsRepository {
                 .list();
     }
 
+
     //Alle lege plaatsen opvragen
     public List<MagazijnPlaats> findMagazijnplaatsByNull(){
         String sql = """
@@ -57,6 +58,19 @@ public class MagazijnPlaatsRepository {
                 """;
 
         return jdbcClient.sql(sql).params(rij, rek).query(Long.class).single();
+
+    //nodig voor LEV-4.1
+    public MagazijnPlaats findByMagazijnPlaatsId(long magazijnPlaatsId){
+        String sql = """
+                select magazijnPlaatsId, artikelId, rij, rek, aantal
+                from magazijnplaatsen
+                where magazijnplaatsId = ?
+                """;
+        return jdbcClient.sql(sql)
+                .param(magazijnPlaatsId)
+                .query(MagazijnPlaats.class)
+                .single();
+
     }
 
     
