@@ -1,38 +1,30 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
 
-// const leveringsbonNummer = JSON.parse(sessionStorage.getItem("leveringsbonNummer"));
-const leveringsbonNummer = 1;
+const leveringsbonNummer = JSON.parse(sessionStorage.getItem("leveringsbonNummer"));
+// tijdelijke Mock data hieronder
+// const leveringsbonNummer = 1;
 byId("leveringsbonNummer").innerText = leveringsbonNummer;
 
-// const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
-const leveringsbonLijst = [
-    {"artikelId": 94, "artikelNaam": "Cirkelzaag 400W", "artikelEannummer": 5499999000941, "aantal": 4},
-    {"artikelId": 25, "artikelNaam": "eettafel", "artikelEannummer": 5499999000255, "aantal": 6}]
+const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
+// Tijdelijke mock data hieronder
+// const leveringsbonLijst = [
+//    {"artikelId": 94, "artikelNaam": "Cirkelzaag 400W", "artikelEannummer": 5499999000941, "aantal": 4},
+//    {"artikelId": 25, "artikelNaam": "eettafel", "artikelEannummer": 5499999000255, "aantal": 6}]
 
 vulTabel(leveringsbonLijst);
 
 byId("buttonBevestig").onclick = async () => {
     maakLeveringTeBevestigen();
     const leveringTeBevestigen = JSON.parse(sessionStorage.getItem("leveringTeBevestigen"));
-    console.log(leveringTeBevestigen);
-    try {
-        const response = await fetch(`inkomendeleveringslijn/add`, {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(leveringTeBevestigen)
-        });
-        if (response.ok) {
-            sessionStorage.removeItem("goedgekeurdEnAfgekeurd");
-            window.location = "./leveringsbonOverzicht.html";
-        } else {
-            toon("storing");
-            const errorText = await response.text(); // Get the error message from the server
-            console.error("Error from server:", errorText);
-            toon("storing");
-        }
-    } catch (error) {
-        console.error("Unexpected error occurred:", error);
+    const response = await fetch(`inkomendeleveringslijn/add`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(leveringTeBevestigen)
+    });
+    if (response.ok) {
+        window.location = "./leveringsbonOverzicht.html";
+    } else {
         toon("storing");
     }
 }
