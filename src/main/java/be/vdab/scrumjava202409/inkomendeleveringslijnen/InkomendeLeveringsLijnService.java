@@ -2,6 +2,7 @@ package be.vdab.scrumjava202409.inkomendeleveringslijnen;
 
 
 import be.vdab.scrumjava202409.artikelen.Artikel;
+import be.vdab.scrumjava202409.artikelen.ArtikelRepository;
 import be.vdab.scrumjava202409.artikelen.ArtikelService;
 import be.vdab.scrumjava202409.magazijnplaatsen.ArtikelMagazijn;
 import be.vdab.scrumjava202409.magazijnplaatsen.MagazijnPlaats;
@@ -24,7 +25,6 @@ public class InkomendeLeveringsLijnService {
     private final MagazijnPlaatsService magazijnPlaatsService;
     private final MagazijnPlaatsRepository magazijnPlaatsRepository;
     private InkomendeLeveringsLijnRepository inkomendeLeveringsLijnRepository;
-    private MagazijnPlaatsService magazijnPlaatsService;
     private ArtikelService artikelService;
 
     public InkomendeLeveringsLijnService(InkomendeLeveringsLijnRepository inkomendeLeveringsLijnRepository, ArtikelRepository artikelRepository, MagazijnPlaatsService magazijnPlaatsService, MagazijnPlaatsRepository magazijnPlaatsRepository, ArtikelService artikelService) {

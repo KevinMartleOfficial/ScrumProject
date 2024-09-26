@@ -52,13 +52,13 @@ public class MagazijnPlaatsRepository {
                 .list();
     }
 
-    public long findMagazijnpaatsIdByMagazijnplaatsRijEnRek(String rij, int rek){
+    public long findMagazijnpaatsIdByMagazijnplaatsRijEnRek(String rij, int rek) {
         String sql = """
                 select magazijnplaatsen.magazijnPlaatsId from magazijnplaatsen where rij = ? and rek = ?;
                 """;
 
         return jdbcClient.sql(sql).params(rij, rek).query(Long.class).single();
-
+    }
     //nodig voor LEV-4.1
     public MagazijnPlaats findByMagazijnPlaatsId(long magazijnPlaatsId){
         String sql = """
