@@ -44,13 +44,26 @@ vulTabel(leveringsbonLijst);
 
 byId("buttonBevestig").onclick = async () => {
     maakLeveringTeBevestigen();
-    /*
-    const response = await fetch(``, {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: leveringTeBevestigen
-    });
-    */
+    const leveringTeBevestigen = JSON.parse(sessionStorage.getItem("leveringTeBevestigen"));
+    console.log(leveringTeBevestigen);
+    try {
+        const response = await fetch(`inkomendeleveringslijn/add`, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(leveringTeBevestigen)
+        });
+        if (response.ok) {
+            window.location = "./leveringsbonOverzicht.html";
+        } else {
+            toon("storing");
+            const errorMessage = await response.text();
+            console.error("Error from server:", errorMessage);
+            alert("Error: " + errorMessage);
+        }
+    } catch (error) {
+        console.error("Request failed:", error);
+        alert("An unexpected error occurred. Please try again.");
+    }
 }
 
 function vulTabel(leveringsbonLijst) {
@@ -77,10 +90,10 @@ function vulTabel(leveringsbonLijst) {
         tr.insertCell().appendChild(input);
         const afgekeurdSpan = document.createElement("span");
         afgekeurdSpan.className = "aantalAfgekeurd";
-        afgekeurdSpan.innerText = artikel.aantal - input.value;
+        afgekeurdSpan.innerText = Number(artikel.aantal - input.value);
         tr.insertCell().appendChild(afgekeurdSpan);
         input.onchange = () => {
-            afgekeurdSpan.innerText = artikel.aantal - input.value;
+            afgekeurdSpan.innerText = Number(artikel.aantal - input.value);
             telGoedgekeurd();
         }
     }
@@ -125,13 +138,16 @@ function maakLeveringTeBevestigen() {
     }
     const leveringTeBevestigen = [];
     for (let i = 0; i < leveringsbonLijst.length; i++) {
-        const inkomendeLeveringsId = sessionStorage.getItem("leveringsbonId");
+        const inkomendeLeveringsId = 1; // Op te halen: sessionStorage.getItem("leveringsbonNummer");
         const artikelId = leveringsbonLijst[i].artikelId;
         const aantalGoedgekeurd = aantalGoedgekeurdList[i].value;
-        const aantalAfgekeurd = aantalAfgekeurdList[i].value;
-        const leveringsbonLijn = [
-            inkomendeLeveringsId, artikelId, aantalGoedgekeurd, aantalAfgekeurd
-        ];
+        const aantalTeruggestuurd = aantalAfgekeurdList[i].innerText;
+        const leveringsbonLijn = {
+            inkomendeLeveringsId: parseInt(inkomendeLeveringsId),
+            artikelId: parseInt(artikelId),
+            aantalGoedgekeurd: parseInt(aantalGoedgekeurd),
+            aantalTeruggestuurd: parseInt(aantalTeruggestuurd)
+        }
         leveringTeBevestigen.push(leveringsbonLijn);
     }
     sessionStorage.setItem("leveringTeBevestigen", JSON.stringify(leveringTeBevestigen));
