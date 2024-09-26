@@ -208,10 +208,6 @@ input.aantalGoedgekeurd {
     width: 97%;
 }
 
-#leveringsBonId {
-    color: black;
-}
-
 #tabelLeveringsBon th, #tabelLeveringsBon td {
     padding: 10px;
     font-size: 30px;
