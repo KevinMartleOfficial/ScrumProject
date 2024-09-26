@@ -103,7 +103,6 @@ function vulTabel(bestelLijst) {
         input.className = "checkboxes";
         tr.insertCell().appendChild(input);
         checkboxLijstAanmaken();
-
     }
     herstelCheckboxStatus();
 }

@@ -165,13 +165,19 @@ button:active {
 }
 
 #buttons button {
-    width: 500px;
+    width: 1000px;
     height: 300px;
-    font-size: xxx-large;
-    font-weight: bold;
-    align-items: center;
-    justify-content: center;
-    margin: 100px 2em 2em;
+    font-size: 60px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+#leveringButton {
+    margin: 200px 50px 200px 100px;
+}
+
+#retourButton {
+    margin: 200px 100px 200px 50px;
 }
 
 #knop {
