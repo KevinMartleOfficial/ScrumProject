@@ -1,44 +1,14 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
 
-// tijdelijke leveringsbonNummer
-// byId("leveringsbonNummer").innerText = sessionStorage.getItem("leveringsbonNummer");
-byId("leveringsbonNummer").innerText = 1;
+// const leveringsbonNummer = JSON.parse(sessionStorage.getItem("leveringsbonNummer"));
+const leveringsbonNummer = 1;
+byId("leveringsbonNummer").innerText = leveringsbonNummer;
 
-// tijdelijke leveringsboninhoud
 // const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
 const leveringsbonLijst = [
-    {
-        "artikelId": 4,
-        "artikelNaam": "keukenstoel",
-        "artikelEannummer": 5499999000040,
-        "aantal": 5
-    },
-    {
-        "artikelId": 29,
-        "artikelNaam": "kruk",
-        "artikelEannummer": 5499999000293,
-        "aantal": 8
-    },
-    {
-        "artikelId": 39,
-        "artikelNaam": "TV-meubel",
-        "artikelEannummer": 5499999000392,
-        "aantal": 12
-    },
-    {
-        "artikelId": 64,
-        "artikelNaam": "Staande lamp",
-        "artikelEannummer": 5499999000644,
-        "aantal": 7
-    },
-    {
-        "artikelId": 94,
-        "artikelNaam": "Cirkelzaag 400W",
-        "artikelEannummer": 5499999000941,
-        "aantal": 4
-    }
-];
+    {"artikelId": 94, "artikelNaam": "Cirkelzaag 400W", "artikelEannummer": 5499999000941, "aantal": 4},
+    {"artikelId": 25, "artikelNaam": "eettafel", "artikelEannummer": 5499999000255, "aantal": 6}]
 
 vulTabel(leveringsbonLijst);
 
@@ -53,16 +23,17 @@ byId("buttonBevestig").onclick = async () => {
             body: JSON.stringify(leveringTeBevestigen)
         });
         if (response.ok) {
+            sessionStorage.removeItem("goedgekeurdEnAfgekeurd");
             window.location = "./leveringsbonOverzicht.html";
         } else {
             toon("storing");
-            const errorMessage = await response.text();
-            console.error("Error from server:", errorMessage);
-            alert("Error: " + errorMessage);
+            const errorText = await response.text(); // Get the error message from the server
+            console.error("Error from server:", errorText);
+            toon("storing");
         }
     } catch (error) {
-        console.error("Request failed:", error);
-        alert("An unexpected error occurred. Please try again.");
+        console.error("Unexpected error occurred:", error);
+        toon("storing");
     }
 }
 
@@ -95,12 +66,23 @@ function vulTabel(leveringsbonLijst) {
         input.onchange = () => {
             afgekeurdSpan.innerText = Number(artikel.aantal - input.value);
             telGoedgekeurd();
+            maakGoedgekeurdEnAfgekeurdInSessionStorage();
+        }
+    }
+    if (sessionStorage.getItem("goedgekeurdEnAfgekeurd")) {
+        let goedgekeurdEnAfgekeurd = JSON.parse(sessionStorage.getItem("goedgekeurdEnAfgekeurd"));
+        const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
+        const aantalAfgekeurdList = document.getElementsByClassName("aantalAfgekeurd");
+        for (let i = 0; i < goedgekeurdEnAfgekeurd.length; i++) {
+            const goedgekeurd = goedgekeurdEnAfgekeurd[i].aantalGoedgekeurd;
+            const afgekeurd = goedgekeurdEnAfgekeurd[i].aantalTeruggestuurd;
+            aantalGoedgekeurdList[i].value = goedgekeurd;
+            aantalAfgekeurdList[i].innerText = afgekeurd;
         }
     }
     // Onderstaande zorgt ervoor dat magazijnier nooit een waarde kan ingeven dat lager of hoger ligt dan min en max
     document.querySelectorAll('input.aantalGoedgekeurd').forEach(input => {
-        input.addEventListener('input', function() {
-            let min = parseInt(input.min);
+        input.addEventListener('input', function () {let min = parseInt(input.min);
             let max = parseInt(input.max);
             let value = parseInt(input.value);
 
@@ -111,6 +93,7 @@ function vulTabel(leveringsbonLijst) {
             }
         });
     });
+    telGoedgekeurd();
 }
 
 function telGoedgekeurd() {
@@ -130,6 +113,21 @@ function telGoedgekeurd() {
     }
 }
 
+function maakGoedgekeurdEnAfgekeurdInSessionStorage() {
+    const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
+    const aantalAfgekeurdList = document.getElementsByClassName("aantalAfgekeurd");
+    if (sessionStorage.getItem("goedgekeurdEnAfgekeurd")) {
+        sessionStorage.removeItem("goedgekeurdEnAfgekeurd")
+    }
+    const goedGekeurdEnAfgekeurd = [];
+    for (let i = 0; i < leveringsbonLijst.length; i++) {
+        const aantalGoedgekeurd = aantalGoedgekeurdList[i].value;
+        const aantalTeruggestuurd = aantalAfgekeurdList[i].innerText;
+        goedGekeurdEnAfgekeurd.push({aantalGoedgekeurd, aantalTeruggestuurd});
+    }
+    sessionStorage.setItem("goedgekeurdEnAfgekeurd", JSON.stringify(goedGekeurdEnAfgekeurd));
+}
+
 function maakLeveringTeBevestigen() {
     const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
     const aantalAfgekeurdList = document.getElementsByClassName("aantalAfgekeurd");
@@ -138,7 +136,7 @@ function maakLeveringTeBevestigen() {
     }
     const leveringTeBevestigen = [];
     for (let i = 0; i < leveringsbonLijst.length; i++) {
-        const inkomendeLeveringsId = 1; // Op te halen: sessionStorage.getItem("leveringsbonNummer");
+        const inkomendeLeveringsId = leveringsbonNummer;
         const artikelId = leveringsbonLijst[i].artikelId;
         const aantalGoedgekeurd = aantalGoedgekeurdList[i].value;
         const aantalTeruggestuurd = aantalAfgekeurdList[i].innerText;
