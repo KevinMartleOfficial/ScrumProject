@@ -64,13 +64,13 @@ function slaRechtseTabelOp() {
 
     for (let i = 0; i < tabel.rows.length; i++) {
         const row = tabel.rows[i];
-        const artikelEan = row.cells[0].textContent;
+        const artikelEannummer = row.cells[0].textContent;
         const aantal = row.cells[1].querySelector("input") ? row.cells[1].querySelector("input").value : "";
 
         const artikelId = row.dataset.artikelId;
         const artikelNaam = row.dataset.artikelNaam;
 
-        data.push({ artikelId, artikelNaam, artikelEan, aantal });
+        data.push({ artikelId, artikelNaam, artikelEannummer, aantal });
     }
     sessionStorage.setItem("leveringsbonLijst", JSON.stringify(data));
     window.location.href="./leveringsbonValidatie.html"

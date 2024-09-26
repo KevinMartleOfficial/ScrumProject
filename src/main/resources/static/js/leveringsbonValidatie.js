@@ -2,15 +2,16 @@
 import {byId, toon, verberg} from "./util.js";
 
 const leveringsbonNummer = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId"));
+console.log(leveringsbonNummer);
 // tijdelijke Mock data hieronder
 // const leveringsbonNummer = 1;
 byId("leveringsbonNummer").innerText = leveringsbonNummer;
 
-const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
+const leveringsbonLijst = JSON.parse(sessionStorage.getItem("leveringsbonLijst"));
 // Tijdelijke mock data hieronder
-// const leveringsbonLijst = [
-//    {"artikelId": 94, "artikelNaam": "Cirkelzaag 400W", "artikelEannummer": 5499999000941, "aantal": 4},
-//    {"artikelId": 25, "artikelNaam": "eettafel", "artikelEannummer": 5499999000255, "aantal": 6}]
+ //const leveringsbonLijst = [
+    //{"artikelId": 94, "artikelNaam": "Cirkelzaag 400W", "artikelEannummer": 5499999000941, "aantal": 4},
+    //{"artikelId": 25, "artikelNaam": "eettafel", "artikelEannummer": 5499999000255, "aantal": 6}]
 
 vulTabel(leveringsbonLijst);
 
@@ -32,6 +33,7 @@ byId("buttonBevestig").onclick = async () => {
 function vulTabel(leveringsbonLijst) {
     const tabel = byId("tabelLeveringsBonOverzicht");
     for (const artikel of leveringsbonLijst) {
+        console.log(leveringsbonLijst);
         const tr = tabel.insertRow();
         const a = document.createElement("a");
         a.setAttribute("class", artikel.artikelId);
