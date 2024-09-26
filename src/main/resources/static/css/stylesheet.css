@@ -202,6 +202,25 @@ input.aantalGoedgekeurd {
     width: 97%;
 }
 
+#tabelLeveringsBon {
+    margin: 80px 20px 20px;
+    border-collapse: collapse;
+    width: 97%;
+}
+
+#leveringsBonId {
+    color: black;
+}
+
+#tabelLeveringsBon th, #tabelLeveringsBon td {
+    padding: 10px;
+    font-size: 30px;
+    align-items: center;
+    word-wrap: break-word;
+    text-align: center;
+    font-weight: bolder;
+}
+
 #checkbox {
     width: 20%;
 }

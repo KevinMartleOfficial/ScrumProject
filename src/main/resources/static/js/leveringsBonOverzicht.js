@@ -7,10 +7,10 @@ setText("leveringsBonId", leveringsBonId);
 
 byId("knop")
 
-const response = await fetch(`inkomendeleveringslijn/${leveringsBonId}`);
+//const response = await fetch(`inkomendeleveringslijn/${leveringsBonId}`);
 
 // om te testen
-//const response = await fetch(`inkomendeleveringslijn/1`);
+const response = await fetch(`inkomendeleveringslijn/1`);
 
 if (response.ok) {
     const leveringsOverzicht = await response.json();
