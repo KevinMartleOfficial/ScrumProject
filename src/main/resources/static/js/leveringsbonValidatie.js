@@ -1,7 +1,7 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
 
-const leveringsbonNummer = JSON.parse(sessionStorage.getItem("leveringsbonNummer"));
+const leveringsbonNummer = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId"));
 // tijdelijke Mock data hieronder
 // const leveringsbonNummer = 1;
 byId("leveringsbonNummer").innerText = leveringsbonNummer;

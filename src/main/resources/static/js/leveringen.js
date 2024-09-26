@@ -34,7 +34,6 @@ function verbergFouten() {
 }
 
 async function voegToe(leveringsbon) {
-    sessionStorage.setItem("leveringsbonNummer", leveringsbon.leveringsbonNummer);
     const response = await fetch("inkomende-leveringen/toevoegen",
         {
             method: "POST",
