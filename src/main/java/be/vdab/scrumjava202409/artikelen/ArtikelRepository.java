@@ -46,7 +46,7 @@ public class ArtikelRepository {
                 where artikelId = ?
                 """;
         jdbcClient.sql(sql)
-                .param(aantal, artikelId)
+                .params(aantal, artikelId)
                 .update();
     }
 
