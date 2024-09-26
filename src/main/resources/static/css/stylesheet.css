@@ -180,7 +180,8 @@ input.aantalGoedgekeurd {
     width: 97%;
 }
 
-#tabelBestellingen, #tabelLeveringsBonValidatie {
+#tabelBestellingen, #tabelLeveringsBonValidatie
+#tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
     margin-top: 1%;
 }
 
@@ -204,6 +205,11 @@ input.aantalGoedgekeurd {
 
 #tabelLeveringsBonValidatie th, #tabelLeveringsBonValidatie td {
     padding: 1%;
+}
+#tabelBestellingen th, #tabelLeveringsBonValidatie th,
+#tabelBestellingen td, #tabelLeveringsBonValidatie td,
+#tabelLeveringsBon th, #tabelLeveringsBon td {
+    padding : 1%;
 }
 
 #leveringsbonHeader {
