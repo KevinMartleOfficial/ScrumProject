@@ -39,14 +39,16 @@ async function voegToe(leveringsbon) {
             method: "POST",
             headers: {'Content-Type': "application/json"},
             body: JSON.stringify(leveringsbon)
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                setText("storing", "Storing");
+                toon("storing");
+            }
         });
 
-    if (response.ok) {
-        window.location = "artikelsLeveringen.html"
-    } else {
-    setText("storing", "Storing");
-            toon("storing");
-    }
-
-    console.log(leveringsbon);
+    sessionStorage.setItem("inkomendeLeveringsId", response);
+    window.location = "./artikelsLeveringen.html";
 }
