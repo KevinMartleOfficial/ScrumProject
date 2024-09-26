@@ -42,15 +42,16 @@ const leveringsbonLijst = [
 
 vulTabel(leveringsbonLijst);
 
-/*
 byId("buttonBevestig").onclick = async () => {
-    const response = await fetch(`uitgaandelevering/add`, {
+    maakLeveringTeBevestigen();
+    /*
+    const response = await fetch(``, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: leveringTeBevestigen
     });
+    */
 }
-*/
 
 function vulTabel(leveringsbonLijst) {
     const tabel = byId("tabelLeveringsBonOverzicht");
@@ -111,7 +112,6 @@ function telGoedgekeurd() {
 
     if (ingevuld === aantalGoedgekeurdList.length) {
         toon("buttonBevestig");
-        maakLeveringTeBevestigen();
     } else {
         verberg("buttonBevestig");
     }
@@ -120,14 +120,19 @@ function telGoedgekeurd() {
 function maakLeveringTeBevestigen() {
     const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
     const aantalAfgekeurdList = document.getElementsByClassName("aantalAfgekeurd");
-    if (sessionStorage.getItem("leveringTeBevestigen") !== null) {
-        let leveringTeBevestigen = JSON.parse(sessionStorage.getItem("leveringTeBevestigen"));
-        leveringTeBevestigen = [];
-        for (let i = 0; i < leveringsbonLijst.length; i++) {
-            // verder aan te vullen
-        }
-        sessionStorage.setItem("leveringTeBevestigen", JSON.stringify(leveringTeBevestigen));
-    } else {
-        // verder aan te vullen
+    if (sessionStorage.getItem("leveringTeBevestigen")) {
+        sessionStorage.removeItem("leveringTeBevestigen")
     }
+    const leveringTeBevestigen = [];
+    for (let i = 0; i < leveringsbonLijst.length; i++) {
+        const inkomendeLeveringsId = sessionStorage.getItem("leveringsbonId");
+        const artikelId = leveringsbonLijst[i].artikelId;
+        const aantalGoedgekeurd = aantalGoedgekeurdList[i].value;
+        const aantalAfgekeurd = aantalAfgekeurdList[i].value;
+        const leveringsbonLijn = [
+            inkomendeLeveringsId, artikelId, aantalGoedgekeurd, aantalAfgekeurd
+        ];
+        leveringTeBevestigen.push(leveringsbonLijn);
+    }
+    sessionStorage.setItem("leveringTeBevestigen", JSON.stringify(leveringTeBevestigen));
 }
