@@ -1,11 +1,11 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
 
-const leveringsbonNummer = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId"));
-console.log(leveringsbonNummer);
+const leveringsbonId = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId"));
+
 // tijdelijke Mock data hieronder
 // const leveringsbonNummer = 1;
-byId("leveringsbonNummer").innerText = leveringsbonNummer;
+byId("leveringsbonNummer").innerText = JSON.parse(sessionStorage.getItem("leveringsbonNummer"));
 
 const leveringsbonLijst = JSON.parse(sessionStorage.getItem("leveringsbonLijst"));
 // Tijdelijke mock data hieronder
@@ -130,7 +130,7 @@ function maakLeveringTeBevestigen() {
     }
     const leveringTeBevestigen = [];
     for (let i = 0; i < leveringsbonLijst.length; i++) {
-        const inkomendeLeveringsId = leveringsbonNummer;
+        const inkomendeLeveringsId = leveringsbonId;
         const artikelId = leveringsbonLijst[i].artikelId;
         const aantalGoedgekeurd = aantalGoedgekeurdList[i].value;
         const aantalTeruggestuurd = aantalAfgekeurdList[i].innerText;
