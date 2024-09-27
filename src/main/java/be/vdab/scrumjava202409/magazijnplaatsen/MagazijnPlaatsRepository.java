@@ -29,7 +29,7 @@ public class MagazijnPlaatsRepository {
         String sql = """
                 update magazijnplaatsen
                 set aantal = aantal + ?,
-                artikelId = if(aantal = 0, ?, artikelId)
+                artikelId = if(artikelId is null, ?, artikelId)
                 where rij = ? and rek = ?
                 """;
         jdbcClient.sql(sql)
