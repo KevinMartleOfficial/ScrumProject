@@ -44,7 +44,9 @@ function vulRechtseTabel(ean, artikelId, artikelNaam) {
     tr.insertCell().textContent = ean;
 
     const input = document.createElement("input");
+    input.setAttribute("type", "number");
     input.setAttribute("placeholder", "aantal");
+    input.setAttribute("min", 1);
     tr.insertCell().appendChild(input);
     tr.dataset.artikelId = artikelId;
     tr.dataset.artikelNaam = artikelNaam;

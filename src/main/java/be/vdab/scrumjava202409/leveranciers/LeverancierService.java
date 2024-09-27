@@ -3,6 +3,8 @@ package be.vdab.scrumjava202409.leveranciers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 public class LeverancierService {
@@ -20,5 +22,7 @@ public class LeverancierService {
         return leverancierRepository.findLeverancierIdByNaam(naam);
     }
 
-
+    public List <String> findLeverancierNaam(){
+        return leverancierRepository.findLeverancierNaam();
+    }
 }
