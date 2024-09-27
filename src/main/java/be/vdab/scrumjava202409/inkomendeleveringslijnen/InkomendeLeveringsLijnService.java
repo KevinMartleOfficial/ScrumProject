@@ -56,15 +56,15 @@ public class InkomendeLeveringsLijnService {
                         plaatsInMagazijn.plaats(),
                         maxAantalOpPlaats,
                         0));
-
+                System.out.println(lijn.getAantalGoedgekeurd());
                 hoeveelAanTeVullen[0] -= maxAantalOpPlaats - plaatsInMagazijn.aantal();
                 System.out.println(hoeveelAanTeVullen[0]);
+                System.out.println(maxAantalOpPlaats);System.out.println("????????????????");
 
             });
-            /*System.out.println("===============");
-            System.out.println(hoeveelAanTeVullen[0] / maxAantalOpPlaats);
+            System.out.println("===============");
             System.out.println(Math.max((int) Math.ceil((double)hoeveelAanTeVullen[0] / maxAantalOpPlaats), 0));
-            System.out.println("===============");*/
+            System.out.println("===============");
 
             hoeveelLegePlaatsenNodigPerArtikel[index[0]] += Math.max((int) Math.ceil((double)hoeveelAanTeVullen[0] / maxAantalOpPlaats), 0);
             index[0]++;
@@ -72,12 +72,14 @@ public class InkomendeLeveringsLijnService {
 
         index[0]=0;
         int[] huidigArtikel = {0};
+        System.out.println(Arrays.stream(hoeveelLegePlaatsenNodigPerArtikel).sum() + 60);
         List<ArtikelMagazijn> legePlaatsen = magazijnPlaatsService.findNodigeMagazijnplaatsByNull(Arrays.stream(hoeveelLegePlaatsenNodigPerArtikel).sum() + 60);
         /*System.out.println("????????????????");
         System.out.println(legePlaatsen);*/
         inkomendeLeveringsLijnList.forEach(lijn -> {
-            int maxAantalOpPlaats = artikelService.getArtikelById(lijn.getArtikelId()).getMaxAantalInMagazijnPlaats();
+
             while(index[0] < legePlaatsen.size()) {
+                int maxAantalOpPlaats = artikelService.getArtikelById(inkomendeLeveringsLijnList.get(huidigArtikel[0]).getArtikelId()).getMaxAantalInMagazijnPlaats();
                 for (int i = 0; i < hoeveelLegePlaatsenNodigPerArtikel[huidigArtikel[0]] && index[0] < legePlaatsen.size(); i++) {
                     mogelijkePlaatsen.add(new InkomendeLeveringsLijnMetStringMagazijnplaats(
                             lijn.getInkomendeLeveringsId(),
@@ -101,7 +103,7 @@ public class InkomendeLeveringsLijnService {
         System.out.println(mogelijkePlaatsen.size());*/
 
         List<InkomendeLeveringsLijnMetStringMagazijnplaats> bestePad = padBerekening.kortstePad2(mogelijkePlaatsen, new ArrayList<>(),0, 0, inkomendeLeveringsLijnList.size());
-
+        bestePad.forEach(System.out::println);
         bestePad.stream().map(inkomendeLeveringsLijnMetStringMagazijnplaats -> new InkomendeLeveringsLijn(inkomendeLeveringsLijnMetStringMagazijnplaats.getInkomendeLeveringsId(),
                 inkomendeLeveringsLijnMetStringMagazijnplaats.getArtikelId(),
                 inkomendeLeveringsLijnMetStringMagazijnplaats.getHoeveelheidWeggelegd(),

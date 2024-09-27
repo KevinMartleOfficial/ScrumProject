@@ -81,8 +81,8 @@ public class PadBerekeningLevering {
         /*System.out.println("\u001B[41m"+r);
         System.out.println(huidigPad.size() + "\u001B[0m");*/
         if(index == r){
-            /*System.out.println("=======TOEVOEGEN========");
-            System.out.println(huidigPad);*/
+            System.out.println("=======TOEVOEGEN========");
+            System.out.println(huidigPad);
             // Afstand berekenen van pad
             int lengteVolledigPad = berekenVolledigPad(huidigPad);
 
@@ -182,7 +182,7 @@ public class PadBerekeningLevering {
                     tempR++;
                 }else{
                     // Idem
-                    bewerkt = new InkomendeLeveringsLijnMetStringMagazijnplaats(huidigArtikel.getInkomendeLeveringsId(), huidigArtikel.getArtikelId(), huidigArtikel.getAantalGoedgekeurd(), huidigArtikel.getAantalTeruggestuurd(), huidigArtikel.getHoeveelheidOpMagazijnplaats(), huidigArtikel.getMagazijnPlaats(), huidigArtikel.getMaxAantalOpPlaats(), leverlijn.getAantalGoedgekeurd());
+                    bewerkt = new InkomendeLeveringsLijnMetStringMagazijnplaats(huidigArtikel.getInkomendeLeveringsId(), huidigArtikel.getArtikelId(), huidigArtikel.getAantalGoedgekeurd(), huidigArtikel.getAantalTeruggestuurd(), huidigArtikel.getHoeveelheidOpMagazijnplaats(), huidigArtikel.getMagazijnPlaats(), huidigArtikel.getMaxAantalOpPlaats(), huidigArtikel.getMaxAantalOpPlaats() - huidigArtikel.getHoeveelheidOpMagazijnplaats());
                 }
                 // Volgende 2 lijnen is omdat elk artikel op elke lege plaats kan
                 // vb: artikelen -> x, y, z
@@ -194,14 +194,15 @@ public class PadBerekeningLevering {
                 // op het huidige pad zonder de plaatsen waar net een artikel op geplaats is
 
                 // @nieuwePLaatsenMagazijn wordt dus -> xl2, xl3, yl2, yl3, zl2, zl3
-                List<InkomendeLeveringsLijnMetStringMagazijnplaats> nieuwePlaatsenMagazijn = new ArrayList<>(alleArtikelenInMagazijn.stream().map(InkomendeLeveringsLijnMetStringMagazijnplaats::new).toList());
+                //List<InkomendeLeveringsLijnMetStringMagazijnplaats> nieuwePlaatsenMagazijn = new ArrayList<>(alleArtikelenInMagazijn.stream().map(InkomendeLeveringsLijnMetStringMagazijnplaats::new).toList());
                 //nieuwePlaatsenMagazijn.removeIf(plaats -> plaats.getMagazijnPlaats().equals(huidigArtikel.getMagazijnPlaats()));
 
                 // Verander de hoeveelheid plaatsen in het magazijn, aangezien er net zijn verwijderd
-                int nieuweEnd = nieuwePlaatsenMagazijn.size();
+                //int nieuweEnd = nieuwePlaatsenMagazijn.size();
 
                 // Op de leverbonlijn wordt de hoeveelheid goedgekeurd verminderd
                 // Zo weten we de hoeveelheid dat we nog weg moeten leggen van een artikel
+
                 leverlijn.verminderAantalGoedgekeurd(bewerkt.getHoeveelheidWeggelegd());
 
                 // Voeg het kopie van de huidige locatie toe aan ons huidig pad
@@ -213,7 +214,7 @@ public class PadBerekeningLevering {
                 // en hoeveelheden dat we nog weg moeten leggen
                 /*System.out.println("\u001B[42m"+nieuweHuidigPad + "\u001B[0m");*/
 
-                kortstePad(nieuwePlaatsenMagazijn, nieuweHuidigPad, i+1, nieuweEnd, nieuweHuidigPad.size() , tempR, tempLeverbonlijnen);
+                kortstePad(alleArtikelenInMagazijn, nieuweHuidigPad, i+1, end, nieuweHuidigPad.size() , tempR, tempLeverbonlijnen);
             }
         }
     }
