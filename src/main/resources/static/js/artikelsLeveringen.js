@@ -29,6 +29,7 @@ function vulLinkseTabel(productLijst) {
         const button = document.createElement("button");
         button.setAttribute("type", "button");
         button.setAttribute("id", item.id);
+        button.setAttribute("class", 'knopToevoegenEAN');
         button.innerHTML = "toevoegen";
         button.addEventListener("click", event => {
             vulRechtseTabel(item.ean, item.id, item.naam);
@@ -49,6 +50,7 @@ function vulRechtseTabel(ean, artikelId, artikelNaam) {
     tr.dataset.artikelNaam = artikelNaam;
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "verwijder";
+    deleteButton.setAttribute("class", 'knopVerwijderEAN');
     deleteButton.addEventListener("click", function () {
         tabel.deleteRow(tr.rowIndex - 1);
     });
