@@ -214,6 +214,7 @@ input.aantalGoedgekeurd {
     word-wrap: break-word;
     text-align: center;
     font-weight: bolder;
+}
 
 #tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
     margin-top: 1%;
@@ -253,6 +254,7 @@ input.aantalGoedgekeurd {
 #lbNummer {
     padding: 30px 0 0 20px;
     font-size: 30px;
+}
 #tabelBestellingen td, #tabelLeveringsBonValidatie td,
 #tabelLeveringsBon th, #tabelLeveringsBon td {
     padding : 1%;
