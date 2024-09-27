@@ -26,6 +26,7 @@ public class PadBerekeningLevering {
     // PAD2 heeft nu al meer stappen dan PAD1, dus we kunnen PAD2 al schrappen
     private int minAfstandMogelijkheden = Integer.MAX_VALUE;
     private int minAfstandMogelijkhedenLegePlaats = Integer.MAX_VALUE;
+    private int minNieuwePlaatsenNodig = Integer.MAX_VALUE;
 
     // Constructor die de leverbonLijnen krijgt
     public PadBerekeningLevering(List<InkomendeLeveringsLijnGeenMagazijnId> leverbonLijnen){
@@ -68,14 +69,24 @@ public class PadBerekeningLevering {
     // @index = de huidige hoeveelheid plaatsen je al hebt gebruikt
     // @r = hoeveel plaatsen er wordt verwacht dat je gebruikt
     // @leverbonlijnen = de effectieve leverbonlijnen
-    public void kortstePad(List<InkomendeLeveringsLijnMetStringMagazijnplaats> alleArtikelenInMagazijn, List<InkomendeLeveringsLijnMetStringMagazijnplaats> huidigPad, int start, int end, int index, int r, List<InkomendeLeveringsLijnGeenMagazijnId> leverbonlijnen){
 
+    public boolean kanToevoegenAanMogelijkheden(List<InkomendeLeveringsLijnGeenMagazijnId> leverbonlijnen){
+        return new ArrayList<>(leverbonlijnen.stream().map(InkomendeLeveringsLijnGeenMagazijnId::new).filter(ll -> ll.getAantalGoedgekeurd() > 0).toList()).isEmpty();
+    }
+    public void kortstePad(List<InkomendeLeveringsLijnMetStringMagazijnplaats> alleArtikelenInMagazijn, List<InkomendeLeveringsLijnMetStringMagazijnplaats> huidigPad, int start, int end, int index, int r, List<InkomendeLeveringsLijnGeenMagazijnId> leverbonlijnen){
+        int tempEnd = end;
+        int nieuwePlaatsenOpPad = 0;
         // Wanneer de hoeveelheid plaatsen dat je artikelen hebt geplaats(index) even groot is als de verwachting(r)
         // Hier heb je dus een volwaardig pad
+        /*System.out.println("\u001B[41m"+r);
+        System.out.println(huidigPad.size() + "\u001B[0m");*/
         if(index == r){
-
+            /*System.out.println("=======TOEVOEGEN========");
+            System.out.println(huidigPad);*/
             // Afstand berekenen van pad
             int lengteVolledigPad = berekenVolledigPad(huidigPad);
+
+
 
             // Als er een lege plaats is gebruikt op je pad
             if (!huidigPad.stream().filter(illmsmp -> illmsmp.getHoeveelheidOpMagazijnplaats() == 0).toList().isEmpty()){
@@ -86,18 +97,18 @@ public class PadBerekeningLevering {
                     minAfstandMogelijkhedenLegePlaats = Math.min(minAfstandMogelijkhedenLegePlaats, lengteVolledigPad);
                     // Plaats de afstand en het pad in de mogelijkheden die een lege plaats gebruiken
                     mogelijkHedenMetLegePlaats.put(lengteVolledigPad, huidigPad);
+                    minNieuwePlaatsenNodig = Math.min(minNieuwePlaatsenNodig, huidigPad.stream().filter(illmsmp -> illmsmp.getHoeveelheidOpMagazijnplaats() == 0).toList().size());
+
                 }
             }
             // Als er geen enkele lege plaats is gebruikt op je pad
             else{
-                System.out.println("klaar voor toevoegen");
+                /*System.out.println("klaar voor toevoegen");
                 System.out.println(huidigPad);
-                System.out.println("met lengte " + lengteVolledigPad);
+                System.out.println("met lengte " + lengteVolledigPad);*/
 
                 if(!mogelijkHeden.containsKey(lengteVolledigPad)){
-                    // Wanneer er zo een pad is gevonden, dan zijn alle paden die een lege plaats gebruiken nutteloos
-                    // Dus worden deze verwijderd in de potentiele plaatsen waar je een artikel kan plaatsen
-                    alleArtikelenInMagazijn.removeIf(plaats -> plaats.getHoeveelheidOpMagazijnplaats() == 0);
+
                     minAfstandMogelijkheden = Math.min(minAfstandMogelijkheden, lengteVolledigPad);
                     mogelijkHeden.put(lengteVolledigPad, huidigPad);
                 }
@@ -119,8 +130,14 @@ public class PadBerekeningLevering {
             }
         }
 
+        if(minNieuwePlaatsenNodig < huidigPad.stream().filter(illmsmp -> illmsmp.getHoeveelheidOpMagazijnplaats() == 0).toList().size()){
+            return;
+        }
+
+
         // Hier worden alle combinaties van paden gemaakt
-        for(int i = start; (i < end) && (end - i + 1 >= r - index); i++){
+        for(int i = start; (i < tempEnd) && (tempEnd - i + 1 >= r - index); i++){
+
 
             // Elke combinatie van een pad heeft een nieuwe verwachte hoeveelheid van plaatsen dat er gepasseerd moet worden
             // In het begin zal dit staan op hoeveel leverbon lijnen je hebt
@@ -146,10 +163,15 @@ public class PadBerekeningLevering {
             // En je mag er nog meer leggen op deze plaats
             if(!(leverlijn.getAantalGoedgekeurd() < 1) && huidigArtikel.getMaxAantalOpPlaats() - huidigArtikel.getHoeveelheidOpMagazijnplaats() !=0){
 
+                /*System.out.println("\u001B[44m=========IK GA HIER TOEVOEGEN=========\u001B[0m");
+                System.out.println(huidigPad);
+                System.out.println("\u001B[44m=========IK GA HIER TOEVOEGEN=========\u001B[0m");*/
+
                 // Kopie maken van het huidige pad
                 // huidigPad: a2 ->
                 // nieuweHuidigPad: a2 ->
                 List<InkomendeLeveringsLijnMetStringMagazijnplaats> nieuweHuidigPad = new ArrayList<>(huidigPad.stream().map(InkomendeLeveringsLijnMetStringMagazijnplaats::new).toList());
+
 
                 // Als je meer atikelen bij hebt dan dat je op deze plaats nog mag leggen
                 if(huidigArtikel.getMaxAantalOpPlaats() - huidigArtikel.getHoeveelheidOpMagazijnplaats() < leverlijn.getAantalGoedgekeurd() - huidigArtikel.getHoeveelheidWeggelegd()){
@@ -173,7 +195,7 @@ public class PadBerekeningLevering {
 
                 // @nieuwePLaatsenMagazijn wordt dus -> xl2, xl3, yl2, yl3, zl2, zl3
                 List<InkomendeLeveringsLijnMetStringMagazijnplaats> nieuwePlaatsenMagazijn = new ArrayList<>(alleArtikelenInMagazijn.stream().map(InkomendeLeveringsLijnMetStringMagazijnplaats::new).toList());
-                nieuwePlaatsenMagazijn.removeIf(plaats -> plaats.getMagazijnPlaats().equals(huidigArtikel.getMagazijnPlaats()));
+                //nieuwePlaatsenMagazijn.removeIf(plaats -> plaats.getMagazijnPlaats().equals(huidigArtikel.getMagazijnPlaats()));
 
                 // Verander de hoeveelheid plaatsen in het magazijn, aangezien er net zijn verwijderd
                 int nieuweEnd = nieuwePlaatsenMagazijn.size();
@@ -189,7 +211,9 @@ public class PadBerekeningLevering {
 
                 // Roep deze volledige methode opnieuw op, maar met ons nieuw huidigpad
                 // en hoeveelheden dat we nog weg moeten leggen
-                kortstePad(nieuwePlaatsenMagazijn, nieuweHuidigPad, i, nieuweEnd, nieuweHuidigPad.size() , tempR, tempLeverbonlijnen);
+                /*System.out.println("\u001B[42m"+nieuweHuidigPad + "\u001B[0m");*/
+
+                kortstePad(nieuwePlaatsenMagazijn, nieuweHuidigPad, i+1, nieuweEnd, nieuweHuidigPad.size() , tempR, tempLeverbonlijnen);
             }
         }
     }
@@ -211,7 +235,11 @@ public class PadBerekeningLevering {
 
         // Roep methode op om paden te berekenen
         kortstePad(alleArtikelenInMagazijn, temp, start,alleArtikelenInMagazijn.size() , index, r, leverbonLijnen );
+        /*System.out.println("\u001B[46m=========DE ALGO DEBUG==========\u001B[0m");
+        System.out.println(mogelijkHeden);
+        System.out.println(mogelijkHedenMetLegePlaats);
 
+        System.out.println("\u001B[46m=========DE ALGO DEBUG==========\u001B[0m");*/
         // Als je een pad hebt waarbij je geen lege plaatsen hebt gebruikt
         if(!mogelijkHeden.isEmpty()){
             // Vind wat de kortste afstand is van alle paden

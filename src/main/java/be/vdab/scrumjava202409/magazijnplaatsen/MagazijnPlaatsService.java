@@ -3,11 +3,7 @@ package be.vdab.scrumjava202409.magazijnplaatsen;
 import be.vdab.scrumjava202409.artikelen.ArtikelRepository;
 import be.vdab.scrumjava202409.bestellijnen.Bestellijn;
 import be.vdab.scrumjava202409.bestellingen.BestelIdArtikelIdNaamAantalMagazijnplaats;
-import be.vdab.scrumjava202409.bestellingen.Bestelling;
-import be.vdab.scrumjava202409.bestellingen.BestellingRepository;
 import be.vdab.scrumjava202409.bestellingen.BestellingService;
-import be.vdab.scrumjava202409.inkomendeleveringslijnen.InkomendeLeveringsLijn;
-import be.vdab.scrumjava202409.uitgaandeleveringen.UitgaandeLeveringService;
 import be.vdab.scrumjava202409.util.PadBerekening;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +41,14 @@ public class MagazijnPlaatsService {
                 .collect(Collectors.toList());
     }
 
+    public List<ArtikelMagazijn> findMagazijnplaatsByArtikelIdDieNogPlaatsHebben(long artikelId) {
+        List<MagazijnPlaats> magazijnPlaatsen = magazijnPlaatsRepository.findMagazijnplaatsByArtikelIdDieNogPlaatsHebben(artikelId);
+        return magazijnPlaatsen
+                .stream()
+                .map(mp -> new ArtikelMagazijn(mp.getRij() + String.valueOf(mp.getRek()), mp.getAantal()))
+                .collect(Collectors.toList());
+    }
+
     public List<BestelIdArtikelIdNaamAantalMagazijnplaats> findAlleBanamVanEersteBestellingInMagazijn(){
         List<Bestellijn> temp = bestellingService.findAllBestellijnenVanEersteBestelling();
         PadBerekening padBerekening = new PadBerekening(temp);
@@ -69,8 +73,8 @@ public class MagazijnPlaatsService {
         return kortstePad;
     }
 
-    public List<ArtikelMagazijn> findMagazijnplaatsByNull(){
-        List<MagazijnPlaats> magazijnPlaatsen = magazijnPlaatsRepository.findMagazijnplaatsByNull();
+    public List<ArtikelMagazijn> findNodigeMagazijnplaatsByNull(int hoeveelheidLegePlaatsen){
+        List<MagazijnPlaats> magazijnPlaatsen = magazijnPlaatsRepository.findMagazijnplaatsByNull(hoeveelheidLegePlaatsen);
         return magazijnPlaatsen
                 .stream()
                 .map(mp -> new ArtikelMagazijn(mp.getRij() + String.valueOf(mp.getRek()), mp.getAantal()))
