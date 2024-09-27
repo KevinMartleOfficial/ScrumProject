@@ -34,7 +34,8 @@ public class InkomendeLeveringsLijnRepository {
         String sql = """
                 select inkomendeLeveringsId, artikelId, aantalGoedgekeurd, aantalTeruggestuurd, magazijnPlaatsId
                 from inkomendeleveringslijnen
-                where inkomendeLeveringsId = ? 
+                where inkomendeLeveringsId = ?
+                order by magazijnPlaatsId
                 """;
         return jdbcClient.sql(sql)
                 .param(id)

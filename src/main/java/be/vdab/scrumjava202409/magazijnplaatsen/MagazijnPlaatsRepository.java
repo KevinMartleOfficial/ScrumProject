@@ -91,7 +91,7 @@ public class MagazijnPlaatsRepository {
     //nodig voor LEV-4.1
     public MagazijnPlaats findByMagazijnPlaatsId(long magazijnPlaatsId){
         String sql = """
-                select magazijnPlaatsId, artikelId, rij, rek, aantal
+                select magazijnPlaatsId, if(artikelId is null, 0, artikelId) as artikelId, rij, rek, aantal
                 from magazijnplaatsen
                 where magazijnplaatsId = ?
                 """;
