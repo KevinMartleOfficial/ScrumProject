@@ -118,8 +118,8 @@ public class InkomendeLeveringsLijnService {
                 .map(lijn -> new DTOArtikelNaamInkomendeLeveringsLijnAantalGoedgekeurdEnMagazijnPlaats(
                         (artikelRepository.getArtikelById(lijn.getArtikelId()).getNaam()), //artikelnaam
                          lijn.getAantalGoedgekeurd(),//aantalStuks
-                        String.valueOf(magazijnPlaatsRepository.findByMagazijnPlaatsId(lijn.getMagazijnPlaatsId()).getRek()) +
-                        String.valueOf(magazijnPlaatsRepository.findByMagazijnPlaatsId(lijn.getMagazijnPlaatsId()).getRij())))//magazijnplaats wordt gecreëerd als een String (bvb 5A)
+                        String.valueOf(String.valueOf(magazijnPlaatsRepository.findByMagazijnPlaatsId(lijn.getMagazijnPlaatsId()).getRij()) + magazijnPlaatsRepository.findByMagazijnPlaatsId(lijn.getMagazijnPlaatsId()).getRek())
+                        ))//magazijnplaats wordt gecreëerd als een String (bvb 5A)
                 .toList();
     }
     //LEV-5.3 updaten voorraad in de tabel artikelen, en bij de tabel magazijnplaatsen
