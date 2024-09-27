@@ -3,7 +3,7 @@ import {byId, setText, toon, verberg} from "./util.js";
 
 const leveringsBonId = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId"));
 const leveringsbonNummer = (sessionStorage.getItem("leveringsbonNummer"));
-setText("leveringsbonNummer", "Leveringsbon nr: " + leveringsbonNummer);
+setText("leveringsbonNummer", "Leveringsbon Nr: " + leveringsbonNummer);
 
 byId("knop").onclick = async () => {
     await fetch(`inkomendeleveringslijn/verhoog`, {

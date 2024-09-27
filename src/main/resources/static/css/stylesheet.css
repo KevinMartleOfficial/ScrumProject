@@ -252,7 +252,7 @@ input.aantalGoedgekeurd {
     font-weight: bolder;
 }
 
-#lbNummer {
+#lbNummer, #leveringsbonNummer {
     padding: 30px 0 0 20px;
     font-size: 30px;
     margin-bottom: 40px;
@@ -321,6 +321,10 @@ input.aantalGoedgekeurd {
     padding-left: 10%;
     text-align: right;
     align-items: center;
+}
+
+#namen {
+    font-size: 27px;
 }
 
 label {
