@@ -1,5 +1,6 @@
 package be.vdab.scrumjava202409.inkomendeleveringslijnen;
 
+
 import jakarta.validation.constraints.*;
 
 public class InkomendeLeveringsLijnGeenMagazijnId {
@@ -45,4 +46,3 @@ public class InkomendeLeveringsLijnGeenMagazijnId {
     }
 
 
-}

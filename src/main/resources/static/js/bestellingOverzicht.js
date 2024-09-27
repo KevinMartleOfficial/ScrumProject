@@ -24,7 +24,7 @@ async function fetchArtikelen() {
         vulTabel(bestelLijst)
         bestelId = bestelLijst[0].bestelId;
         console.log(bestelId)
-        byId("BestellingId").innerHTML = "Bestelling nr: " + bestelId;
+        byId("BestellingId").innerHTML = "Bestelling Nr: " + bestelId;
     } else {
         toon("storing");
     }
@@ -103,7 +103,6 @@ function vulTabel(bestelLijst) {
         input.className = "checkboxes";
         tr.insertCell().appendChild(input);
         checkboxLijstAanmaken();
-
     }
     herstelCheckboxStatus();
 }

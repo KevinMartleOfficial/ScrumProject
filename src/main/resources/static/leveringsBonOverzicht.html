@@ -2,26 +2,26 @@
 <html lang="nl">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Leveringsbonoverzicht</title>
         <link rel="stylesheet" href="css/stylesheet.css">
         <script src="js/leveringsBonOverzicht.js" type="module"></script>
     </head>
     <body>
-        <img src="images/logo_prularia_zwart.jpg" class="logo">
-        <h2 id="leveringsBonId"></h2>
-        <table width="50%" id="tabelLeveringsBon">
+        <img src="images/logo_prularia_zwart.jpg" class="logo" alt="logo Prularia">
+        <h2 id="leveringsbonNummer"></h2>
+        <table id="tabelLeveringsBon">
             <thead>
                 <tr>
                     <th>Artikelnaam</th>
                     <th>Aantal Goedgekeurd</th>
                     <th>Locatie</th>
-                    <th width=5% id="checkbox">Checkbox</th>
+                    <th id="checkbox">Checkbox</th>
                 </tr>
             </thead>
             <tbody id="tabelLeveringsOverzicht">
             </tbody>
         </table>
-        <button type="button" id="knop" hidden>afgewerkt</button>
-        <div id="storing" hidden>Er is een storing bij het ophalen van de leveringsbon</div>
+        <button type="button" id="knop" hidden>Afgewerkt</button>
+        <div id="storing" hidden>Er is een storing bij het ophalen van de leveringsbon.</div>
     </body>
 </html>

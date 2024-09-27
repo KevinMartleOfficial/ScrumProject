@@ -4,6 +4,7 @@ package be.vdab.scrumjava202409.inkomendeleveringslijnen;
 import be.vdab.scrumjava202409.artikelen.ArtikelRepository;
 import be.vdab.scrumjava202409.artikelen.ArtikelService;
 import be.vdab.scrumjava202409.magazijnplaatsen.ArtikelMagazijn;
+import be.vdab.scrumjava202409.magazijnplaatsen.MagazijnPlaats;
 import be.vdab.scrumjava202409.magazijnplaatsen.MagazijnPlaatsRepository;
 import be.vdab.scrumjava202409.magazijnplaatsen.MagazijnPlaatsService;
 import be.vdab.scrumjava202409.util.PadBerekeningLevering;
@@ -111,7 +112,6 @@ public class InkomendeLeveringsLijnService {
 
     //LEV-4.1 fetch method om alle inkomendeLeveringenLijnen te krijgen op basis van inkomendeLeveringsId
     //hierbij vorm ik de lijnen om naar DTO's voor de frontend
-
     public List<DTOArtikelNaamInkomendeLeveringsLijnAantalGoedgekeurdEnMagazijnPlaats> findAllInkomendeLeveringsLijnenByInkomendeLeveringsId(long id){
         return inkomendeLeveringsLijnRepository.findAllInkomendeLeveringsLijnenByInkomendeLeveringsId(id)
                 .stream()
@@ -121,7 +121,18 @@ public class InkomendeLeveringsLijnService {
                         String.valueOf(magazijnPlaatsRepository.findByMagazijnPlaatsId(lijn.getMagazijnPlaatsId()).getRek()) +
                         String.valueOf(magazijnPlaatsRepository.findByMagazijnPlaatsId(lijn.getMagazijnPlaatsId()).getRij())))//magazijnplaats wordt gecreëerd als een String (bvb 5A)
                 .toList();
-
-
+    }
+    //LEV-5.3 updaten voorraad in de tabel artikelen, en bij de tabel magazijnplaatsen
+    public void verhoogVoorraden(long inkomendeLeveringsId){
+        List<InkomendeLeveringsLijn>alleLijnen = inkomendeLeveringsLijnRepository.findAllInkomendeLeveringsLijnenByInkomendeLeveringsId(inkomendeLeveringsId);
+        for(InkomendeLeveringsLijn lijn : alleLijnen){
+            artikelRepository.verhoogVoorraad(lijn.getArtikelId(), lijn.getAantalGoedgekeurd());
+            MagazijnPlaats magazijn = magazijnPlaatsRepository.findByMagazijnPlaatsId(lijn.getMagazijnPlaatsId());
+            magazijnPlaatsRepository.plaatsArtikelOpMagazijnPlaats(
+                    lijn.getAantalGoedgekeurd(),//aantal
+                    String.valueOf(magazijn.getRij()),//rij
+                    magazijn.getRek(),//rek
+                    lijn.getArtikelId());//artikelId
+        }
     }
 }

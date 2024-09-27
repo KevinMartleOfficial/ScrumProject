@@ -3,6 +3,8 @@ package be.vdab.scrumjava202409.leveranciers;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class LeverancierRepository {
     private final JdbcClient jdbcClient;
@@ -33,5 +35,12 @@ public class LeverancierRepository {
                 .param(naam)
                 .query(Long.class)
                 .single();
+    }
+
+    public List <String> findLeverancierNaam(){
+        String sql = """
+                select naam from leveranciers""";
+        return jdbcClient.sql(sql).query(String.class).list();
+
     }
 }

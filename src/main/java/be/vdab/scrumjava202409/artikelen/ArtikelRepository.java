@@ -38,13 +38,18 @@ public class ArtikelRepository {
         jdbcClient.sql(sql).params(aantal, artikelId).update();
     }
 
+
+    //LEV-5.3 verhogen voorraad van een artikel
     public void verhoogVoorraad(long artikelId, int aantal){
         String sql = """
-                update artikelen set voorraad = voorraad + ? where artikelId = ?;
+                update artikelen
+                set voorraad = voorraad + ?
+                where artikelId = ?
                 """;
-        jdbcClient.sql(sql).params(aantal, artikelId).update();
+        jdbcClient.sql(sql)
+                .params(aantal, artikelId)
+                .update();
     }
-
 
     //Deze methode is voor testen van het aanpassen van de voorraad in artikelen en magazijnplaatsen
     //Wordt gebruikt in uitgaandeLeveringService totdat ArtikelAantal wordt aangepast dat die een artikelId heeft

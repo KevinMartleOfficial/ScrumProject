@@ -1,50 +1,39 @@
 "use strict";
 import {byId, toon, verberg} from "./util.js";
 
-// tijdelijke leveringsbonNummer
-// byId("leveringsbonNummer").innerText = sessionStorage.getItem("leveringsbonNummer");
-byId("leveringsbonNummer").innerText = 1;
+const leveringsbonId = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId"));
 
-// tijdelijke leveringsboninhoud
-// const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
-const leveringsbonLijst = [
-    {
-        "artikelId": 4,
-        "artikelNaam": "keukenstoel",
-        "artikelEannummer": 5499999000040,
-        "aantal": 5
-    },
-    {
-        "artikelId": 29,
-        "artikelNaam": "kruk",
-        "artikelEannummer": 5499999000293,
-        "aantal": 8
-    },
-    {
-        "artikelId": 39,
-        "artikelNaam": "TV-meubel",
-        "artikelEannummer": 5499999000392,
-        "aantal": 12
-    },
-    {
-        "artikelId": 64,
-        "artikelNaam": "Staande lamp",
-        "artikelEannummer": 5499999000644,
-        "aantal": 7
-    },
-    {
-        "artikelId": 94,
-        "artikelNaam": "Cirkelzaag 400W",
-        "artikelEannummer": 5499999000941,
-        "aantal": 4
-    }
-];
+// tijdelijke Mock data hieronder
+// const leveringsbonNummer = 1;
+byId("leveringsbonNummer").innerText = sessionStorage.getItem("leveringsbonNummer");
+
+const leveringsbonLijst = JSON.parse(sessionStorage.getItem("leveringsbonLijst"));
+// Tijdelijke mock data hieronder
+ //const leveringsbonLijst = [
+    //{"artikelId": 94, "artikelNaam": "Cirkelzaag 400W", "artikelEannummer": 5499999000941, "aantal": 4},
+    //{"artikelId": 25, "artikelNaam": "eettafel", "artikelEannummer": 5499999000255, "aantal": 6}]
 
 vulTabel(leveringsbonLijst);
+
+byId("buttonBevestig").onclick = async () => {
+    maakLeveringTeBevestigen();
+    const leveringTeBevestigen = JSON.parse(sessionStorage.getItem("leveringTeBevestigen"));
+    const response = await fetch(`inkomendeleveringslijn/add`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(leveringTeBevestigen)
+    });
+    if (response.ok) {
+        window.location = "./leveringsbonOverzicht.html";
+    } else {
+        toon("storing");
+    }
+}
 
 function vulTabel(leveringsbonLijst) {
     const tabel = byId("tabelLeveringsBonOverzicht");
     for (const artikel of leveringsbonLijst) {
+        console.log(leveringsbonLijst);
         const tr = tabel.insertRow();
         const a = document.createElement("a");
         a.setAttribute("class", artikel.artikelId);
@@ -66,17 +55,28 @@ function vulTabel(leveringsbonLijst) {
         tr.insertCell().appendChild(input);
         const afgekeurdSpan = document.createElement("span");
         afgekeurdSpan.className = "aantalAfgekeurd";
-        afgekeurdSpan.innerText = artikel.aantal - input.value;
+        afgekeurdSpan.innerText = Number(artikel.aantal - input.value);
         tr.insertCell().appendChild(afgekeurdSpan);
         input.onchange = () => {
-            afgekeurdSpan.innerText = artikel.aantal - input.value;
+            afgekeurdSpan.innerText = Number(artikel.aantal - input.value);
             telGoedgekeurd();
+            maakGoedgekeurdEnAfgekeurdInSessionStorage();
+        }
+    }
+    if (sessionStorage.getItem("goedgekeurdEnAfgekeurd")) {
+        let goedgekeurdEnAfgekeurd = JSON.parse(sessionStorage.getItem("goedgekeurdEnAfgekeurd"));
+        const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
+        const aantalAfgekeurdList = document.getElementsByClassName("aantalAfgekeurd");
+        for (let i = 0; i < goedgekeurdEnAfgekeurd.length; i++) {
+            const goedgekeurd = goedgekeurdEnAfgekeurd[i].aantalGoedgekeurd;
+            const afgekeurd = goedgekeurdEnAfgekeurd[i].aantalTeruggestuurd;
+            aantalGoedgekeurdList[i].value = goedgekeurd;
+            aantalAfgekeurdList[i].innerText = afgekeurd;
         }
     }
     // Onderstaande zorgt ervoor dat magazijnier nooit een waarde kan ingeven dat lager of hoger ligt dan min en max
     document.querySelectorAll('input.aantalGoedgekeurd').forEach(input => {
-        input.addEventListener('input', function() {
-            let min = parseInt(input.min);
+        input.addEventListener('input', function () {let min = parseInt(input.min);
             let max = parseInt(input.max);
             let value = parseInt(input.value);
 
@@ -87,6 +87,7 @@ function vulTabel(leveringsbonLijst) {
             }
         });
     });
+    telGoedgekeurd();
 }
 
 function telGoedgekeurd() {
@@ -104,4 +105,42 @@ function telGoedgekeurd() {
     } else {
         verberg("buttonBevestig");
     }
+}
+
+function maakGoedgekeurdEnAfgekeurdInSessionStorage() {
+    const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
+    const aantalAfgekeurdList = document.getElementsByClassName("aantalAfgekeurd");
+    if (sessionStorage.getItem("goedgekeurdEnAfgekeurd")) {
+        sessionStorage.removeItem("goedgekeurdEnAfgekeurd")
+    }
+    const goedGekeurdEnAfgekeurd = [];
+    for (let i = 0; i < leveringsbonLijst.length; i++) {
+        const aantalGoedgekeurd = aantalGoedgekeurdList[i].value;
+        const aantalTeruggestuurd = aantalAfgekeurdList[i].innerText;
+        goedGekeurdEnAfgekeurd.push({aantalGoedgekeurd, aantalTeruggestuurd});
+    }
+    sessionStorage.setItem("goedgekeurdEnAfgekeurd", JSON.stringify(goedGekeurdEnAfgekeurd));
+}
+
+function maakLeveringTeBevestigen() {
+    const aantalGoedgekeurdList = document.getElementsByClassName("aantalGoedgekeurd");
+    const aantalAfgekeurdList = document.getElementsByClassName("aantalAfgekeurd");
+    if (sessionStorage.getItem("leveringTeBevestigen")) {
+        sessionStorage.removeItem("leveringTeBevestigen")
+    }
+    const leveringTeBevestigen = [];
+    for (let i = 0; i < leveringsbonLijst.length; i++) {
+        const inkomendeLeveringsId = leveringsbonId;
+        const artikelId = leveringsbonLijst[i].artikelId;
+        const aantalGoedgekeurd = aantalGoedgekeurdList[i].value;
+        const aantalTeruggestuurd = aantalAfgekeurdList[i].innerText;
+        const leveringsbonLijn = {
+            inkomendeLeveringsId: parseInt(inkomendeLeveringsId),
+            artikelId: parseInt(artikelId),
+            aantalGoedgekeurd: parseInt(aantalGoedgekeurd),
+            aantalTeruggestuurd: parseInt(aantalTeruggestuurd)
+        }
+        leveringTeBevestigen.push(leveringsbonLijn);
+    }
+    sessionStorage.setItem("leveringTeBevestigen", JSON.stringify(leveringTeBevestigen));
 }

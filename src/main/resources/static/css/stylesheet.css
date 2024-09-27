@@ -48,9 +48,17 @@ img {
     padding: 50px 0 0 10px;
 }
 
-#storing {
+#storing, #inputstoring {
     color: white;
     background: red;
+    text-align: center;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 5px;
+    font-size: 25px;
+    width: auto;
+    max-width: 30%;
 }
 
 button {
@@ -112,18 +120,23 @@ input.aantalGoedgekeurd {
 }
 
 #storingTv {
-    font-size: 70px;
-    font-weight: bolder;
-    padding: 2%;
-    color: white;
     background: red;
-    margin-top: 1%;
+    color: white;
+    text-align: center;
+    margin-top: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    font-size: 40px;
+    width: auto;
+    max-width: 50%;
+    font-weight: bolder;
 }
 
 #bovenPaginaContainer {
     display: flex;
     justify-content: space-between;
-    margin: 100px 100px 0;
+    margin: 150px 100px 0;
 }
 
 #terugknop {
@@ -142,15 +155,11 @@ input.aantalGoedgekeurd {
 
 #artikelOverzichtTable {
     margin: auto;
-    height: 800px;
+    height: 100%;
 }
 
 #artikelOverzichtContainer {
-    height: auto;
-}
-
-#hoofdcontainer {
-    padding: 1%;
+    height: 100%;
 }
 
 #buttons {
@@ -160,29 +169,55 @@ input.aantalGoedgekeurd {
 }
 
 #buttons button {
-    width: 500px;
+    width: 1000px;
     height: 300px;
-    font-size: xxx-large;
-    font-weight: bold;
-    align-items: center;
-    justify-content: center;
-    margin: 100px 2em 2em;
+    font-size: 60px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+#leveringButton {
+    margin: 200px 50px 200px 100px;
+}
+
+#retourButton {
+    margin: 200px 100px 200px 50px;
 }
 
 #knop {
     font-size: 20px;
     margin: 0 0 0 20px;
+    text-align: center;
 }
 
-#tabelBestellingen {
+#buttonBevestig {
+    font-size: 20px;
+    margin: 20px;
+    text-align: center;
+}
+
+#tabelBestellingen, #tabelLeveringsBonValidatie {
     margin: 30px 20px 20px;
     border-collapse: collapse;
     width: 97%;
 }
 
-#tabelBestellingen, #tabelLeveringsBonValidatie
-#tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
-#tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
+#tabelLeveringsBon {
+    margin: 50px 20px 20px;
+    border-collapse: collapse;
+    width: 97%;
+}
+
+#tabelLeveringsBon th, #tabelLeveringsBon td {
+    padding: 10px;
+    font-size: 30px;
+    align-items: center;
+    word-wrap: break-word;
+    text-align: center;
+    font-weight: bolder;
+}
+
+#tabelBestellingen, #tabelLeveringsBonValidatie {
     margin-top: 1%;
 }
 
@@ -206,36 +241,95 @@ input.aantalGoedgekeurd {
 
 #tabelLeveringsBonValidatie th, #tabelLeveringsBonValidatie td {
     padding: 1%;
+    font-weight: bolder;
+    font-size: 20px;
 }
-#tabelBestellingen th, #tabelLeveringsBonValidatie th,
-#tabelBestellingen td, #tabelLeveringsBonValidatie td,
-#tabelLeveringsBon th, #tabelLeveringsBon td {
-    padding : 1%;
+
+input.aantalGoedgekeurd {
+    font-size: 20px;
+    width: 50px;
+    text-align: right;
+    font-weight: bolder;
+}
+
+#lbNummer {
+    padding: 30px 0 0 20px;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+#tabelBestellingen td, #tabelLeveringsBonValidatie td{
+    padding: 1%;
+}
+
+#tabelLeveringenEan {
+    width: 40%;
+    font-size: 20px;
+    margin: 5% 2% 2%;
+}
+
+#tabelToegevoegdeArtikelen {
+    width: 45%;
+    font-size: 20px;
+    margin: 5% 2% 2%;
+
+}
+
+#tabelLeveringenEan th {
+    padding: 15px;
+}
+
+#tabelToegevoegdeArtikelen th {
+    padding: 20px;
+}
+
+#tabelLeveringenEan td, #tabelToegevoegdeArtikelen td {
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#leveringsbonKnop {
+    font-size: 20px;
+    margin: 20px 0 50px 75px;
+    text-align: center;
+}
+
+.knopToevoegenEAN, .knopVerwijderEAN {
+    font-size: 20px;
+    text-align: center;
+}
+
+#flexbox {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 #leveringsbonHeader {
     text-align: center;
-    margin-top: 10%;
+    margin-top: 8%;
+    font-size: 60px;
 }
 
 #inputDiv {
-    font-size: xx-large;
+    font-size: 40px;
     display: grid;
-    grid-template-columns: 50% 0.5fr;
-    grid-gap: 16px;
-    margin: 10%;
-    margin-top: 5%;
+    grid-template-columns: 45% 0.6fr;
+    grid-gap: 30px;
+    margin: 5% 10% 10%;
     padding-left: 10%;
     text-align: right;
+    align-items: center;
 }
 
 label {
-    grid-column: 1 / 2;
+    justify-items: center;
 }
 
 input {
-
-    grid-column: 2 / 3;
+    justify-items: center;
+    font-size: 25px;
 }
 
 #buttonDiv {
@@ -245,6 +339,7 @@ input {
 #toevoegen {
     width: 20%;
     height: 20%;
+    font-size: 40px;
 }
 
 #tabelBestellingen td {

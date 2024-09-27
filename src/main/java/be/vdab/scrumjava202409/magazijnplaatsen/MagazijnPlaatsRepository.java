@@ -24,7 +24,21 @@ public class MagazijnPlaatsRepository {
         jdbcClient.sql(sql).params(aantal, aantal, aantal, rij, rek).update();
     }
 
+    //LEV-5.3 updaten magazijnplaatsen
+    public void plaatsArtikelOpMagazijnPlaats(int aantal, String rij, int rek, long artikelId){
+        String sql = """
+                update magazijnplaatsen
+                set aantal = aantal + ?,
+                artikelId = if(aantal = 0, ?, artikelId)
+                where rij = ? and rek = ?
+                """;
+        jdbcClient.sql(sql)
+                .params(aantal,artikelId, rij, rek )
+                .update();
+    }
+
     public List<MagazijnPlaats> findMagazijnplaatsByArtikelId(long artikelId) {
+
         var sql = """
                 select magazijnPlaatsId, artikelId, rij, rek, aantal
                 from MagazijnPlaatsen

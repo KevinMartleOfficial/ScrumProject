@@ -1,6 +1,11 @@
 "use strict"
 import {byId, verwijderChildElementenVan, toon, verberg} from "./util.js";
 fetchArtikelen();
+
+document.getElementById("leveringButton").addEventListener("click", function() {
+    window.location.href = "leveringen.html";
+});
+
 async function fetchArtikelen(){
     const response = await fetch("bestellingen/aantal");
     if (response.ok){

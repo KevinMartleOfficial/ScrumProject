@@ -2,14 +2,14 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Leveringsbon Validatie</title>
+    <title>Leveringsbonvalidatie</title>
     <link rel="stylesheet" href="css/stylesheet.css">
     <script src="js/leveringsbonValidatie.js" type="module"></script>
 </head>
 <body>
-    <img src="images/logo_prularia_zwart.jpg" class = "logo">
-    <h2>Leveringsbon nr.: <span id="leveringsbonNummer"></span></h2>
-    <Table width="100%" id = "tabelLeveringsBonValidatie">
+    <img src="images/logo_prularia_zwart.jpg" class = "logo" alt="logo Prularia">
+    <h2 id="lbNummer">Leveringsbon Nr: <span id="leveringsbonNummer"></span></h2>
+    <Table id = "tabelLeveringsBonValidatie">
         <thead>
         <tr>
             <th>Artikelnaam</th>
@@ -23,5 +23,6 @@
         </tbody>
     </Table>
     <button type="button" id="buttonBevestig" hidden>Bevestig</button>
+    <div id="storing" hidden>Er is een storing bij het doorsturen van de gegevens naar de databank</div>
 </body>
 </html>
