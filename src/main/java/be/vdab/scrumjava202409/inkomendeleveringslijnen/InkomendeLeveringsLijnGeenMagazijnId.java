@@ -45,4 +45,4 @@ public class InkomendeLeveringsLijnGeenMagazijnId {
         this.aantalGoedgekeurd = this.aantalGoedgekeurd - aantalWeggelegd;
     }
 
-
+}
