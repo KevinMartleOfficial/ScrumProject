@@ -26,6 +26,7 @@ byId("toevoegen").onclick = async function () {
         leveringsbonNummer: lbnr.value,
         leveringsbondatum: lbdatum.value
     };
+    sessionStorage.setItem("leveringsbonNummer", lbnr.value);
     voegToe(leveringsbon);
 }
 

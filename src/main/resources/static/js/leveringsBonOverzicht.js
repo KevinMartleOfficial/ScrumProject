@@ -2,8 +2,8 @@
 import {byId, setText, toon, verberg} from "./util.js";
 
 const leveringsBonId = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId"));
-const leveringsbonNummer = JSON.parse(sessionStorage.getItem("leveringsbonNummer")); //moet nog gehaald worden uit session storage die nog niet is aangemaakt
-setText("leveringsbonNummer", "Leveringsbon nr: " /*+ leveringsbonNummer */); //Vandaar dat leveringsbonNummer hier nog tss commentaar staat.
+const leveringsbonNummer = JSON.parse(sessionStorage.getItem("leveringsbonNummer"));
+setText("leveringsbonNummer", "Leveringsbon nr: " + leveringsbonNummer);
 
 byId("knop").onclick = async () => {
     await fetch(`inkomendeleveringslijn/verhoog`, {
