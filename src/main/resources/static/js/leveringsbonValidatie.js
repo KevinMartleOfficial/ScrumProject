@@ -5,7 +5,7 @@ const leveringsbonId = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId")
 
 // tijdelijke Mock data hieronder
 // const leveringsbonNummer = 1;
-byId("leveringsbonNummer").innerText = JSON.parse(sessionStorage.getItem("leveringsbonNummer"));
+byId("leveringsbonNummer").innerText = sessionStorage.getItem("leveringsbonNummer");
 
 const leveringsbonLijst = JSON.parse(sessionStorage.getItem("leveringsbonLijst"));
 // Tijdelijke mock data hieronder

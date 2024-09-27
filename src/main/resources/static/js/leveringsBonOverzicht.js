@@ -2,7 +2,7 @@
 import {byId, setText, toon, verberg} from "./util.js";
 
 const leveringsBonId = JSON.parse(sessionStorage.getItem("inkomendeLeveringsId"));
-const leveringsbonNummer = JSON.parse(sessionStorage.getItem("leveringsbonNummer"));
+const leveringsbonNummer = (sessionStorage.getItem("leveringsbonNummer"));
 setText("leveringsbonNummer", "Leveringsbon nr: " + leveringsbonNummer);
 
 byId("knop").onclick = async () => {
