@@ -25,4 +25,10 @@ public class InkomendeLeveringsLijnController {
     public List<DTOArtikelNaamInkomendeLeveringsLijnAantalGoedgekeurdEnMagazijnPlaats>findAllInkomendeLeveringsLijnenByInkomendeLeveringsId(@PathVariable long inkomendeLeveringsId){
         return inkomendeLeveringsLijnService.findAllInkomendeLeveringsLijnenByInkomendeLeveringsId(inkomendeLeveringsId);
     }
+
+    //LEV-5.3 updaten voorraad in de tabel artikelen, en bij de tabel magazijnplaatsen
+    @PostMapping("verhoog")
+    public void verhoogVoorraden(@RequestBody @Valid long inkomendeLeveringsId){
+        inkomendeLeveringsLijnService.verhoogVoorraden(inkomendeLeveringsId);
+    }
 }

@@ -47,8 +47,7 @@ tr:nth-child(even) {
 img {
     padding: 50px 0 0 10px;
 }
-
-#storing {
+#storing, #inputstoring {
     color: white;
     background: red;
     text-align: center;
@@ -215,6 +214,9 @@ input.aantalGoedgekeurd {
     word-wrap: break-word;
     text-align: center;
     font-weight: bolder;
+
+#tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
+    margin-top: 1%;
 }
 
 #checkbox {
@@ -251,6 +253,34 @@ input.aantalGoedgekeurd {
 #lbNummer {
     padding: 30px 0 0 20px;
     font-size: 30px;
+#tabelBestellingen td, #tabelLeveringsBonValidatie td,
+#tabelLeveringsBon th, #tabelLeveringsBon td {
+    padding : 1%;
+}
+#tabelLeveringenEan{
+    width: 30%;
+    margin: 2%;
+}
+#tabelToegevoegdeArtikelen{
+    width: 40%;
+    margin:2%;
+}
+#tabelLeveringenEan th,#tabelToegevoegdeArtikelen th{
+    padding : 15px;
+
+}
+#tabelLeveringenEan td,#tabelToegevoegdeArtikelen td{
+    padding : 5px;
+    text-align:left;
+
+}
+#flexbox{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+#leveringsbonKnop {
+    margin-left: 2%;
 }
 
 #leveringsbonHeader {
