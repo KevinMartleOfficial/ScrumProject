@@ -33,7 +33,7 @@ if (response.ok) {
         a.href = "";
         a.addEventListener("click", event => {
             event.preventDefault();
-            const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
+            const leveringsbonLijst = JSON.parse(sessionStorage.getItem("leveringsbonLijst"));
             console.log(leveringsbonLijst[a.id].artikelId);
             sessionStorage.setItem("artikelId", leveringsbonLijst[a.id].artikelId);
             window.location = "./artikelOverzicht.html";
