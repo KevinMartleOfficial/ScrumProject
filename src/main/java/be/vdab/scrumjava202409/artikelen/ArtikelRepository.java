@@ -38,6 +38,7 @@ public class ArtikelRepository {
         jdbcClient.sql(sql).params(aantal, artikelId).update();
     }
 
+
     //LEV-5.3 verhogen voorraad van een artikel
     public void verhoogVoorraad(long artikelId, int aantal){
         String sql = """
