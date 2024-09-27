@@ -23,9 +23,22 @@ const response = await fetch(`inkomendeleveringslijn/1`);
 if (response.ok) {
     const leveringsOverzicht = await response.json();
     const tabelLeveringsOverzicht = byId("tabelLeveringsOverzicht");
+    let teller = 0;
     for (const artikel of leveringsOverzicht) {
         const tr = tabelLeveringsOverzicht.insertRow();
-        tr.insertCell().innerText = artikel.artikelNaam;
+        const a = document.createElement("a");
+        a.setAttribute("class", artikel.artikelId);
+        a.innerHTML = artikel.artikelNaam;
+        a.id = teller;
+        a.href = "";
+        a.addEventListener("click", event => {
+            event.preventDefault();
+            const leveringsbonLijst = sessionStorage.getItem("leveringsbonLijst");
+            console.log(leveringsbonLijst[a.id].artikelId);
+            sessionStorage.setItem("artikelId", leveringsbonLijst[a.id].artikelId);
+            window.location = "./artikelOverzicht.html";
+        });
+        tr.insertCell().appendChild(a);
         tr.insertCell().innerText = artikel.aantalGoedgekeurd;
         tr.insertCell().innerText = artikel.magazijnPlaats;
         const input = document.createElement("input");
@@ -33,9 +46,33 @@ if (response.ok) {
         input.className = "checkboxes";
         tr.insertCell().appendChild(input);
         checkboxLijstAanmaken();
+        teller++;
     }
+    herstelCheckboxStatus();
 } else {
     toon("storing");
+}
+
+function slaCheckBoxStatusOp() {
+    const checkboxList = document.getElementsByClassName("checkboxes");
+    let checkboxStatus = [];
+    for (let i = 0; i < checkboxList.length; i++) {
+        checkboxStatus.push(checkboxList[i].checked ? 1 : 0);
+    }
+    sessionStorage.setItem("checkboxStatus", JSON.stringify(checkboxStatus));
+}
+
+function herstelCheckboxStatus() {
+    const checkboxList = document.getElementsByClassName("checkboxes");
+    let opgeslagenStatus = JSON.parse(sessionStorage.getItem("checkboxStatus"));
+
+    if (sessionStorage.getItem("checkboxStatus") !== null) {
+        for (let i = 0; i < checkboxList.length; i++) {
+            checkboxList[i].checked = opgeslagenStatus[i] === 1;
+        }
+        telVinkjes();
+        sessionStorage.setItem("checkboxStatus", JSON.stringify(opgeslagenStatus));
+    }
 }
 
 function checkboxLijstAanmaken() {
@@ -44,6 +81,7 @@ function checkboxLijstAanmaken() {
     for (let i = 0; i < checkboxList.length; i++) {
         checkboxList[i].onchange = () => {
             telVinkjes();
+            slaCheckBoxStatusOp();
         }
     }
 }
