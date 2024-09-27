@@ -203,7 +203,7 @@ input.aantalGoedgekeurd {
 }
 
 #tabelLeveringsBon {
-    margin: 80px 20px 20px;
+    margin: 50px 20px 20px;
     border-collapse: collapse;
     width: 97%;
 }
@@ -217,7 +217,7 @@ input.aantalGoedgekeurd {
     font-weight: bolder;
 }
 
-#tabelBestellingen, #tabelLeveringsBonValidatie, #tabelLeveringsBon {
+#tabelBestellingen, #tabelLeveringsBonValidatie {
     margin-top: 1%;
 }
 
@@ -255,10 +255,10 @@ input.aantalGoedgekeurd {
 #lbNummer {
     padding: 30px 0 0 20px;
     font-size: 30px;
+    margin-bottom: 40px;
 }
 
-#tabelBestellingen td, #tabelLeveringsBonValidatie td,
-#tabelLeveringsBon th, #tabelLeveringsBon td {
+#tabelBestellingen td, #tabelLeveringsBonValidatie td{
     padding: 1%;
 }
 
