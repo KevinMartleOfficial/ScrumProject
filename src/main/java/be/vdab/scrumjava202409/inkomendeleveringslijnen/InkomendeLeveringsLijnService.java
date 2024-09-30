@@ -78,7 +78,7 @@ public class InkomendeLeveringsLijnService {
         System.out.println(legePlaatsen);*/
         inkomendeLeveringsLijnList.forEach(lijn -> {
 
-            while(index[0] < legePlaatsen.size()) {
+            while(index[0] < legePlaatsen.size() && legePlaatsen.size() > 60) {
                 int maxAantalOpPlaats = artikelService.getArtikelById(inkomendeLeveringsLijnList.get(huidigArtikel[0]).getArtikelId()).getMaxAantalInMagazijnPlaats();
                 for (int i = 0; i < hoeveelLegePlaatsenNodigPerArtikel[huidigArtikel[0]] && index[0] < legePlaatsen.size(); i++) {
                     mogelijkePlaatsen.add(new InkomendeLeveringsLijnMetStringMagazijnplaats(

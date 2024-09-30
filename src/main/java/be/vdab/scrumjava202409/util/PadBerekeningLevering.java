@@ -182,7 +182,7 @@ public class PadBerekeningLevering {
                     tempR++;
                 }else{
                     // Idem
-                    bewerkt = new InkomendeLeveringsLijnMetStringMagazijnplaats(huidigArtikel.getInkomendeLeveringsId(), huidigArtikel.getArtikelId(), huidigArtikel.getAantalGoedgekeurd(), huidigArtikel.getAantalTeruggestuurd(), huidigArtikel.getHoeveelheidOpMagazijnplaats(), huidigArtikel.getMagazijnPlaats(), huidigArtikel.getMaxAantalOpPlaats(), huidigArtikel.getMaxAantalOpPlaats() - huidigArtikel.getHoeveelheidOpMagazijnplaats());
+                    bewerkt = new InkomendeLeveringsLijnMetStringMagazijnplaats(huidigArtikel.getInkomendeLeveringsId(), huidigArtikel.getArtikelId(), huidigArtikel.getAantalGoedgekeurd(), huidigArtikel.getAantalTeruggestuurd(), huidigArtikel.getHoeveelheidOpMagazijnplaats(), huidigArtikel.getMagazijnPlaats(), huidigArtikel.getMaxAantalOpPlaats(), huidigArtikel.getAantalGoedgekeurd());
                 }
                 // Volgende 2 lijnen is omdat elk artikel op elke lege plaats kan
                 // vb: artikelen -> x, y, z
